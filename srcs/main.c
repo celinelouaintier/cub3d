@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 17:03:33 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:52:05 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,23 @@ int	finish_game(t_data *game)
 
 int main(int ac, char **av)
 {
-    t_data  data;
+    // t_data  data;
+    t_map  *map;
+    int fd;
 
     (void)av;
     (void)ac;
-    // // if (ac != 2)
-    // //     return (1);
-    data.mlx = mlx_init();
-    if (!data.mlx)
+    map = malloc(sizeof(t_map));
+    if (ac != 2)
         return (1);
-    data.window = mlx_new_window(data.mlx, 1920, 1080, "cub3d");
-    mlx_hook(data.window, 17, 0, finish_game, &data);
-    mlx_loop(data.mlx);
-    ft_printf("hello world \n");
+    fd = open(av[1], O_RDONLY);
+    init_texture(fd, map);
+    // data.mlx = mlx_init();
+    // if (!data.mlx)
+    //     return (1);
+    // data.window = mlx_new_window(data.mlx, 1920, 1080, "cub3d");
+    // mlx_hook(data.window, 17, 0, finish_game, &data);
+    // mlx_loop(data.mlx);
+    // ft_printf("hello world \n");
     return (0);
 }
