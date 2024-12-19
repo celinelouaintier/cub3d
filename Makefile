@@ -1,7 +1,7 @@
 .SILENT:
 
 CC 		= cc
-CFLAGS 	= -Wall -Wextra -Werror -g3 -I./includes
+CFLAGS 	= -Wall -Wextra -Werror -I./includes -I./minilibx
 
 LIBFT = libft.a
 LIBPATH = lib
@@ -28,12 +28,12 @@ ${PROG}:	${OBJS}
 					@make -s -C $(LIBPATH)
 					@make -s -C $(MLXPATH)
 					@echo "\n"
-					$(CC) $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) $(MLXPATH/$MLX) -o ${PROG}
+					$(CC) $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) $(MLXPATH/$MLX) -o ${PROG} -L./minilibx -lmlx -lXext -lX11 -lm
 					@echo "\033[32m Cub3d Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
 clean:
 					make -s clean -C ./lib
-					make -s clean -C ./lib
+					make -s clean -C ./minilibx
 					rm -f ${OBJS}
 
 fclean: 	clean
