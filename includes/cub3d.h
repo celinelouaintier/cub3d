@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 18:49:30 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:42:54 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ typedef struct  s_data
 {
     void    *mlx;
     void    *window;
+	t_map	map;
 }               t_data;
 
 void init_texture(int fd, t_map *map);
+
+void    print_texture(t_map *map);
 
 #endif

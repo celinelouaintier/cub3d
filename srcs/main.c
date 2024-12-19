@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 18:52:05 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:44:12 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ int	finish_game(t_data *game)
 
 int main(int ac, char **av)
 {
-    // t_data  data;
-    t_map  *map;
+    t_data  *data;
     int fd;
 
-    (void)av;
-    (void)ac;
-    map = malloc(sizeof(t_map));
+    data = malloc(sizeof(t_data));
     if (ac != 2)
         return (1);
     fd = open(av[1], O_RDONLY);
-    init_texture(fd, map);
+    init_texture(fd, &data->map);
+	print_texture(&data->map);
     // data.mlx = mlx_init();
     // if (!data.mlx)
     //     return (1);
