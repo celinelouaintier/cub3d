@@ -2,8 +2,13 @@
 
 CC 		= cc
 CFLAGS 	= -Wall -Wextra -Werror -g3 -I./includes
+
 LIBFT = libft.a
 LIBPATH = lib
+
+MLX = libmlx.a
+MLXPATH = minilibx
+
 SRCS_DIR	= srcs/
 
 PROG		= cub3d
@@ -21,23 +26,19 @@ all: 		${PROG}
 ${PROG}:	${OBJS}
 					@echo "\033[33m----Compiling lib----"
 					@make -s -C $(LIBPATH)
+					@make -s -C $(MLXPATH)
 					@echo "\n"
-					$(CC) $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) -o ${PROG}
+					$(CC) $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) $(MLXPATH/$MLX) -o ${PROG}
 					@echo "\033[32m Cub3d Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
-debug:		${OBJS}
-					@echo "\033[33m----Compiling lib----"
-					@make -s -C $(LIBPATH)
-					@echo "\n"
-					$(CC) -g $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) -o ${PROG}
-					@echo "\033[32m Cub3d Debug Ready! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
-
 clean:
+					make -s clean -C ./lib
 					make -s clean -C ./lib
 					rm -f ${OBJS}
 
 fclean: 	clean
 					make -s fclean -C ./lib
+					make -s -C ./minilibx clean
 					rm -f ${PROG}
 					@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n"
 
@@ -56,4 +57,4 @@ party:
 					@printf "\033c"
 					@echo "\033[34m♪┗(・o･)┓♪\n"
 
-.PHONY: all clean fclean re re_bonus bonus party
+.PHONY: all clean fclean re libft party

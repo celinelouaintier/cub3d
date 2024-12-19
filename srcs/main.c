@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 13:00:35 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:44:46 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int main(int ac, char **av)
 {
-
+    (void)ac;
+    (void)av;
+    ft_printf("hello world \n");
 }
