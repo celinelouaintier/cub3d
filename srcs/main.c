@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 21:44:12 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/21 22:28:11 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	finish_game(t_data *game)
 	mlx_destroy_window(game->mlx, game->window);
 	// destroy_images(game);
 	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	// free(game->mlx);
 	// free_map(game->map, game->height);
 	// free(game->images);
 	exit(0);
@@ -29,9 +29,10 @@ int main(int ac, char **av)
     int fd;
 
     data = malloc(sizeof(t_data));
-    if (ac != 2)
-        return (1);
-    fd = open(av[1], O_RDONLY);
+	if (ac != 2)
+		return (1);
+	data->map.path = av[1];
+    fd = open(data->map.path, O_RDONLY);
     init_texture(fd, &data->map);
 	print_texture(&data->map);
     // data.mlx = mlx_init();
