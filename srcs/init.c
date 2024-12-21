@@ -6,12 +6,12 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/21 23:42:43 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/21 23:52:52 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/*
 void	print_texture(t_map *map)
 {
 	ft_printf("NO : %s", map->no);
@@ -30,7 +30,7 @@ void	print_texture(t_map *map)
 		ft_printf("%s\n", *map->map);
 		map->map++;
 	}
-}
+}*/
 
 char	*skip_line(int fd)
 {
@@ -136,3 +136,15 @@ void	init_texture(int fd, t_map *map)
 	}
 	fill_map(fd, map);
 }
+
+// map->map[i] = malloc(sizeof(char) * map->width);
+// while (line[j] && line[j] != '\n')
+// {
+// 	map->map[i][j] = line[j];
+// 	j++;
+// }
+// while (j < map->width)
+// {
+// 	map->map[i][j] = ' ';
+// 	j++;
+// }
