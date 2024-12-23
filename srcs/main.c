@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/21 22:28:11 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/23 16:45:05 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int main(int ac, char **av)
 	data->map.path = av[1];
     fd = open(data->map.path, O_RDONLY);
     init_texture(fd, &data->map);
-	print_texture(&data->map);
-    // data.mlx = mlx_init();
-    // if (!data.mlx)
-    //     return (1);
-    // data.window = mlx_new_window(data.mlx, 1920, 1080, "cub3d");
-    // mlx_hook(data.window, 17, 0, finish_game, &data);
-    // mlx_loop(data.mlx);
-    // ft_printf("hello world \n");
+    fill_map(fd, &data->map);
+    data->mlx = mlx_init();
+    if (!data->mlx)
+        return (1);
+    data->window = mlx_new_window(data->mlx, 1920, 1080, "cub3d");
+    mlx_hook(data->window, 17, 0, finish_game, data);
+    // mlx_loop_hook(data->mlx, render_floor, data);
+    mlx_loop(data->mlx);
     return (0);
 }

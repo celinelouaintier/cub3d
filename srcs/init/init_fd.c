@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/21 23:52:52 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:46:23 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/*
+
 void	print_texture(t_map *map)
 {
 	ft_printf("NO : %s", map->no);
@@ -25,12 +25,14 @@ void	print_texture(t_map *map)
 	ft_printf("Height : %d\n", map->height);
 	ft_printf("Width : %d\n", map->width);
 	ft_printf("\n\n");
-	while (*map->map)
+
+	int i = 0;
+	while (map->map[i])
 	{
-		ft_printf("%s\n", *map->map);
-		map->map++;
+		ft_printf("%s\n", map->map[i]);
+		i++;
 	}
-}*/
+}
 
 char	*skip_line(int fd)
 {
@@ -102,7 +104,8 @@ void	fill_map(int fd, t_map *map)
 	{
 		if (!line)
 			break ;
-		line[ft_strlen(line) - 1] = 0;
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = 0;
 		map->map[i] = ft_strdup(line);
 		line = get_next_line(fd);
 	}
@@ -134,7 +137,6 @@ void	init_texture(int fd, t_map *map)
 		else if (*line == 'C')
 			map->cell = set_texture(line, &nb_value);
 	}
-	fill_map(fd, map);
 }
 
 // map->map[i] = malloc(sizeof(char) * map->width);
