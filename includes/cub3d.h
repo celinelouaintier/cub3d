@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/23 16:38:52 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:44:08 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ typedef struct  s_data
     void    *window;
 	t_map	map;
     t_img   img;
+    void    *wall;
+    int     zoom;
 }               t_data;
 
+void	draw_square(t_data *data);
 void    print_texture(t_map *map);
 void	fill_map(int fd, t_map *map);
 void    init_texture(int fd, t_map *map);
 int     get_color(t_data *data, char *str);
 int     render_floor(t_data *data, int size);
 void	put_pixel(t_img *image, int x, int y, int color);
+int    game_loop(t_data *data);
 
 #endif
