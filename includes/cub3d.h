@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/23 18:44:08 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:52:55 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "libft.h"
 # include "mlx.h"
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_img
 {
@@ -47,6 +50,8 @@ typedef struct  s_data
     t_img   img;
     void    *wall;
     int     zoom;
+	int		startx;
+	int		starty;
 }               t_data;
 
 void	draw_square(t_data *data);
@@ -56,6 +61,7 @@ void    init_texture(int fd, t_map *map);
 int     get_color(t_data *data, char *str);
 int     render_floor(t_data *data, int size);
 void	put_pixel(t_img *image, int x, int y, int color);
-int    game_loop(t_data *data);
+int		game_loop(t_data *data);
+void	set_img(t_data *data);
 
 #endif

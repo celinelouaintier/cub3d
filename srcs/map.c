@@ -3,46 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/23 18:45:08 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:55:56 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 void	draw_square(t_data *data)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    int x = 1920 / 3;
-    int y = 1080 / 3;
-    // int xs = 10;
-    // int ys = 10;
-    // data->wall = mlx_xpm_file_to_image(data->mlx, data->map.no, &xs, &ys);
-    while (i < data->map.height * data->zoom)
-    {
-        j = 0;
-        while (j < data->map.width * data->zoom)
-        {
-            put_pixel(&data->img, x + j, y + i, get_color(data, data->map.floor));
-            j++;
-        }
-        i++;
-    }   
+	i = 0;
+	set_img(data);
+	while (i < data->map.height * data->zoom)
+	{
+		j = 0;
+		while (j < data->map.width * data->zoom)
+		{
+			put_pixel(&data->img, data->startx + j, data->starty + i,
+				get_color(data, data->map.floor));
+			j++;
+		}
+		i++;
+	}
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 }
 
-int    game_loop(t_data *data)
+int	game_loop(t_data *data)
 {
-    draw_square(data);
-    return (0);
+	draw_square(data);
+	return (0);
 }
-
 
 // creer un rectangle pour chaque 0 sur la map
 // void    draw_cell(t_data *data, int x, int y, int color)
@@ -68,7 +63,7 @@ int    game_loop(t_data *data)
 //     int x;
 //     int y;
 //     int color;
-    
+
 //     color = get_color(data, data->map->floor);
 //     y = 0;
 //     while (y < data->map->height)

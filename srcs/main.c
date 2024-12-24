@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/23 18:52:44 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:39:27 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ int player_move(int keycode, t_data *data)
     if (keycode == 65307)
 		finish_game(data);
     if (keycode == 's')
-        data->zoom--;
+		data->zoom--;
     if (keycode == 'w')
-        data->zoom++;
+		data->zoom++;
+	if (keycode == 'd')
+		data->startx -= 10;
+	if (keycode == 'a')
+		data->startx += 10;
     return (0);
 }
 
@@ -48,12 +52,11 @@ int main(int ac, char **av)
     fill_map(fd, &data->map);
     data->mlx = mlx_init();
     data->zoom = 10;
+	data->startx = WIDTH / 3;
+	data->starty = HEIGHT / 3;
     if (!data->mlx)
         return (1);
-    data->window = mlx_new_window(data->mlx, 1920, 1080, "cub3d");
-    data->img.img = mlx_new_image(data->mlx, 1920, 1080);
-	data->img.addr = (int *)mlx_get_data_addr(data->img.img, &data->img.pixel_bits, &data->img.size_line,
-			&data->img.endian);
+    data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
     // draw_square(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
     mlx_hook(data->window, 2, 1L << 0, player_move, data);

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/23 18:13:32 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:53:59 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 void	print_texture(t_map *map)
 {
 	ft_printf("NO : %s", map->no);
@@ -33,6 +34,7 @@ void	print_texture(t_map *map)
 		i++;
 	}
 }
+*/
 
 char	*skip_line(int fd)
 {
