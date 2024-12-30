@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/30 14:50:15 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:46:21 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	put_pixel(t_img *image, int x, int y, int color)
 {
 	int	pixel;
 
-	if (x > WIDTH || y > HEIGHT || x < 0 || y < 0)
+	if (x >= WIDTH || y >= HEIGHT || x <= 0 || y <= 0)
 		return ;
 	pixel = y * (image->size_line / 4) + x;
 	image->addr[pixel] = color;
@@ -50,5 +50,4 @@ void	set_img(t_data *data)
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.addr = (int *)mlx_get_data_addr(data->img.img,
 			&data->img.pixel_bits, &data->img.size_line, &data->img.endian);
-	ft_printf("%d\n", &data->img.endian);
 }

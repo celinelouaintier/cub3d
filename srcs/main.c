@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/24 02:39:27 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/30 18:29:56 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ int	finish_game(t_data *game)
 
 int player_move(int keycode, t_data *data)
 {
-    if (keycode == 65307)
+	if (keycode == 65307)
 		finish_game(data);
-    if (keycode == 's')
+	if (keycode == 's')
 		data->zoom--;
-    if (keycode == 'w')
+	if (keycode == 'w')
 		data->zoom++;
 	if (keycode == 'd')
 		data->startx -= 10;
 	if (keycode == 'a')
 		data->startx += 10;
-    return (0);
+	// mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
+	return (0);
 }
 
 int main(int ac, char **av)

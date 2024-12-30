@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/30 16:24:07 by clouaint         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:46:25 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int	*addr;
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
