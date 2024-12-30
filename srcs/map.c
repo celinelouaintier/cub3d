@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/24 02:55:56 by nferrad          ###   ########.fr       */
+/*   Updated: 2024/12/30 16:32:09 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,36 @@
 
 void	draw_square(t_data *data)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
+	int height, width, offset, color;
+	t_img texture;
 
-	i = 0;
+	y = 0;
 	set_img(data);
-	while (i < data->map.height * data->zoom)
+	texture.img = mlx_xpm_file_to_image(data->mlx, "assets/cobblestone.xpm", &width, &height);
+	if (!texture.img)
+    {
+        printf("Erreur : Impossible de charger l'image XPM\n");
+        exit(1);
+    }
+	texture.addr = mlx_get_data_addr(texture.img, &texture.pixel_bits, &texture.size_line, &texture.endian);
+	if (!texture.addr) 
 	{
-		j = 0;
-		while (j < data->map.width * data->zoom)
+    	printf("Erreur : Impossible de récupérer les données de l'image\n");
+    	exit(1);
+	}
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
 		{
-			put_pixel(&data->img, data->startx + j, data->starty + i,
-				get_color(data, data->map.floor));
-			j++;
+			offset = y * texture.size_line + x * (texture.pixel_bits / 8);
+			color = *(int *)(texture.addr + offset);
+			put_pixel(&data->img, data->startx + x, data->starty + y, color);
+			x++;
 		}
-		i++;
+		y++;
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 }
@@ -43,7 +58,7 @@ int	game_loop(t_data *data)
 // void    draw_cell(t_data *data, int x, int y, int color)
 // {
 //     int i;
-//     int j;
+//     int x;
 
 //     i = 0;
 //     while (i < data->map->height)
