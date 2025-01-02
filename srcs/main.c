@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:55:26 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:34:56 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int main(int ac, char **av)
     fd = open(data->map.path, O_RDONLY);
     init_texture(fd, &data->map);
     fill_map(fd, &data->map);
-	// find_initial_position(data);
-	// printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->startx, data->starty, data->angle);
+	find_initial_position(data);
+	printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->player_x, data->player_y, data->angle);
     data->mlx = mlx_init();
     data->zoom = 10;
 	data->startx = WIDTH / 3;
@@ -64,6 +64,8 @@ int main(int ac, char **av)
     // draw_square(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
     mlx_hook(data->window, 2, 1L << 0, player_move, data);
+	data->last_x = -1;
+	mlx_hook(data->window, 6, 1L << 6, mouse_move, data);
     mlx_loop_hook(data->mlx, game_loop, data);
     mlx_loop(data->mlx);
     return (0);

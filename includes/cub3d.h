@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:51:24 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:31:52 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct  s_data
     int     zoom;
 	int		startx;
 	int		starty;
+	int		player_x;
+	int		player_y;
+	int		last_x;
 	float	angle;
 	
 }               t_data;
@@ -67,5 +70,6 @@ int		game_loop(t_data *data);
 void	set_img(t_data *data);
 void	find_initial_position(t_data *data);
 void	is_cub(const char *str);
+int		mouse_move(int x, int y, t_data *data);
 
 #endif

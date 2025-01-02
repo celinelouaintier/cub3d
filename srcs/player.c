@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:46:41 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:38:28 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	find_initial_position(t_data *data)
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' ||
 				data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
-				data->startx = j;
-				data->starty = i;
+				data->player_x = j;
+				data->player_y = i;
 				find_angle(data, i, j);
 				data->map.map[i][j] = '0';
 			}
@@ -47,4 +47,26 @@ void	find_initial_position(t_data *data)
 		}
 		i++;
 	}
+}
+
+// x = position horizontale de base de la souris sur la fenetre, c'est la mlx qui calcule ca
+int	mouse_move(int x, int y, t_data *data)
+{
+	int			delta_x;
+
+	(void)y;
+	if (data->last_x == -1)
+	{
+		data->last_x = x;
+		return (0);
+	}
+	delta_x = x - data->last_x;
+	data->angle += delta_x * 0.003;
+	if (data->angle < 0)
+		data->angle += 2 * M_PI;
+	if (data->angle > 2 * M_PI)
+		data->angle -= 2 * M_PI;
+	data->last_x = x;
+	printf("Player angle: %f\n", data->angle);
+	return (0);
 }
