@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:37:44 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:46:41 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	find_initial_position(t_data *data)
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' ||
 				data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
-				data->startx = j + 0.5;
-				data->starty = i + 0.5;
+				data->startx = j;
+				data->starty = i;
 				find_angle(data, i, j);
 				data->map.map[i][j] = '0';
 			}

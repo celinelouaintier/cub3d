@@ -13,7 +13,7 @@ SRCS_DIR	= srcs/
 
 PROG		= cub3d
 
-SRCS		= main.c init/init_fd.c utils.c map.c player.c
+SRCS		= main.c init/init_fd.c utils.c map.c player.c check.c
 SRC 		= ${addprefix ${SRCS_DIR}, ${SRCS}}
 OBJS 		= ${SRC:.c=.o}
 

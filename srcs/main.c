@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:43:05 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:55:26 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(int ac, char **av)
     t_data  *data;
     int fd;
 
+	is_cub(av[1]);
     data = malloc(sizeof(t_data));
 	if (ac != 2)
 		return (1);
@@ -52,7 +53,7 @@ int main(int ac, char **av)
     init_texture(fd, &data->map);
     fill_map(fd, &data->map);
 	// find_initial_position(data);
-	// printf("Initial position: x = %f, y = %f, angle = %f radians\n", data->startx, data->starty, data->angle);
+	// printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->startx, data->starty, data->angle);
     data->mlx = mlx_init();
     data->zoom = 10;
 	data->startx = WIDTH / 3;
