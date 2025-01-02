@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/30 18:29:56 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:43:05 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int main(int ac, char **av)
     fd = open(data->map.path, O_RDONLY);
     init_texture(fd, &data->map);
     fill_map(fd, &data->map);
+	// find_initial_position(data);
+	// printf("Initial position: x = %f, y = %f, angle = %f radians\n", data->startx, data->starty, data->angle);
     data->mlx = mlx_init();
     data->zoom = 10;
 	data->startx = WIDTH / 3;

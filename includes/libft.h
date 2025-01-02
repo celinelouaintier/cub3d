@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:29 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/19 14:34:47 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:50:02 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <limits.h>
 # include <sys/wait.h>
 # include <X11/Xlib.h>
+# include <math.h>
 
 /* Utils functions */
 

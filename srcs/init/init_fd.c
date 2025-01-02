@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/24 02:53:59 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/02 16:30:52 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	fill_map(int fd, t_map *map)
 	line = get_next_line(fd);
 	line = skip_line(fd);
 	get_map_size(fd, &map, line);
-	open(map->path, O_RDONLY);
+	close(fd);
+	fd = open(map->path, O_RDONLY);
 	line = skip_line(fd);
 	i = -1;
 	map->map = malloc(sizeof(char *) * map->height);
