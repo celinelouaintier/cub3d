@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:54:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:56:44 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	is_cub(const char *str)
+void	check_file_format(char *filename)
 {
-	int	size;
+	int		i;
 
-	size = ft_strlen((char *)str);
-	if (str[size - 1] == 'b' && str[size - 2] == 'u')
+	i = 0;
+	while (filename[i] && filename[i - 1] != '.')
+		i++;
+	if (i == 1)
 	{
-		if (str[size - 3] == 'c' || str[size - 4] == '.')
-			return ;
+		ft_printf("Error : File not .cub\n");
+		exit (-1);
 	}
+	if (!ft_strncmp((filename + i), "cub", 3))
+		return ;
 	ft_printf("Error : File not .cub\n");
-	exit(-1);
+	exit (-1);
 }

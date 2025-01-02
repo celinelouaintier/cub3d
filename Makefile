@@ -9,16 +9,18 @@ LIBPATH = lib
 MLX = libmlx.a
 MLXPATH = minilibx
 
-SRCS_DIR	= srcs/
-
 PROG		= cub3d
 
+SRCS_DIR	= srcs/
 SRCS		= main.c init/init_fd.c utils.c map.c player.c check.c
 SRC 		= ${addprefix ${SRCS_DIR}, ${SRCS}}
-OBJS 		= ${SRC:.c=.o}
 
-%.o: %.c
+OBJS_DIR	:= objs/
+OBJS		:= $(patsubst $(SRCS_DIR)%.c,$(OBJS_DIR)%.o,$(SRC))
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 					@echo "\033[34mCompiling $<..."
+					@mkdir -p $(dir $@)
 					$(CC) $(CFLAGS) -c $< -o $@
 
 all: 		${PROG}
@@ -34,6 +36,8 @@ ${PROG}:	${OBJS}
 clean:
 					make -s clean -C ./lib
 					make -s clean -C ./minilibx
+					@ ${RM} $(OBJS_DIR)/*.o
+					@ ${RM} -rf $(OBJS_DIR)
 					rm -f ${OBJS}
 
 fclean: 	clean

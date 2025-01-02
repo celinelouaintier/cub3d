@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 17:34:56 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:50:34 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main(int ac, char **av)
     t_data  *data;
     int fd;
 
-	is_cub(av[1]);
+	check_file_format(av[1]);
     data = malloc(sizeof(t_data));
 	if (ac != 2)
 		return (1);
