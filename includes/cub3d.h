@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 19:51:57 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/04 00:09:47 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,32 @@ typedef struct  s_map
 	int     width;
 }               t_map;
 
+typedef struct  s_raycast
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	planeX;
+	double	planeY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	double	perpWallDist;
+	int		lineHeight;
+}               t_raycast;
+
 typedef struct  s_data
 {
     void    *mlx;
     void    *window;
 	t_map	map;
     t_img   img;
+	t_raycast	raycast;
     void    *wall;
     int     zoom;
 	int		startx;
@@ -56,7 +76,6 @@ typedef struct  s_data
 	int		player_y;
 	int		last_x;
 	float	angle;
-	
 }               t_data;
 
 void	draw_square(t_data *data);
@@ -72,5 +91,10 @@ void	find_initial_position(t_data *data);
 void	is_cub(const char *str);
 int		mouse_move(int x, int y, t_data *data);
 void	check_file_format(char *filename);
+
+void draw_line(t_data *data, int start, int end, int x, int color);
+void	init_raycast(t_data *data, double dirX, double dirY, int x);
+int	check_ray_hit(t_data *data);
+void	set_step(t_data *data);
 
 #endif

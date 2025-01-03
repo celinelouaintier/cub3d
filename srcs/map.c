@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:21:47 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/04 00:09:09 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_square(t_data *data)
+void	draw_bg(t_data *data)
 {
 	int	x;
 	int	y;
-	int color;
+	int	color;
 
-	set_img(data);
 	color = get_color(data, data->map.cell);
 	y = 0;
 	while (y < HEIGHT)
@@ -33,24 +32,51 @@ void	draw_square(t_data *data)
 		}
 		y++;
 	}
-	color = get_color(data, "233,128,9");
-	y = 0;
-	while (y < 50 * data->zoom)
+}
+
+void	raycast(t_data *data)
+{
+//--TMP--//
+	int color = get_color(data, "233,128,9");
+	double dirX = -1, dirY = 0;
+//-------//
+
+	int	side;
+	int	x;
+	int	draw_start;
+	int	draw_end;
+
+	x = 0;
+	data->raycast.planeX = 0;
+	data->raycast.planeY = 0.66;
+	while (x < WIDTH)
 	{
-		x = 0;
-		while (x < 75 * data->zoom)
-		{
-			put_pixel(&data->img, data->startx + x, data->starty + y, color);
-			x++;
-		}
-		y++;
+		color = get_color(data, "233,128,9"); // TMP
+		init_raycast(data, dirX, dirY, x);
+		set_step(data);
+		side = check_ray_hit(data);
+		if (!side)
+			data->raycast.perpWallDist = (data->raycast.sideDistX
+					- data->raycast.deltaDistX);
+		else
+			data->raycast.perpWallDist = (data->raycast.sideDistY
+					- data->raycast.deltaDistY);
+		data->raycast.lineHeight = (int)(HEIGHT / data->raycast.perpWallDist);
+		draw_start = -data->raycast.lineHeight / 2 + HEIGHT / 2;
+		draw_end = data->raycast.lineHeight / 2 + HEIGHT / 2;
+		if (side)
+			color = get_color(data, "184, 125, 9");
+		draw_line(data, draw_start, draw_end, WIDTH - x, color);
+		x++;
 	}
-	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 }
 
 int	game_loop(t_data *data)
 {
-	draw_square(data);
+	set_img(data);
+	draw_bg(data);
+	raycast(data);
+	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	return (0);
 }
 

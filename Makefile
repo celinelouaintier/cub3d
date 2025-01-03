@@ -12,7 +12,7 @@ MLXPATH = minilibx
 PROG		= cub3d
 
 SRCS_DIR	= srcs/
-SRCS		= main.c init/init_fd.c utils.c map.c player.c check.c
+SRCS		= main.c init/init_fd.c utils.c map.c player.c check.c raycasting.c
 SRC 		= ${addprefix ${SRCS_DIR}, ${SRCS}}
 
 OBJS_DIR	:= objs/

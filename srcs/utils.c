@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2024/12/30 18:46:21 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:21:42 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ void	put_pixel(t_img *image, int x, int y, int color)
 		return ;
 	pixel = y * (image->size_line / 4) + x;
 	image->addr[pixel] = color;
+}
+
+void draw_line(t_data *data, int start, int end, int x, int color)
+{
+	int i;
+
+	i = start;
+	while (i < end)
+	{
+		put_pixel(&data->img, x, i, color);
+		i++;
+	}
 }
 
 void	set_img(t_data *data)

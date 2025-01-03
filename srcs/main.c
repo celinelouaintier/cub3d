@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 19:50:34 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/03 14:25:16 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	data->map.path = av[1];
-    fd = open(data->map.path, O_RDONLY);
+	if ((fd = open(data->map.path, O_RDONLY)) < 0)
+		return (1);
     init_texture(fd, &data->map);
     fill_map(fd, &data->map);
 	find_initial_position(data);
