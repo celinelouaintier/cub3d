@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 00:09:09 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/04 19:30:55 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_bg(t_data *data)
 void	raycast(t_data *data)
 {
 //--TMP--//
-	int color = get_color(data, "233,128,9");
+	data->color = get_color(data, "233,128,9");
 	double dirX = -1, dirY = 0;
 //-------//
 
@@ -47,26 +47,27 @@ void	raycast(t_data *data)
 	int	draw_end;
 
 	x = 0;
-	data->raycast.planeX = 0;
-	data->raycast.planeY = 0.66;
+	data->raycast.plane_x = 0;
+	data->raycast.plane_y = 0.66;
 	while (x < WIDTH)
 	{
-		color = get_color(data, "233,128,9"); // TMP
+		data->color = get_color(data, "233,128,9"); // TMP
 		init_raycast(data, dirX, dirY, x);
 		set_step(data);
 		side = check_ray_hit(data);
 		if (!side)
-			data->raycast.perpWallDist = (data->raycast.sideDistX
-					- data->raycast.deltaDistX);
+			data->raycast.perp_wall_dist = (data->raycast.side_dist_x
+					- data->raycast.delta_dist_x);
 		else
-			data->raycast.perpWallDist = (data->raycast.sideDistY
-					- data->raycast.deltaDistY);
-		data->raycast.lineHeight = (int)(HEIGHT / data->raycast.perpWallDist);
-		draw_start = -data->raycast.lineHeight / 2 + HEIGHT / 2;
-		draw_end = data->raycast.lineHeight / 2 + HEIGHT / 2;
+			data->raycast.perp_wall_dist = (data->raycast.side_dist_y
+					- data->raycast.delta_dist_y);
+		data->raycast.line_height = (int)(HEIGHT
+				/ data->raycast.perp_wall_dist);
+		draw_start = -data->raycast.line_height / 2 + HEIGHT / 2;
+		draw_end = data->raycast.line_height / 2 + HEIGHT / 2;
 		if (side)
-			color = get_color(data, "184, 125, 9");
-		draw_line(data, draw_start, draw_end, WIDTH - x, color);
+			data->color = get_color(data, "184, 125, 9"); // TMP
+		draw_line(data, draw_start, draw_end, WIDTH - x);
 		x++;
 	}
 }
