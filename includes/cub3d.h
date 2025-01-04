@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 19:25:46 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/04 21:06:27 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_raycast
 	double	delta_dist_y;
 	double	plane_x;
 	double	plane_y;
+	double	dir_x;
+	double	dir_y;
 	int		map_x;
 	int		map_y;
 	int		step_x;
@@ -93,8 +95,8 @@ void	is_cub(const char *str);
 int		mouse_move(int x, int y, t_data *data);
 void	check_file_format(char *filename);
 void	draw_line(t_data *data, int start, int end, int x);
-void	init_raycast(t_data *data, double dirX, double dirY, int x);
-int		check_ray_hit(t_data *data);
+void	init_raycast(t_raycast *r, t_data *data, int x);
+int		check_ray_hit(t_raycast *r, t_data *data);
 void	set_step(t_data *data);
 
 #endif
