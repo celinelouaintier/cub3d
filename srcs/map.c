@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 19:30:55 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:08:58 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	raycast(t_data *data)
 {
 //--TMP--//
 	data->color = get_color(data, "233,128,9");
-	double dirX = -1, dirY = 0;
+	double dirX = cos(data->angle), dirY = -sin(data->angle);
 //-------//
 
 	int	side;
@@ -47,8 +47,8 @@ void	raycast(t_data *data)
 	int	draw_end;
 
 	x = 0;
-	data->raycast.plane_x = 0;
-	data->raycast.plane_y = 0.66;
+	data->raycast.plane_x = sin(data->angle) * 0.66;
+	data->raycast.plane_y = cos(data->angle) * 0.66;
 	while (x < WIDTH)
 	{
 		data->color = get_color(data, "233,128,9"); // TMP
@@ -67,7 +67,7 @@ void	raycast(t_data *data)
 		draw_end = data->raycast.line_height / 2 + HEIGHT / 2;
 		if (side)
 			data->color = get_color(data, "184, 125, 9"); // TMP
-		draw_line(data, draw_start, draw_end, WIDTH - x);
+		draw_line(data, draw_start, draw_end, x);
 		x++;
 	}
 }
