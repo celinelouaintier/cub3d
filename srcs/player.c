@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 17:38:28 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:28:34 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	mouse_move(int x, int y, t_data *data)
 	delta_x = x - data->last_x;
 	data->angle += delta_x * 0.003;
 	if (data->angle < 0)
-		data->angle += 2 * M_PI;
-	if (data->angle > 2 * M_PI)
 		data->angle -= 2 * M_PI;
+	if (data->angle > 2 * M_PI)
+		data->angle += 2 * M_PI;
 	data->last_x = x;
 	printf("Player angle: %f\n", data->angle);
 	return (0);
