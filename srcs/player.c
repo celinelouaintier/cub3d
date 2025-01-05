@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/05 20:28:34 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/05 21:37:09 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	find_initial_position(t_data *data)
 }
 
 // x = position horizontale de base de la souris sur la fenetre, c'est la mlx qui calcule ca
+// TODO : recentrer la souris a chaque fois qu'on bouge la camera
 int	mouse_move(int x, int y, t_data *data)
 {
 	int			delta_x;
@@ -68,5 +69,6 @@ int	mouse_move(int x, int y, t_data *data)
 		data->angle += 2 * M_PI;
 	data->last_x = x;
 	printf("Player angle: %f\n", data->angle);
+	// mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }
