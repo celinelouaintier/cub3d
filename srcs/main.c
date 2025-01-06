@@ -27,9 +27,14 @@ int player_move(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		finish_game(data);
-	if (keycode == 's')
-		data->zoom--;
 	if (keycode == 'w')
+	{
+		if(data->map.map[data->player_y][(int)(data->player_x + data->raycast.dir_x * 0.1)] != '1')
+			data->player_x += data->raycast.dir_x * 0.1;
+		if(data->map.map[(int)(data->player_y + data->raycast.dir_y * 0.1)][data->player_x] != '1')
+			data->player_y += data->raycast.dir_y * 0.1;
+	}
+	if (keycode == 's')
 		data->zoom++;
 	if (keycode == 'd')
 		data->startx -= 10;

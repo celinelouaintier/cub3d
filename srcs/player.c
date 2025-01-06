@@ -50,25 +50,31 @@ void	find_initial_position(t_data *data)
 }
 
 // x = position horizontale de base de la souris sur la fenetre, c'est la mlx qui calcule ca
-// TODO : recentrer la souris a chaque fois qu'on bouge la camera
 int	mouse_move(int x, int y, t_data *data)
 {
 	int			delta_x;
 
 	(void)y;
-	if (data->last_x == -1)
+	// if (data->last_x == -1)
+	// {
+	// 	data->last_x = x;
+	// 	return (0);
+	// }
+	if (x != WIDTH / 2)
 	{
-		data->last_x = x;
-		return (0);
+		delta_x = x - WIDTH / 2;
+		data->angle += delta_x * 0.003;
+		if (data->angle < 0)
+			data->angle += 2 * M_PI;
+		if (data->angle > 2 * M_PI)
+			data->angle -= 2 * M_PI;
+		data->raycast.dir_x = cos(data->angle);
+		data->raycast.dir_y = -sin(data->angle);
+		data->raycast.plane_x = sin(data->angle) * 0.66;
+		data->raycast.plane_y = cos(data->angle) * 0.66;
+		// data->last_x = x;
+		printf("Player angle: %f\n", data->angle);
+		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	}
-	delta_x = x - data->last_x;
-	data->angle += delta_x * 0.003;
-	if (data->angle < 0)
-		data->angle -= 2 * M_PI;
-	if (data->angle > 2 * M_PI)
-		data->angle += 2 * M_PI;
-	data->last_x = x;
-	printf("Player angle: %f\n", data->angle);
-	// mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }
