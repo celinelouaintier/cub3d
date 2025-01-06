@@ -23,27 +23,6 @@ int	finish_game(t_data *game)
 	exit(0);
 }
 
-int player_move(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-		finish_game(data);
-	if (keycode == 'w')
-	{
-		if(data->map.map[data->player_y][(int)(data->player_x + data->raycast.dir_x * 0.1)] != '1')
-			data->player_x += data->raycast.dir_x * 0.1;
-		if(data->map.map[(int)(data->player_y + data->raycast.dir_y * 0.1)][data->player_x] != '1')
-			data->player_y += data->raycast.dir_y * 0.1;
-	}
-	if (keycode == 's')
-		data->zoom++;
-	if (keycode == 'd')
-		data->startx -= 10;
-	if (keycode == 'a')
-		data->startx += 10;
-	// mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
-	return (0);
-}
-
 int main(int ac, char **av)
 {
     t_data  *data;
@@ -59,7 +38,7 @@ int main(int ac, char **av)
     init_texture(fd, &data->map);
     fill_map(fd, &data->map);
 	find_initial_position(data);
-	printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->player_x, data->player_y, data->angle);
+	// printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->player_x, data->player_y, data->angle);
     data->mlx = mlx_init();
     data->zoom = 10;
 	data->startx = WIDTH / 3;
@@ -70,7 +49,6 @@ int main(int ac, char **av)
     // draw_square(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
     mlx_hook(data->window, 2, 1L << 0, player_move, data);
-	data->last_x = -1;
 	mlx_hook(data->window, 6, 1L << 6, mouse_move, data);
     mlx_loop_hook(data->mlx, game_loop, data);
     mlx_loop(data->mlx);

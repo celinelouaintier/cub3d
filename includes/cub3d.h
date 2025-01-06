@@ -74,9 +74,8 @@ typedef struct s_data
 	int			zoom;
 	int			startx;
 	int			starty;
-	int			player_x;
-	int			player_y;
-	int			last_x;
+	float		player_x;
+	float		player_y;
 	float		angle;
 	int			color;
 }				t_data;
@@ -97,6 +96,8 @@ void	check_file_format(char *filename);
 void	draw_line(t_data *data, int start, int end, int x);
 void	init_raycast(t_raycast *r, t_data *data, int x);
 int		check_ray_hit(t_raycast *r, t_data *data);
+int		player_move(int keycode, t_data *data);
+int		finish_game(t_data *game);
 void	set_step(t_data *data);
 
 #endif
