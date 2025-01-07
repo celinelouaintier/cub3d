@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 21:06:27 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:38:05 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_img
 {
 	void	*img;
 	int		*addr;
+	int		width;
+	int		height;
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
@@ -47,6 +49,7 @@ typedef struct s_raycast
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
+	double	side;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_dist_x;
@@ -90,7 +93,6 @@ void	put_pixel(t_img *image, int x, int y, int color);
 int		game_loop(t_data *data);
 void	set_img(t_data *data);
 void	find_initial_position(t_data *data);
-void	is_cub(const char *str);
 int		mouse_move(int x, int y, t_data *data);
 void	check_file_format(char *filename);
 void	draw_line(t_data *data, int start, int end, int x);
@@ -99,5 +101,9 @@ int		check_ray_hit(t_raycast *r, t_data *data);
 int		player_move(int keycode, t_data *data);
 int		finish_game(t_data *game);
 void	set_step(t_data *data);
+void	init_ray_dir(t_data *data);
+void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
+void    apply_tex(t_data *data, int x, int draw_start, int draw_end);
+void    load_textures(t_data *data);
 
 #endif

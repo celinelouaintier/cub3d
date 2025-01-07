@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 19:28:24 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/07 14:15:39 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,4 @@ void	draw_line(t_data *data, int start, int end, int x)
 {
 	while (start++ < end)
 		put_pixel(&data->img, x, start, data->color);
-}
-
-void	set_img(t_data *data)
-{
-	if (data->img.img)
-		mlx_destroy_image(data->mlx, data->img.img);
-	data->img.img = NULL;
-	data->img.addr = NULL;
-	data->img.pixel_bits = 0;
-	data->img.size_line = 0;
-	data->img.endian = 0;
-	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img.addr = (int *)mlx_get_data_addr(data->img.img,
-			&data->img.pixel_bits, &data->img.size_line, &data->img.endian);
 }

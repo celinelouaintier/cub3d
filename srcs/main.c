@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/03 14:25:16 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:47:17 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int ac, char **av)
     if (!data->mlx)
         return (1);
     data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
-    // draw_square(data);
+    load_textures(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
     mlx_hook(data->window, 2, 1L << 0, player_move, data);
 	mlx_hook(data->window, 6, 1L << 6, mouse_move, data);

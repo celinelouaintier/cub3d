@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/04 21:10:10 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:59:04 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,25 @@ void	draw_bg(t_data *data)
 void	raycast(t_data *data)
 {
 	int			x;
-	int			side;
-	int			draw_end;
-	int			draw_start;
+	// int			side;
+	int			draw_end = 0;
+	int			draw_start = 0;
 	t_raycast	*raycast;
 
 	x = -1;
 	raycast = &data->raycast;
-	data->color = get_color(data, "233,128,9");
-	raycast->dir_x = cos(data->angle);
-	raycast->dir_y = -sin(data->angle);
-	raycast->plane_x = sin(data->angle) * 0.66;
-	raycast->plane_y = cos(data->angle) * 0.66;
+	init_ray_dir(data);
 	while (++x < WIDTH)
 	{
 		init_raycast(raycast, data, x);
 		set_step(data);
-		side = check_ray_hit(raycast, data);
-		raycast->line_height = (int)(HEIGHT / raycast->perp_wall_dist);
-		draw_start = -raycast->line_height / 2 + HEIGHT / 2;
-		draw_end = raycast->line_height / 2 + HEIGHT / 2;
+		raycast->side = check_ray_hit(raycast, data);
+		draw_limits(raycast, &draw_start, &draw_end);
 		data->color = get_color(data, "233,128,9"); // TMP
-		if (side)
+		if (raycast->side)
 			data->color = get_color(data, "184, 125, 9"); // TMP
 		draw_line(data, draw_start, draw_end, x);
+		// apply_tex(data, x, draw_start, draw_end);
 	}
 }
 
