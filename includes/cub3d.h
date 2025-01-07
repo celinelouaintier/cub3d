@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/07 15:38:05 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:16:56 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ typedef struct s_raycast
 	int		line_height;
 }				t_raycast;
 
+typedef struct s_key
+{
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+}				t_key;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -73,6 +81,7 @@ typedef struct s_data
 	t_map		map;
 	t_img		img;
 	t_raycast	raycast;
+	t_key		key;
 	void		*wall;
 	int			zoom;
 	int			startx;
@@ -81,6 +90,7 @@ typedef struct s_data
 	float		player_y;
 	float		angle;
 	int			color;
+	int			last_x;
 }				t_data;
 
 void	draw_square(t_data *data);
@@ -98,7 +108,9 @@ void	check_file_format(char *filename);
 void	draw_line(t_data *data, int start, int end, int x);
 void	init_raycast(t_raycast *r, t_data *data, int x);
 int		check_ray_hit(t_raycast *r, t_data *data);
-int		player_move(int keycode, t_data *data);
+int		player_move(t_data *data);
+int		key_release(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
 int		finish_game(t_data *game);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);

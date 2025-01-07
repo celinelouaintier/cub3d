@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/07 15:47:17 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:18:18 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int ac, char **av)
 	find_initial_position(data);
 	// printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->player_x, data->player_y, data->angle);
     data->mlx = mlx_init();
+	data->last_x = -1;
     data->zoom = 10;
 	data->startx = WIDTH / 3;
 	data->starty = HEIGHT / 3;
@@ -48,7 +49,8 @@ int main(int ac, char **av)
     data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
     load_textures(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
-    mlx_hook(data->window, 2, 1L << 0, player_move, data);
+	mlx_hook(data->window, 2, 1L << 0, key_press, data);
+	mlx_hook(data->window, 3, 1L << 1, key_release, data);
 	mlx_hook(data->window, 6, 1L << 6, mouse_move, data);
     mlx_loop_hook(data->mlx, game_loop, data);
     mlx_loop(data->mlx);

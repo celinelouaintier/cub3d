@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/05 21:37:09 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:24:49 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,81 @@ int	mouse_move(int x, int y, t_data *data)
 	return (0);
 }
 
-int player_move(int keycode, t_data *data)
+// ------ PAS TOUCHE ------ //
+// int	mouse_move(int x, int y, t_data *data)
+// {
+// 	int			delta_x;
+
+// 	(void)y;
+// 	if (data->last_x == -1)
+// 	{
+// 		data->last_x = x;
+// 		return (0);
+// 	}
+// 	delta_x = x - data->last_x;
+// 	data->angle -= delta_x * 0.003;
+// 	if (data->angle < 0)
+// 		data->angle += 2 * M_PI;
+// 	if (data->angle > 2 * M_PI)
+// 		data->angle -= 2 * M_PI;
+// 	data->last_x = x;
+// 	printf("Player angle: %f\n", data->angle);
+// 	return (0);
+// }
+
+int	key_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		finish_game(data);
 	if (keycode == 'w')
+		data->key.w = 1;
+	if (keycode == 'a')
+		data->key.a = 1;
+	if (keycode == 's')
+		data->key.s = 1;
+	if (keycode == 'd')
+		data->key.d = 1;
+	return (0);
+}
+
+int	key_release(int keycode, t_data *data)
+{
+	if (keycode == 'w')
+		data->key.w = 0;
+	if (keycode == 'a')
+		data->key.a = 0;
+	if (keycode == 's')
+		data->key.s = 0;
+	if (keycode == 'd')
+		data->key.d = 0;
+	return (0);
+}
+
+int player_move(t_data *data)
+{
+	
+	if (data->key.w)
 	{
 		if(data->map.map[(int)data->player_y][(int)(data->player_x + data->raycast.dir_x * 0.1)] != '1')
 			data->player_x += data->raycast.dir_x * 0.1;
 		if(data->map.map[(int)(data->player_y + data->raycast.dir_y * 0.1)][(int)data->player_x] != '1')
 			data->player_y += data->raycast.dir_y * 0.1;
 	}
-	if (keycode == 's')
+	if (data->key.s)
 	{
 		if(data->map.map[(int)data->player_y][(int)(data->player_x - data->raycast.dir_x * 0.1)] != '1')
 			data->player_x -= data->raycast.dir_x * 0.1;
 		if(data->map.map[(int)(data->player_y - data->raycast.dir_y * 0.1)][(int)data->player_x] != '1')
 			data->player_y -= data->raycast.dir_y * 0.1;
 	}
-	if (keycode == 'd')
+	if (data->key.d)
 	{
 		if(data->map.map[(int)data->player_y][(int)(data->player_x + data->raycast.plane_x * 0.1)] != '1')
 			data->player_x += data->raycast.plane_x * 0.1;
 		if(data->map.map[(int)(data->player_y + data->raycast.plane_y * 0.1)][(int)data->player_x] != '1')
 			data->player_y += data->raycast.plane_y * 0.1;
 	}
-	if (keycode == 'a')
+	if (data->key.a)
 	{
 		if(data->map.map[(int)data->player_y][(int)(data->player_x - data->raycast.plane_x * 0.1)] != '1')
 			data->player_x -= data->raycast.plane_x * 0.1;
