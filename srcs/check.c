@@ -19,13 +19,8 @@ void	check_file_format(char *filename)
 	i = 0;
 	while (filename[i] && filename[i - 1] != '.')
 		i++;
-	if (i == 1)
-	{
-		ft_printf("Error : File not .cub\n");
-		exit (-1);
-	}
 	if (!ft_strncmp((filename + i), "cub", 3))
 		return ;
 	ft_printf("Error : File not .cub\n");
-	exit (-1);
+	exit(-1);
 }

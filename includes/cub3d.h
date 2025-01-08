@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/07 18:16:56 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/08 17:46:15 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_raycast
 	int		map_y;
 	int		step_x;
 	int		step_y;
-	double	perp_wall_dist;
+	double	wall_dist;
 	int		line_height;
 }				t_raycast;
 

@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/07 18:18:18 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/08 17:37:53 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ int main(int ac, char **av)
 	// printf("Initial position: x = %d, y = %d, angle = %f radians\n", data->player_x, data->player_y, data->angle);
     data->mlx = mlx_init();
 	data->last_x = -1;
-    data->zoom = 10;
-	data->startx = WIDTH / 3;
-	data->starty = HEIGHT / 3;
     if (!data->mlx)
         return (1);
     data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
+	mlx_mouse_hide(data->mlx, data->window);
     load_textures(data);
     mlx_hook(data->window, 17, 0, finish_game, data);
 	mlx_hook(data->window, 2, 1L << 0, key_press, data);

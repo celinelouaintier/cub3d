@@ -4,8 +4,15 @@
 srcs/utils.c:51:17: error: incompatible pointer types assigning to 'char *' from 'int *' [-Werror,-Wincompatible-pointer-types]
         data->img.addr = (int *)mlx_get_data_addr(data->img.img,
 
+-Regler colision mur
+
 IDEES :
 - Voiture retro futuriste premiere personne. (raycasting retroviseur ?)
+- Minimap
+- Texture
+- Ennemies
+- Menu
+- Boss
 
 GIT
 - Rajoute l'extension Gitlens ça te met les commit et qui a changé quoi directement sur ton IDE et plein d'autres trucs supers

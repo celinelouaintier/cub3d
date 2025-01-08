@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/07 18:24:49 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:58:06 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	find_initial_position(t_data *data)
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' ||
 				data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
-				data->player_x = j;
-				data->player_y = i;
+				data->player_x = j + 0.5;
+				data->player_y = i + 0.5;
 				find_angle(data, i, j);
 				data->map.map[i][j] = '0';
 			}
@@ -58,15 +58,11 @@ int	mouse_move(int x, int y, t_data *data)
 	if (x != WIDTH / 2)
 	{
 		delta_x = x - WIDTH / 2;
-		data->angle -= delta_x * 0.003;
+		data->angle -= delta_x * 0.001;
 		if (data->angle < 0)
 			data->angle += 2 * M_PI;
 		if (data->angle > 2 * M_PI)
 			data->angle -= 2 * M_PI;
-		data->raycast.dir_x = cos(data->angle);
-		data->raycast.dir_y = -sin(data->angle);
-		data->raycast.plane_x = sin(data->angle) * 0.66;
-		data->raycast.plane_y = cos(data->angle) * 0.66;
 		// printf("Player angle: %f\n", data->angle);
 		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	}

@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/07 18:22:40 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/08 17:51:14 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	check_ray_hit(t_raycast *r, t_data *data)
 		if (data->map.map[r->map_y][r->map_x] == '1')
 			hit = 1;
 	}
-	r->perp_wall_dist = r->side_dist_y - r->delta_dist_y;
+	r->wall_dist = r->side_dist_y - r->delta_dist_y;
 	if (!side)
-		r->perp_wall_dist = r->side_dist_x - r->delta_dist_x;
+		r->wall_dist = r->side_dist_x - r->delta_dist_x;
 	return (side);
 }
 
@@ -67,7 +67,7 @@ void	init_ray_dir(t_data *data)
 
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end)
 {
-	raycast->line_height = (int)(HEIGHT / raycast->perp_wall_dist);
+	raycast->line_height = (int)(HEIGHT / raycast->wall_dist);
 	*draw_start = -raycast->line_height / 2 + HEIGHT / 2;
 	*draw_end = raycast->line_height / 2 + HEIGHT / 2;	
 }
