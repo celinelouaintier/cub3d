@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/08 17:57:27 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/10 14:48:21 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	draw_bg(t_data *data)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	color = get_color(data, data->map.cell);
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		if (y > HEIGHT / 2)
-			color = get_color(data, data->map.floor);
-		while (x < WIDTH)
-		{
-			put_pixel(&data->img, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
 
 void	raycast(t_data *data)
 {

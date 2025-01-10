@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/08 17:46:15 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/10 14:54:13 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
+	void	*tex;
+	int		*texaddr;
+	int		texwidth;
+	int		texheight;
 }	t_img;
 
 typedef struct s_map
@@ -93,12 +97,10 @@ typedef struct s_data
 	int			last_x;
 }				t_data;
 
-void	draw_square(t_data *data);
-void	print_texture(t_map *map);
+
 void	fill_map(int fd, t_map *map);
 void	init_texture(int fd, t_map *map);
 int		get_color(t_data *data, char *str);
-int		render_floor(t_data *data, int size);
 void	put_pixel(t_img *image, int x, int y, int color);
 int		game_loop(t_data *data);
 void	set_img(t_data *data);
@@ -117,5 +119,7 @@ void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
 void    apply_tex(t_data *data, int x, int draw_start, int draw_end);
 void    load_textures(t_data *data);
+void	draw_bg(t_data *data);
+void	find_angle(t_data *data, int i, int j);
 
 #endif
