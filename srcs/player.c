@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 15:21:34 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:07:04 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,40 @@
 // }
 
 // ------ PAS TOUCHE ------ //
-int	mouse_move(int x, int y, t_data *data)
-{
-	int			delta_x;
+// int	mouse_move(int x, int y, t_data *data)
+// {
+// 	int			delta_x;
 
-	(void)y;
-	if (data->last_x == -1)
-	{
-		data->last_x = x;
-		return (0);
-	}
-	delta_x = x - data->last_x;
-	data->angle -= delta_x * 0.003;
-	if (data->angle < 0)
-		data->angle += 2 * M_PI;
-	if (data->angle > 2 * M_PI)
-		data->angle -= 2 * M_PI;
-	data->last_x = x;
-	return (0);
-}
+// 	(void)y;
+// 	if (data->last_x == -1)
+// 	{
+// 		data->last_x = x;
+// 		return (0);
+// 	}
+// 	delta_x = x - data->last_x;
+// 	data->angle -= delta_x * 0.003;
+// 	if (data->angle < 0)
+// 		data->angle += 2 * M_PI;
+// 	if (data->angle > 2 * M_PI)
+// 		data->angle -= 2 * M_PI;
+// 	data->last_x = x;
+// 	return (0);
+// }
 
 int	key_press(int keycode, t_data *data)
 {
-	if (keycode == 65307)
+	if (keycode == XK_Escape)
 		finish_game(data);
+	if (keycode == XK_Left)
+	{
+		printf("left\n");
+		data->key.left = 1;
+	}
+	if (keycode == XK_Right)
+	{
+		printf("right\n");
+		data->key.right = 1;
+	}
 	if (keycode == 'w')
 		data->key.w = 1;
 	if (keycode == 'a')
@@ -77,8 +87,42 @@ int	key_release(int keycode, t_data *data)
 		data->key.s = 0;
 	if (keycode == 'd')
 		data->key.d = 0;
+	if (keycode == XK_Left)
+	{
+		printf("left done\n");
+		data->key.left = 0;
+	}
+	if (keycode == XK_Right)
+		data->key.right = 0;
 	return (0);
 }
+
+int	camera_move(t_data *data)
+{
+	float	old_dir_x;
+	float	old_plane_x;
+	
+	if (data->key.left)
+	{
+		old_dir_x = data->raycast.dir_x;
+		data->raycast.dir_x = data->raycast.dir_x * cos(-0.05) - data->raycast.dir_y * sin(-0.05);
+		data->raycast.dir_y = old_dir_x * sin(-0.05) + data->raycast.dir_y * cos(-0.05);
+		old_plane_x = data->raycast.plane_x;
+		data->raycast.plane_x = data->raycast.plane_x * cos(-0.05) - data->raycast.plane_y * sin(-0.05);
+		data->raycast.plane_y = old_plane_x * sin(-0.05) + data->raycast.plane_y * cos(-0.05);
+	}
+	if (data->key.right)
+	{
+		old_dir_x = data->raycast.dir_x;
+		data->raycast.dir_x = data->raycast.dir_x * cos(0.05) - data->raycast.dir_y * sin(0.05);
+		data->raycast.dir_y = old_dir_x * sin(0.05) + data->raycast.dir_y * cos(0.05);
+		old_plane_x = data->raycast.plane_x;
+		data->raycast.plane_x = data->raycast.plane_x * cos(0.05) - data->raycast.plane_y * sin(0.05);
+		data->raycast.plane_y = old_plane_x * sin(0.05) + data->raycast.plane_y * cos(0.05);
+	}
+	return (1);
+}
+
 int	player_move(t_data *data)
 {
 	float	new_x;
@@ -128,6 +172,7 @@ int	player_move(t_data *data)
 	}
 	return (0);
 }
+
 
 // int player_move(t_data *data)
 // {

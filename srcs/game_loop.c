@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 14:48:21 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:33:31 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	game_loop(t_data *data)
 	draw_bg(data);
 	raycast(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
+	camera_move(data);
 	player_move(data);
 	return (0);
 }

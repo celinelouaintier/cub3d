@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 14:54:13 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:42:49 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include <X11/keysym.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -76,6 +77,8 @@ typedef struct s_key
 	int		a;
 	int		s;
 	int		d;
+	int		left;
+	int		right;
 }				t_key;
 
 typedef struct s_data
@@ -121,5 +124,6 @@ void    apply_tex(t_data *data, int x, int draw_start, int draw_end);
 void    load_textures(t_data *data);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
+int		camera_move(t_data *data);
 
 #endif
