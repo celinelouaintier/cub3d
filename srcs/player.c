@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/13 18:48:10 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/13 21:18:29 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ int	mouse_move(int x, int y, t_data *data)
 // 	return (0);
 // }
 
+void	interact(t_data *data)
+{
+	if (data->map.map[(int)data->player_y][(int)data->player_x + 1] == 'D')
+		data->map.map[(int)data->player_y][(int)data->player_x + 1] = 'O';
+	else if (data->map.map[(int)data->player_y][(int)data->player_x - 1] == 'D')
+		data->map.map[(int)data->player_y][(int)data->player_x - 1] = 'O';
+	else if (data->map.map[(int)data->player_y + 1][(int)data->player_x] == 'D')
+		data->map.map[(int)data->player_y + 1][(int)data->player_x] = 'O';
+	else if (data->map.map[(int)data->player_y - 1][(int)data->player_x] == 'D')
+		data->map.map[(int)data->player_y - 1][(int)data->player_x] = 'O';
+	else if (data->map.map[(int)data->player_y][(int)data->player_x + 1] == 'O')
+		data->map.map[(int)data->player_y][(int)data->player_x + 1] = 'D';
+	else if (data->map.map[(int)data->player_y][(int)data->player_x - 1] == 'O')
+		data->map.map[(int)data->player_y][(int)data->player_x - 1] = 'D';
+	else if (data->map.map[(int)data->player_y + 1][(int)data->player_x] == 'O')
+		data->map.map[(int)data->player_y + 1][(int)data->player_x] = 'D';
+	else if (data->map.map[(int)data->player_y - 1][(int)data->player_x] == 'O')
+		data->map.map[(int)data->player_y - 1][(int)data->player_x] = 'D';
+}
+
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
@@ -75,16 +95,7 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == 'd')
 		data->key.d = 1;
 	if (keycode == 'e')
-	{
-		if (data->map.map[(int)data->player_y][(int)data->player_x + 1] == 'D')
-			data->map.map[(int)data->player_y][(int)data->player_x + 1] = '0';
-		if (data->map.map[(int)data->player_y][(int)data->player_x - 1] == 'D')
-			data->map.map[(int)data->player_y][(int)data->player_x - 1] = '0';
-		if (data->map.map[(int)data->player_y + 1][(int)data->player_x] == 'D')
-			data->map.map[(int)data->player_y + 1][(int)data->player_x] = '0';
-		if (data->map.map[(int)data->player_y - 1][(int)data->player_x] == 'D')
-			data->map.map[(int)data->player_y - 1][(int)data->player_x] = '0';
-	}
+		interact(data);
 	return (0);
 }
 
@@ -145,7 +156,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.dir_x * 0.1;
 		new_y = data->player_y + data->raycast.dir_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0')
+		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -155,7 +166,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.dir_x * 0.1;
 		new_y = data->player_y - data->raycast.dir_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0')
+		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -165,7 +176,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.plane_x * 0.1;
 		new_y = data->player_y + data->raycast.plane_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0')
+		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -175,7 +186,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.plane_x * 0.1;
 		new_y = data->player_y - data->raycast.plane_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0')
+		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
