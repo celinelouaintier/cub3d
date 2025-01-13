@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/02 16:30:52 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:46:19 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
 void	print_texture(t_map *map)
 {
-	ft_printf("NO : %s", map->no);
-	ft_printf("SO : %s", map->so);
-	ft_printf("WE : %s", map->we);
-	ft_printf("EA : %s", map->ea);
+	ft_printf("NO : %s\n", map->no);
+	ft_printf("SO : %s\n", map->so);
+	ft_printf("WE : %s\n", map->we);
+	ft_printf("EA : %s\n", map->ea);
 	ft_printf("\n\n");
-	ft_printf("F  : %s", map->floor);
+	ft_printf("F  : %s\n", map->floor);
 	ft_printf("C  : %s", map->cell);
 	ft_printf("\n\n");
 	ft_printf("Height : %d\n", map->height);
@@ -54,20 +54,6 @@ char	*skip_line(int fd)
 	return (line);
 }
 
-char	*set_texture(char *line, int *nb_value)
-{
-	char	c;
-
-	line += 2;
-	c = *line;
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		line++;
-	while (*line == ' ')
-		line++;
-	*nb_value += 1;
-	line[ft_strlen(line) - 1] = 0;
-	return (line);
-}
 
 void	get_map_size(int fd, t_map **map, char *line)
 {
@@ -115,13 +101,27 @@ void	fill_map(int fd, t_map *map)
 	}
 }
 
+char	*set_texture(char *line, int *nb_value)
+{
+	line += 2;
+	while (*line == ' ')
+		line++;
+	*nb_value += 1;
+	line[ft_strlen(line) - 1] = 0;
+	return (line);
+}
+
 void	init_texture(int fd, t_map *map)
 {
 	char	*line;
 	int		nb_value;
+	int		i;
 
-	nb_value = 0;
-	while (nb_value < 6)
+	nb_value = 6;
+	if (BONUS)
+		nb_value += 1;
+	i = 0;
+	while (i < nb_value)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -129,17 +129,19 @@ void	init_texture(int fd, t_map *map)
 		while (*line == ' ')
 			line++;
 		if (*line == 'N')
-			map->no = set_texture(line, &nb_value);
+			map->no = set_texture(line, &i);
 		else if (*line == 'S')
-			map->so = set_texture(line, &nb_value);
+			map->so = set_texture(line, &i);
 		else if (*line == 'W')
-			map->we = set_texture(line, &nb_value);
+			map->we = set_texture(line, &i);
 		else if (*line == 'E')
-			map->ea = set_texture(line, &nb_value);
+			map->ea = set_texture(line, &i);
 		else if (*line == 'F')
-			map->floor = set_texture(line, &nb_value);
+			map->floor = set_texture(line, &i);
 		else if (*line == 'C')
-			map->cell = set_texture(line, &nb_value);
+			map->cell = set_texture(line, &i);
+		else if (BONUS && *line == 'D')
+			map->door = set_texture(line, &i);
 	}
 }
 

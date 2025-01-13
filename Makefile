@@ -1,7 +1,7 @@
 .SILENT:
 
 CC 		= cc
-CFLAGS 	= -Wall -Wextra -Werror -I./includes -I./minilibx
+CFLAGS 	= -Wall -Wextra -Werror -I./includes -I./minilibx -D BONUS=${BONUS}
 
 LIBFT = libft.a
 LIBPATH = lib
@@ -15,8 +15,10 @@ SRCS_DIR	= srcs/
 SRCS		= main.c init/init_fd.c init/init_game.c utils.c game_loop.c player.c check.c raycasting.c textures.c
 SRC 		= ${addprefix ${SRCS_DIR}, ${SRCS}}
 
-OBJS_DIR	:= objs/
-OBJS		:= $(patsubst $(SRCS_DIR)%.c,$(OBJS_DIR)%.o,$(SRC))
+OBJS_DIR	= objs/
+OBJS		= $(patsubst $(SRCS_DIR)%.c,$(OBJS_DIR)%.o,$(SRC))
+
+BONUS		= 0
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 					@echo "\033[34mCompiling $<..."
@@ -32,6 +34,9 @@ ${PROG}:	${OBJS}
 					@echo "\n"
 					$(CC) $(CFLAGS) ${OBJS} $(LIBPATH)/$(LIBFT) $(MLXPATH/$MLX) -o ${PROG} -L./minilibx -lmlx -lXext -lX11 -lm
 					@echo "\033[32m Cub3d Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
+
+bonus:
+					make -s all BONUS=1
 
 clean:
 					make -s clean -C ./lib

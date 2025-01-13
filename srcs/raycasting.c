@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/08 17:51:14 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:41:28 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_ray_hit(t_raycast *r, t_data *data)
 			r->map_y += r->step_y;
 			side = 1;
 		}
-		if (data->map.map[r->map_y][r->map_x] == '1')
+		if (data->map.map[r->map_y][r->map_x] != '0')
 			hit = 1;
 	}
 	r->wall_dist = r->side_dist_y - r->delta_dist_y;

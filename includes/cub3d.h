@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 16:42:49 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:50:03 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 typedef struct s_img
 {
@@ -44,6 +48,7 @@ typedef struct s_map
 	char	*no;
 	char	*we;
 	char	*ea;
+	char	*door;
 	char	**map;
 	int		height;
 	int		width;
