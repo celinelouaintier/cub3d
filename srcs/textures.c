@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:14:49 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/15 16:59:03 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:11:44 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ void    apply_tex(t_data *data, int x, int draw_start, int draw_end)
     t_raycast   *raycast;
     float       wallx;
     int         tex_x;
+    int         tex_i;
 
     raycast = &data->raycast;
     // textures = &data->img;
+    tex_i = 0;
     if (raycast->side == 0)
         wallx = data->player_y + raycast->wall_dist * raycast->ray_dir_y;
     else
         wallx = data->player_x + raycast->wall_dist * raycast->ray_dir_x;
     wallx -=floor(wallx);
     tex_x = get_tex_x(data, wallx);
-    wall_line(data, x, draw_start, draw_end, tex_x, 0);
+    wall_line(data, x, draw_start, draw_end, tex_x, tex_i);
 }
