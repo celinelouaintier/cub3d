@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/13 18:50:03 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/15 16:57:08 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
-	void	*tex;
-	int		*texaddr;
+	void	*tex[2];
+	int		*texaddr[2];
 	int		texwidth;
 	int		texheight;
 }	t_img;

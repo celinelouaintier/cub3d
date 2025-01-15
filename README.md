@@ -1,5 +1,7 @@
 # cub3d
 
+/!\ fonctionne que sans les bonus (a cause de la texture de la porte que j'ai pas reussi a implementer c'est l'enfer)
+
 IDEES :
 - Voiture retro futuriste premiere personne. (raycasting retroviseur ?)
 - Minimap
@@ -20,3 +22,8 @@ GIT
 - On peut aussi créer des pull request sur GitHub avec le bouton "New Pull Request" pour faire valider par l'autre
 - AVANT DE FUSIONNER, SYNCHRONISER AVEC LA BRANCHE MAIN POUR MINIMISER CONFLITS :
         'git pull origin main'
+
+TODO Celine :
+- parsing 
+- tableau de textures
+- fleches gauche et droite

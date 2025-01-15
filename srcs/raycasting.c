@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/13 20:07:06 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/15 17:02:07 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// configurer la porte (is_door) dans cette fonction ?
 int	check_ray_hit(t_raycast *r, t_data *data)
 {
 	int	side;

@@ -6,37 +6,11 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:14:49 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 14:54:39 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:59:03 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void    load_textures(t_data *data)
-{
-    if (data->map.no == NULL) 
-    {
-        perror("Texture path is NULL");
-        finish_game(data);
-    }
-    data->img.tex = mlx_xpm_file_to_image(data->mlx, data->map.no, &data->img.texwidth, &data->img.texheight);
-    if (!data->img.tex)
-    {
-        perror("failes to load texture\n");
-        finish_game(data);
-    }
-    if (data->img.texwidth <= 0 || data->img.texheight <= 0)
-    {
-        perror("Invalid texture dimension\n");
-        finish_game(data);
-    }
-    data->img.texaddr = (int *)mlx_get_data_addr(data->img.tex, &data->img.pixel_bits, &data->img.size_line, &data->img.endian);
-    if (!data->img.texaddr)
-    {
-        perror("Failed to get image address\n");
-        finish_game(data);
-    }
-}
 
 int get_tex_x(t_data *data, float wallx)
 {
@@ -52,7 +26,7 @@ int get_tex_x(t_data *data, float wallx)
     return (tex_x);
 }
 
-void    wall_line(t_data *data, int x, int draw_start, int draw_end, int tex_x)
+void    wall_line(t_data *data, int x, int draw_start, int draw_end, int tex_x, int tex_i)
 {
     t_img       *textures;
     t_raycast   *raycast;
@@ -71,7 +45,7 @@ void    wall_line(t_data *data, int x, int draw_start, int draw_end, int tex_x)
     {
         tex_y = (int)tex_pos & (textures->texheight - 1);
         tex_pos += step;
-        color = textures->texaddr[tex_y * textures->texwidth + tex_x];
+        color = textures->texaddr[tex_i][tex_y * textures->texwidth + tex_x];
         put_pixel(&data->img, x, y, color);
         y++;
     }
@@ -92,5 +66,5 @@ void    apply_tex(t_data *data, int x, int draw_start, int draw_end)
         wallx = data->player_x + raycast->wall_dist * raycast->ray_dir_x;
     wallx -=floor(wallx);
     tex_x = get_tex_x(data, wallx);
-    wall_line(data, x, draw_start, draw_end, tex_x);
+    wall_line(data, x, draw_start, draw_end, tex_x, 0);
 }
