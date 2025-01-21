@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/13 18:46:19 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:38:32 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
+
 void	print_texture(t_map *map)
 {
 	ft_printf("NO : %s\n", map->no);
@@ -34,7 +34,7 @@ void	print_texture(t_map *map)
 		i++;
 	}
 }
-*/
+
 
 char	*skip_line(int fd)
 {
@@ -143,6 +143,8 @@ void	init_texture(int fd, t_map *map)
 		else if (BONUS && *line == 'D')
 			map->door = set_texture(line, &i);
 	}
+	ft_printf("%s\n", map->cell);
+	// print_texture(map);
 }
 
 // map->map[i] = malloc(sizeof(char) * map->width);

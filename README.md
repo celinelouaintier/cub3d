@@ -24,6 +24,6 @@ GIT
         'git pull origin main'
 
 TODO Celine :
-- parsing 
+- parsing
 - tableau de textures
 - fleches gauche et droite

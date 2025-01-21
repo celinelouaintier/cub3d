@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/15 19:08:55 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:39:44 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 #  define BONUS 0
 # endif
 
+typedef struct	s_tex
+{
+	void	*tex[5];
+	int		*texaddr[5];
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
+	int		texwidth;
+	int		texheight;
+}				t_tex;
+
 typedef struct s_img
 {
 	void	*img;
@@ -33,10 +44,6 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
-	void	*tex[5];
-	int		*texaddr[5];
-	int		texwidth;
-	int		texheight;
 }	t_img;
 
 typedef struct s_map
@@ -90,6 +97,7 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*window;
+	t_img		*tex[5];
 	t_map		map;
 	t_img		img;
 	t_raycast	raycast;
@@ -125,7 +133,7 @@ int		finish_game(t_data *game);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
-void    apply_tex(t_data *data, int x, int draw_start, int draw_end);
+void    apply_tex(t_data *data, int draw_start, int draw_end, int x);
 void    load_textures(t_data *data);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
