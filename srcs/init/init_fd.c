@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/21 14:38:32 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:26:26 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void	init_texture(int fd, t_map *map)
 		else if (BONUS && *line == 'D')
 			map->door = set_texture(line, &i);
 	}
-	ft_printf("%s\n", map->cell);
 	// print_texture(map);
 }
 

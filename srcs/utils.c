@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/10 13:47:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:10:20 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	put_pixel(t_img *image, int x, int y, int color)
 	if (x >= WIDTH || y >= HEIGHT || x <= 0 || y <= 0)
 		return ;
 	pixel = y * (image->size_line / 4) + x;
-	// printf("size_line: %d, x: %d, y: %d, pixel index: %d\n", image->size_line, x, y, pixel);
 	image->addr[pixel] = color;
 }
 
