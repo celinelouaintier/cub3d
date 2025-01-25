@@ -1,7 +1,5 @@
 # cub3d
 
-/!\ fonctionne que sans les bonus (a cause de la texture de la porte que j'ai pas reussi a implementer c'est l'enfer)
-
 IDEES :
 - Voiture retro futuriste premiere personne. (raycasting retroviseur ?)
 - Minimap
@@ -25,5 +23,4 @@ GIT
 
 TODO Celine :
 - parsing
-- tableau de textures
 - fleches gauche et droite
