@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 02:24:31 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:50:15 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void    load_textures(t_data *data, char *path)
     data->img.tex[i] = mlx_xpm_file_to_image(data->mlx, path, &data->img.texwidth[i], &data->img.texheight[i]);
     if (!data->img.tex[i])
     {
-        perror("failes to load texture\n");
+        printf("failed to load texture at index %d\n", i);
         finish_game(data);
     }
     if (data->img.texwidth[i] <= 0 || data->img.texheight[i] <= 0)
@@ -83,13 +83,29 @@ void    load_textures(t_data *data, char *path)
 int set_tex_i(t_raycast *raycast)
 {
     if (raycast->side && raycast->step_y == -1) // NORTH
-		return 0;
+	{
+        if (raycast->is_door)
+            return 4;
+        return 0;
+    }
 	else if (raycast->side && raycast->step_y == 1) // SOUTH
-		return 1;
+	{
+        if (raycast->is_door)
+            return 4;
+        return 1;
+    }
 	else if (!raycast->side && raycast->step_x == 1) // EAST
-		return 2;
+	{
+        if (raycast->is_door)
+            return 4;
+        return 2;
+    }
 	else if (!raycast->side && raycast->step_x == -1) // WEST
-		return 3;
+	{
+        if (raycast->is_door)
+            return 4;   
+        return 3;
+    }
     return -1;
 }
 

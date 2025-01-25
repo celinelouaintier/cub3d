@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 02:18:32 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:23:33 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
-	void	*tex[4];
-	int		*texaddr[4];
-	int		texwidth[4];
-	int		texheight[4];
+	void	*tex[5];
+	int		*texaddr[5];
+	int		texwidth[5];
+	int		texheight[5];
 }	t_img;
 
 typedef struct s_map
@@ -85,6 +85,7 @@ typedef struct s_raycast
 	int		step_y;
 	double	wall_dist;
 	int		line_height;
+	int		is_door;
 }				t_raycast;
 
 typedef struct s_key

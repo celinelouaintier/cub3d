@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 02:15:07 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:54:59 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-// void	print_texture(t_map *map)
-// {
-// 	ft_printf("NO : %s\n", map->no);
-// 	ft_printf("SO : %s\n", map->so);
-// 	ft_printf("WE : %s\n", map->we);
-// 	ft_printf("EA : %s\n", map->ea);
-// 	ft_printf("\n\n");
-// 	ft_printf("F  : %s\n", map->floor);
-// 	ft_printf("C  : %s", map->cell);
-// 	ft_printf("\n\n");
-// 	ft_printf("Height : %d\n", map->height);
-// 	ft_printf("Width : %d\n", map->width);
-// 	ft_printf("\n\n");
+void	print_texture(t_map *map)
+{
+	ft_printf("NO : %s\n", map->no);
+	ft_printf("SO : %s\n", map->so);
+	ft_printf("WE : %s\n", map->we);
+	ft_printf("EA : %s\n", map->ea);
+	ft_printf("D : %s\n", map->door);
+	ft_printf("\n\n");
+	ft_printf("F  : %s\n", map->floor);
+	ft_printf("C  : %s", map->cell);
+	ft_printf("\n\n");
+	ft_printf("Height : %d\n", map->height);
+	ft_printf("Width : %d\n", map->width);
+	ft_printf("\n\n");
 
-// 	// int i = 0;
-// 	// while (map->map[i])
-// 	// {
-// 	// 	ft_printf("%s\n", map->map[i]);
-// 	// 	i++;
-// 	// }
-// }
+	// int i = 0;
+	// while (map->map[i])
+	// {
+	// 	ft_printf("%s\n", map->map[i]);
+	// 	i++;
+	// }
+}
 
 
 char	*skip_line(int fd)

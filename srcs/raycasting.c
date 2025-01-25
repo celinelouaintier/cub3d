@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/23 19:46:29 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:52:44 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	check_ray_hit(t_raycast *r, t_data *data)
 	int	hit;
 
 	hit = 0;
+	r->is_door = 0;
 	while (!hit)
 	{
 		if (r->side_dist_x < r->side_dist_y)
@@ -33,8 +34,13 @@ int	check_ray_hit(t_raycast *r, t_data *data)
 			r->map_y += r->step_y;
 			side = 1;
 		}
-		if (data->map.map[r->map_y][r->map_x] == '1' || data->map.map[r->map_y][r->map_x] == 'D')
+		if (data->map.map[r->map_y][r->map_x] == '1')
 			hit = 1;
+		else if (data->map.map[r->map_y][r->map_x] == 'D')
+		{
+			hit = 1;
+			r->is_door = 1;
+		}
 	}
 	r->wall_dist = r->side_dist_y - r->delta_dist_y;
 	if (!side)

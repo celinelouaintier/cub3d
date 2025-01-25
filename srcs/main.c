@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 02:16:11 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/25 18:32:48 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int main(int ac, char **av)
 	load_textures(data, data->map.so);
 	load_textures(data, data->map.ea);
 	load_textures(data, data->map.we);
+	if (BONUS)
+		load_textures(data, data->map.door);
 	mlx_mouse_hide(data->mlx, data->window);
     mlx_hook(data->window, 17, 0, finish_game, data);
 	mlx_hook(data->window, 2, 1L << 0, key_press, data);
