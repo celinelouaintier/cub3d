@@ -1,11 +1,12 @@
-NO assets/cobblestone.xpm
-SO assets/texice.xpm
-WE assets/texmagma.xpm
-EA assets/texmetal.xpm
+NO assets/corridor.xpm
+SO assets/neon.xpm
+WE assets/neon.xpm
+EA assets/corridor.xpm
+D assets/door4_xpm
 
 
-F 209,66,255
-C 51,21,61
+F 66,29,103
+C 106,116,178
 
 
         1111111111111111111111111
