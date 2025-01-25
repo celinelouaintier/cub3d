@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/15 17:02:07 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:46:29 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	init_raycast(t_raycast *r, t_data *data, int x)
 {
 	r->camera_x = 2 * x / (double)WIDTH - 1;
 	r->ray_dir_x = r->dir_x + r->plane_x
-		* r->camera_x;
+		*r->camera_x;
 	r->ray_dir_y = r->dir_y + r->plane_y
-		* r->camera_x;
+		*r->camera_x;
 	r->map_x = data->player_x;
 	r->map_y = data->player_y;
 	r->delta_dist_x = fabs(1 / r->ray_dir_x);
@@ -70,7 +70,7 @@ void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end)
 {
 	raycast->line_height = (int)(HEIGHT / raycast->wall_dist);
 	*draw_start = -raycast->line_height / 2 + HEIGHT / 2;
-	*draw_end = raycast->line_height / 2 + HEIGHT / 2;	
+	*draw_end = raycast->line_height / 2 + HEIGHT / 2;
 }
 
 void	set_step(t_data *data)

@@ -6,51 +6,51 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/13 21:18:29 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/23 19:04:16 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // x = position horizontale de base de la souris sur la fenetre, c'est la mlx qui calcule ca
-int	mouse_move(int x, int y, t_data *data)
-{
-	int			delta_x;
-
-	(void)y;
-	if (x != WIDTH / 2)
-	{
-		delta_x = x - WIDTH / 2;
-		data->angle -= delta_x * 0.001;
-		if (data->angle < 0)
-			data->angle += 2 * M_PI;
-		if (data->angle > 2 * M_PI)
-			data->angle -= 2 * M_PI;
-		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
-	}
-	return (0);
-}
-
-// ------ PAS TOUCHE ------ //
 // int	mouse_move(int x, int y, t_data *data)
 // {
 // 	int			delta_x;
 
 // 	(void)y;
-// 	if (data->last_x == -1)
+// 	if (x != WIDTH / 2)
 // 	{
-// 		data->last_x = x;
-// 		return (0);
+// 		delta_x = x - WIDTH / 2;
+// 		data->angle -= delta_x * 0.001;
+// 		if (data->angle < 0)
+// 			data->angle += 2 * M_PI;
+// 		if (data->angle > 2 * M_PI)
+// 			data->angle -= 2 * M_PI;
+// 		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 // 	}
-// 	delta_x = x - data->last_x;
-// 	data->angle -= delta_x * 0.003;
-// 	if (data->angle < 0)
-// 		data->angle += 2 * M_PI;
-// 	if (data->angle > 2 * M_PI)
-// 		data->angle -= 2 * M_PI;
-// 	data->last_x = x;
 // 	return (0);
 // }
+
+// ------ PAS TOUCHE ------ //
+int	mouse_move(int x, int y, t_data *data)
+{
+	int			delta_x;
+
+	(void)y;
+	if (data->last_x == -1)
+	{
+		data->last_x = x;
+		return (0);
+	}
+	delta_x = x - data->last_x;
+	data->angle -= delta_x * 0.003;
+	if (data->angle < 0)
+		data->angle += 2 * M_PI;
+	if (data->angle > 2 * M_PI)
+		data->angle -= 2 * M_PI;
+	data->last_x = x;
+	return (0);
+}
 
 void	interact(t_data *data)
 {

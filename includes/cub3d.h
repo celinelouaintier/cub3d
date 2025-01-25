@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/21 20:39:44 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:18:32 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 
 typedef struct	s_tex
 {
-	void	*tex[5];
-	int		*texaddr[5];
+	void	*tex;
+	int		*texaddr;
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
-	int		texwidth;
-	int		texheight;
+	int		*texwidth;
+	int		*texheight;
 }				t_tex;
 
 typedef struct s_img
@@ -44,6 +44,10 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
+	void	*tex[4];
+	int		*texaddr[4];
+	int		texwidth[4];
+	int		texheight[4];
 }	t_img;
 
 typedef struct s_map
@@ -134,9 +138,10 @@ void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
 void    apply_tex(t_data *data, int draw_start, int draw_end, int x);
-void    load_textures(t_data *data);
+void    load_textures(t_data *data, char *path);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
 int		camera_move(t_data *data);
+int set_tex_i(t_raycast *raycast);
 
 #endif

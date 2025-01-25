@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/24 18:57:30 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:16:00 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ void	raycast(t_data *data)
 		set_step(data);
 		raycast->side = check_ray_hit(raycast, data);
 		draw_limits(raycast, &draw_start, &draw_end);
-		data->color = get_color(data, "15, 224, 89");
-		if (raycast->side)
-			data->color = get_color(data, "0, 0, 0");
-		draw_line(data, draw_start, draw_end, x);
-		// apply_tex(data, x, draw_start, draw_end);
+		apply_tex(data, x, draw_start, draw_end);
 	}
 }
 
