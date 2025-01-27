@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/27 14:16:35 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:20:14 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,28 @@
 
 void    load_textures(t_data *data, char *path)
 {
-	static int i = 0;
+	static int	i = 0;
+	t_img		*tex;
 
+	tex = &data->tex[i];
     if (path == NULL) 
     {
         perror("Texture path is NULL");
         finish_game(data);
     }
-    data->img.tex[i] = mlx_xpm_file_to_image(data->mlx, path, &data->img.texwidth[i], &data->img.texheight[i]);
-    if (!data->img.tex[i])
+    tex->img = mlx_xpm_file_to_image(data->mlx, path, &tex->width, &tex->height);
+    if (!tex->img)
     {
         printf("failed to load texture at index %d\n", i);
         finish_game(data);
     }
-    if (data->img.texwidth[i] <= 0 || data->img.texheight[i] <= 0)
+    if (tex->width <= 0 || tex->height <= 0)
     {
         perror("Invalid texture dimension\n");
         finish_game(data);
     }
-    data->img.texaddr[i] = (int *)mlx_get_data_addr(data->img.tex[i], &data->img.pixel_bits, &data->img.size_line, &data->img.endian);
-    if (!data->img.texaddr[i])
+    tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->pixel_bits, &tex->size_line, &tex->endian);
+    if (!tex->addr)
     {
         perror("Failed to get image address\n");
         finish_game(data);
