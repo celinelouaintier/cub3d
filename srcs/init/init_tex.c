@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 18:50:15 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:16:35 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,16 @@ void    load_textures(t_data *data, char *path)
 
 int set_tex_i(t_raycast *raycast)
 {
+    if (raycast->is_door)
+        return 4;
     if (raycast->side && raycast->step_y == -1) // NORTH
-	{
-        if (raycast->is_door)
-            return 4;
         return 0;
-    }
 	else if (raycast->side && raycast->step_y == 1) // SOUTH
-	{
-        if (raycast->is_door)
-            return 4;
         return 1;
-    }
 	else if (!raycast->side && raycast->step_x == 1) // EAST
-	{
-        if (raycast->is_door)
-            return 4;
         return 2;
-    }
 	else if (!raycast->side && raycast->step_x == -1) // WEST
-	{
-        if (raycast->is_door)
-            return 4;   
         return 3;
-    }
     return -1;
 }
 

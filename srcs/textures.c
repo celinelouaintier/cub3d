@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:14:49 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 02:23:12 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/27 14:04:47 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void    wall_line(t_data *data, int x, int draw_start, int draw_end, int tex_x)
         tex_pos += step;
         color = textures->texaddr[set_tex_i(raycast)][tex_y * textures->texheight[set_tex_i(raycast)] + tex_x];
         put_pixel(&data->img, x, draw_start, color);
+        // printf("here %d \n", draw_start);
         draw_start++;
     }
 }
