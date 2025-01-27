@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 18:23:33 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:16:18 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void    apply_tex(t_data *data, int draw_start, int draw_end, int x);
 void    load_textures(t_data *data, char *path);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
-int		camera_move(t_data *data);
-int set_tex_i(t_raycast *raycast);
+void	camera_move(t_data *data);
+int 	set_tex_i(t_raycast *raycast);
 
 #endif
