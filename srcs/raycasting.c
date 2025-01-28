@@ -6,13 +6,12 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/27 14:17:44 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:51:28 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// configurer la porte (is_door) dans cette fonction ?
 int	check_ray_hit(t_raycast *r, t_data *data)
 {
 	int	side;
@@ -63,7 +62,7 @@ void	init_raycast(t_raycast *r, t_data *data, int x)
 
 void	init_ray_dir(t_data *data)
 {
-	t_raycast *raycast;
+	t_raycast	*raycast;
 
 	raycast = &data->raycast;
 	raycast->dir_x = cos(data->angle);

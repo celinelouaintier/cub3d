@@ -6,13 +6,12 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/27 16:14:52 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:54:35 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// x = position horizontale de base de la souris sur la fenetre, c'est la mlx qui calcule ca
 // int	mouse_move(int x, int y, t_data *data)
 // {
 // 	int			delta_x;
@@ -113,9 +112,9 @@ int	key_release(int keycode, t_data *data)
 void	camera_move(t_data *data)
 {
 	if (data->key.left)
-        data->angle += 0.05;
-    if (data->key.right)
-        data->angle -= 0.05;
+		data->angle += 0.05;
+	if (data->key.right)
+		data->angle -= 0.05;
 }
 
 int	player_move(t_data *data)
@@ -129,7 +128,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.dir_x * 0.1;
 		new_y = data->player_y + data->raycast.dir_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -139,7 +138,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.dir_x * 0.1;
 		new_y = data->player_y - data->raycast.dir_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -149,7 +148,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.plane_x * 0.1;
 		new_y = data->player_y + data->raycast.plane_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -159,7 +158,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.plane_x * 0.1;
 		new_y = data->player_y - data->raycast.plane_y * 0.1;
-		if(data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -167,38 +166,3 @@ int	player_move(t_data *data)
 	}
 	return (0);
 }
-
-
-// int player_move(t_data *data)
-// {
-	
-// 	if (data->key.w)
-// 	{
-// 		if(data->map.map[(int)data->player_y][(int)(data->player_x + data->raycast.dir_x * 0.1)] != '1')
-// 			data->player_x += data->raycast.dir_x * 0.1;
-// 		if(data->map.map[(int)(data->player_y + data->raycast.dir_y * 0.1)][(int)data->player_x] != '1')
-// 			data->player_y += data->raycast.dir_y * 0.1;
-// 	}
-// 	if (data->key.s)
-// 	{
-// 		if(data->map.map[(int)data->player_y][(int)(data->player_x - data->raycast.dir_x * 0.1)] != '1')
-// 			data->player_x -= data->raycast.dir_x * 0.1;
-// 		if(data->map.map[(int)(data->player_y - data->raycast.dir_y * 0.1)][(int)data->player_x] != '1')
-// 			data->player_y -= data->raycast.dir_y * 0.1;
-// 	}
-// 	if (data->key.d)
-// 	{
-// 		if(data->map.map[(int)data->player_y][(int)(data->player_x + data->raycast.plane_x * 0.1)] != '1')
-// 			data->player_x += data->raycast.plane_x * 0.1;
-// 		if(data->map.map[(int)(data->player_y + data->raycast.plane_y * 0.1)][(int)data->player_x] != '1')
-// 			data->player_y += data->raycast.plane_y * 0.1;
-// 	}
-// 	if (data->key.a)
-// 	{
-// 		if(data->map.map[(int)data->player_y][(int)(data->player_x - data->raycast.plane_x * 0.1)] != '1')
-// 			data->player_x -= data->raycast.plane_x * 0.1;
-// 		if(data->map.map[(int)(data->player_y - data->raycast.plane_y * 0.1)][(int)data->player_x] != '1')
-// 			data->player_y -= data->raycast.plane_y * 0.1;
-// 	}
-// 	return (0);
-// }

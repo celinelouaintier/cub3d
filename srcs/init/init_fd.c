@@ -6,12 +6,11 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 18:54:59 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:17:01 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	print_texture(t_map *map)
 {
@@ -27,7 +26,6 @@ void	print_texture(t_map *map)
 	ft_printf("Height : %d\n", map->height);
 	ft_printf("Width : %d\n", map->width);
 	ft_printf("\n\n");
-
 	// int i = 0;
 	// while (map->map[i])
 	// {
@@ -35,7 +33,6 @@ void	print_texture(t_map *map)
 	// 	i++;
 	// }
 }
-
 
 char	*skip_line(int fd)
 {

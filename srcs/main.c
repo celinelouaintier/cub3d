@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/25 18:32:48 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:57:11 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ int	finish_game(t_data *game)
 	exit(0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_data  *data;
-    int fd;
+	t_data	*data;
+	int		fd;
 
 	check_file_format(av[1]);
-    data = malloc(sizeof(t_data));
+	data = malloc(sizeof(t_data));
 	if (ac != 2)
 		return (1);
 	data->map.path = av[1];
 	if ((fd = open(data->map.path, O_RDONLY)) < 0)
 		return (1);
-    init_texture(fd, &data->map);
-    fill_map(fd, &data->map);
+	init_texture(fd, &data->map);
+	fill_map(fd, &data->map);
 	find_initial_position(data);
-    data->mlx = mlx_init();
+	data->mlx = mlx_init();
 	data->last_x = -1;
-    if (!data->mlx)
-        return (1);
-    data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
+	if (!data->mlx)
+		return (1);
+	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	load_textures(data, data->map.no);
 	load_textures(data, data->map.so);
 	load_textures(data, data->map.ea);
@@ -50,12 +50,12 @@ int main(int ac, char **av)
 	if (BONUS)
 		load_textures(data, data->map.door);
 	mlx_mouse_hide(data->mlx, data->window);
-    mlx_hook(data->window, 17, 0, finish_game, data);
+	mlx_hook(data->window, 17, 0, finish_game, data);
 	mlx_hook(data->window, 2, 1L << 0, key_press, data);
 	mlx_hook(data->window, 3, 1L << 1, key_release, data);
 	if (BONUS)
 		mlx_hook(data->window, 6, 1L << 6, mouse_move, data);
-    mlx_loop_hook(data->mlx, game_loop, data);
-    mlx_loop(data->mlx);
-    return (0);
+	mlx_loop_hook(data->mlx, game_loop, data);
+	mlx_loop(data->mlx);
+	return (0);
 }

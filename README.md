@@ -23,4 +23,3 @@ GIT
 
 TODO Celine :
 - parsing
-- fleches gauche et droite
