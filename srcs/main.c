@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/28 12:57:11 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:37:31 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	finish_game(t_data *game)
 {
+	
 	mlx_destroy_window(game->mlx, game->window);
 	// destroy_images(game);
 	mlx_destroy_display(game->mlx);

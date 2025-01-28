@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/27 18:27:08 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:24:00 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,11 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MINIMAP 1
 
 # ifndef BONUS
 #  define BONUS 0
 # endif
-
-typedef struct	s_tex
-{
-	void	*tex;
-	int		*texaddr;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
-	int		*texwidth;
-	int		*texheight;
-}				t_tex;
 
 typedef struct s_img
 {
@@ -101,6 +91,7 @@ typedef struct s_data
 	t_img		tex[5];
 	t_map		map;
 	t_img		img;
+	t_img		minimap;
 	t_raycast	raycast;
 	t_key		key;
 	void		*wall;
@@ -113,7 +104,6 @@ typedef struct s_data
 	int			color;
 	int			last_x;
 }				t_data;
-
 
 void	fill_map(int fd, t_map *map);
 void	init_texture(int fd, t_map *map);
@@ -134,11 +124,13 @@ int		finish_game(t_data *game);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
-void    apply_tex(t_data *data, int draw_start, int draw_end, int x);
-void    load_textures(t_data *data, char *path);
+void	apply_tex(t_data *data, int draw_start, int draw_end, int x);
+void	load_textures(t_data *data, char *path);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
-int 	set_tex_i(t_raycast *raycast);
+int		set_tex_i(t_raycast *raycast);
+void	render_minimap(t_data *data);
+void	copy_map(t_data *data);
 
 #endif
