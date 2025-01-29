@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/28 18:53:09 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:02:15 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	game_loop(t_data *data)
 	camera_move(data);
 	raycast(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
-	// render_minimap(data);
-	// mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
+	render_minimap(data);
+	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
 	player_move(data);
 	return (0);
 }

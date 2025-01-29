@@ -6,24 +6,46 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/28 18:51:22 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:29:04 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_square(t_data *data, int x, int y, int color)
+void	draw_square(t_data *data, int x, int y, int color, int cell)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < MINIMAP)
+	while (i < cell)
 	{
 		j = 0;
-		while (j < MINIMAP)
+		while (j < cell)
 		{
-			put_pixel(data->minimap.img, x + i, y + j, color);
+			put_pixel(&data->minimap, x + i, y + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_player(t_data *data, int cell)
+{
+	int	px;
+	int	py;
+	int	i;
+	int	j;
+
+	px = (int)(data->player_x * cell / 64.0);
+	py = (int)(data->player_y * cell / 64.0);
+	i = -2;
+	while (i <= 2)
+	{
+		j = -2;
+		while (j <= 2)
+		{
+			put_pixel(&data->minimap,px + i, py + j, get_color(data, "125,52,201"));
 			j++;
 		}
 		i++;
@@ -35,27 +57,25 @@ void	render_minimap(t_data *data)
 	int	i;
 	int	j;
 	int color;
+	int	cell;
+	// int	max_dim;
 	
 	i = 0;
-	printf("height : %d, width : %d \n", data->map.height, data->map.width);
+	j = 0;
+	if (data->minimap.img)
+	{
+		mlx_destroy_image(data->mlx, data->minimap.img);
+		data->minimap.img = mlx_new_image(data->mlx, 200, 200);
+		data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img, &data->minimap.pixel_bits, &data->minimap.size_line, &data->minimap.endian);
+	}
+	cell = 200 / data->map.height;
 	while (i < data->map.height)
 	{
-		if (data->map.map == NULL || data->map.map[i] == NULL)
-		{
-    		printf("Error: map[%d] is NULL\n", i);
-    		return;
-		}
 		j = 0;
 		while (j < data->map.width)
 		{
-			if (j >= (int)ft_strlen(data->map.map[i]))
-			{
-    			printf("Error: map[%d][%d] is out of bounds\n", i, j);
-    			return;
-			}
-    		printf("Processing map[%d][%d]: %c\n", i, j, data->map.map[i][j]);
 			if (data->map.map[i][j] == ' ')
-    			color = get_color(data, "200,200,200"); // Griser les zones vides
+    			color = get_color(data, "200,200,200");
 			else if (data->map.map[i][j] == '1')
 				color = get_color(data, "0,0,0");
 			else if (data->map.map[i][j] == '0')
@@ -66,7 +86,7 @@ void	render_minimap(t_data *data)
 				color = get_color(data, "255,0,0");
 			else
 				color = get_color(data, "0,0,255");
-			draw_square(data, j, i, color);
+			draw_square(data, j * cell, i * cell, color, cell);
 			j++;
 		}
 		i++;

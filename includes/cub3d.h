@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/28 17:24:00 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:01:53 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
 int		set_tex_i(t_raycast *raycast);
 void	render_minimap(t_data *data);
-void	copy_map(t_data *data);
+// void	copy_map(t_data *data);
 
 #endif
