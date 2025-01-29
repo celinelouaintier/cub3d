@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 15:35:46 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:06:15 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,18 @@ void	render_minimap(t_data *data)
 	int	i;
 	int	j;
 	int color;
-	int cell;
-	int	max_dim;
+	int cell_w;
+	int	cell_h;
+	// int	max_dim;
 
 	
 	i = 0;
-	if (data->map.width > data->map.height)
-		max_dim = data->map.width;
-	else
-		max_dim = data->map.height;
-	cell = 300 / max_dim;
+	// if (data->map.width > data->map.height)
+	// 	max_dim = data->map.width;
+	// else
+	// 	max_dim = data->map.height;
+	cell_w = data->minimap.width / data->map.width;
+	cell_h = data->minimap.height / data->map.height;
 	while (i < data->map.height)
 	{
 		j = 0;
@@ -78,10 +80,10 @@ void	render_minimap(t_data *data)
 				color = get_color(data, "253,254,254");
 			else
 				color = get_color(data, "0,0,0");
-			draw_square(data, j * cell, i * cell, color, cell);
+			draw_square(data, j * cell_w, i * cell_h, color, cell_w);
 			j++;
 		}
 		i++;
 	}
-	draw_player(data, cell);
+	// draw_player(data, cell);
 }

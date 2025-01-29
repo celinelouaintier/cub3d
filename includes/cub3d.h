@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 15:27:15 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:08:31 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINIMAP_MAX 300
+# define MINIMAP_MAX 400
 
 # ifndef BONUS
 #  define BONUS 0
