@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 14:06:28 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:40:13 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	set_img(t_data *data)
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.addr = (int *)mlx_get_data_addr(data->img.img,
 			&data->img.pixel_bits, &data->img.size_line, &data->img.endian);
-	data->minimap.img = mlx_new_image(data->mlx, 200, 200);
+	if (data->minimap.img)
+		mlx_destroy_image(data->mlx, data->minimap.img);
+	data->minimap.img = mlx_new_image(data->mlx, 300, 300);
 	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
 			&data->minimap.pixel_bits, &data->minimap.size_line,
 			&data->minimap.endian);
