@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/28 17:59:02 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:46:12 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*skip_line(int fd)
 	}
 	return (line);
 }
-
 
 void	get_map_size(int fd, t_map **map, char *line)
 {

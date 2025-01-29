@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 15:32:38 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:40:25 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	put_pixel(t_img *image, int x, int y, int color)
 void	draw_line(t_data *data, int start, int end, int x)
 {
 	while (start++ < end)
-		put_pixel(&data->img, x, start, data->color);
+		put_pixel(&data->img, x, start, data->img.color);
 }

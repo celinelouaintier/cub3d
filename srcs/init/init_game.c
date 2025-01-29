@@ -6,11 +6,40 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 16:09:26 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:37:44 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_minimap(t_data *data)
+{
+	data->minimap.height = data->map.height * 20;
+	data->minimap.width = data->map.width * 20;
+	if (data->minimap.width > data->minimap.height)
+	{
+		if (data->minimap.width > MINIMAP_MAX)
+		{
+			data->minimap.width = MINIMAP_MAX;
+			data->minimap.height = (data->map.height * MINIMAP_MAX)
+				/ data->map.width;
+		}
+	}
+	else
+	{
+		if (data->minimap.height > MINIMAP_MAX)
+		{
+			data->minimap.height = MINIMAP_MAX;
+			data->minimap.width = (data->map.width * MINIMAP_MAX)
+				/ data->map.height;
+		}
+	}	
+	data->minimap.img = mlx_new_image(data->mlx,
+			data->minimap.width, data->minimap.height);
+	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
+			&data->minimap.pixel_bits, &data->minimap.size_line,
+			&data->minimap.endian);
+}
 
 void	set_img(t_data *data)
 {
@@ -26,28 +55,7 @@ void	set_img(t_data *data)
 			&data->img.pixel_bits, &data->img.size_line, &data->img.endian);
 	if (data->minimap.img)
 		mlx_destroy_image(data->mlx, data->minimap.img);
-	data->minimap.height = data->map.height * 20;
-	data->minimap.width = data->map.width * 20;
-	if (data->minimap.width > data->minimap.height)
-	{
-		if (data->minimap.width > MINIMAP_MAX)
-		{
-			data->minimap.width = MINIMAP_MAX;
-			data->minimap.height = (data->map.height * MINIMAP_MAX) / data->map.width;
-		}
-	}
-	else
-	{
-		if (data->minimap.height > MINIMAP_MAX)
-		{
-			data->minimap.height = MINIMAP_MAX;
-			data->minimap.width = (data->map.width * MINIMAP_MAX) / data->map.height;
-		}
-	}	
-	data->minimap.img = mlx_new_image(data->mlx, data->minimap.width, data->minimap.height);
-	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
-			&data->minimap.pixel_bits, &data->minimap.size_line,
-			&data->minimap.endian);
+	init_minimap(data);
 }
 
 void	draw_bg(t_data *data)

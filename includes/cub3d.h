@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 16:08:31 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:44:29 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 typedef struct s_img
 {
+	int		color;
 	void	*img;
 	int		*addr;
 	int		width;
@@ -101,7 +102,6 @@ typedef struct s_data
 	float		player_x;
 	float		player_y;
 	float		angle;
-	int			color;
 	int			last_x;
 }				t_data;
 
@@ -131,6 +131,5 @@ void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
 int		set_tex_i(t_raycast *raycast);
 void	render_minimap(t_data *data);
-// void	copy_map(t_data *data);
 
 #endif
