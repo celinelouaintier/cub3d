@@ -2,7 +2,6 @@
 
 IDEES :
 - Voiture retro futuriste premiere personne. (raycasting retroviseur ?)
-- Minimap --> deplacer le joueur sur la map + tourner la map en meme temps ?
 - Ennemies
 - Menu
 - Boss
