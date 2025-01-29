@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 17:43:43 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:01:33 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,19 @@ void	draw_square(t_data *data, int x, int y, int cell)
 	}
 }
 
-void	draw_player(t_data *data, int cell)
+void	draw_player(t_data *data, int cell_w, int cell_h)
 {
 	int	px;
 	int	py;
-	int	i;
-	int	j;
+	int	p_size;
 
-	px = (int)(data->player_x * cell / 64.0);
-	py = (int)(data->player_y * cell / 64.0);
-	i = -2;
-	while (i <= 2)
-	{
-		j = -2;
-		while (j <= 2)
-		{
-			put_pixel(&data->minimap, px + i, py + j,
-				get_color(data, "231,76,60"));
-			j++;
-		}
-		i++;
-	}
+	px = data->player_x * cell_w;
+	py = data->player_y * cell_h;
+	p_size = cell_w / 2;
+	if (p_size < 3)
+		p_size = 3;
+	data->minimap.color = get_color(data, "255,0,0");
+	draw_square(data, px - p_size / 2, py - p_size / 2, p_size);
 }
 
 void	render_minimap(t_data *data)
@@ -73,11 +65,11 @@ void	render_minimap(t_data *data)
 			else if (data->map.map[i][j] == '0')
 				data->minimap.color = get_color(data, "253,254,254");
 			else
-				data->minimap.color = get_color(data, "0,0,0");
+				data->minimap.color = get_color(data, data->map.cell);
 			draw_square(data, j * cell_w, i * cell_h, cell_w);
 			j++;
 		}
 		i++;
 	}
-	// draw_player(data, cell);
+	draw_player(data, cell_w, cell_h);
 }
