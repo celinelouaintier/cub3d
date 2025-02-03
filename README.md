@@ -27,3 +27,5 @@ TODO
 
 On verra :
 - Menu
+
+- Segfault quand tu es contre un mur et que l'ennemie t'arrive dessus -

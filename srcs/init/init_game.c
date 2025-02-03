@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/02 22:55:11 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:42:01 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_minimap(t_data *data)
 			data->minimap.width = (data->map.width * MINIMAP_MAX)
 				/ data->map.height;
 		}
-	}	
+	}
 	data->minimap.img = mlx_new_image(data->mlx,
 			data->minimap.width, data->minimap.height);
 	data->minimap.addr = (int *)mlx_get_data_addr(data->minimap.img,
@@ -80,18 +80,6 @@ void	draw_bg(t_data *data)
 	}
 }
 
-void	find_angle(t_data *data, int i, int j)
-{
-	if (data->map.map[i][j] == 'N')
-		data->angle = M_PI / 2;
-	else if (data->map.map[i][j] == 'S')
-		data->angle = 3 * M_PI / 2;
-	else if (data->map.map[i][j] == 'E')
-		data->angle = 0;
-	else if (data->map.map[i][j] == 'W')
-		data->angle = M_PI;
-}
-
 void	find_initial_position(t_data *data)
 {
 	int	i;
@@ -114,55 +102,5 @@ void	find_initial_position(t_data *data)
 			j++;
 		}
 		i++;
-	}
-}
-
-void	count_ennemy(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-
-	while (++i < data->map.height)
-	{
-		j = -1;
-		while (++j < data->map.width)
-			if (data->map.map[i][j] == 'X')
-				data->nb_entity++;
-	}
-}
-
-void	init_ennemy(t_data *data)
-{
-	int	i;
-	int	j;
-	int k;
-
-	if (!BONUS)
-	{
-		data->nb_entity = 0;
-		return ;
-	}
-	count_ennemy(data);
-	data->entity = malloc(sizeof(t_entity) * data->nb_entity);
-	k = 0;
-	i = -1;
-	while (++i < data->map.height)
-	{
-		j = -1;
-		while (++j < data->map.width)
-		{
-			if (data->map.map[i][j] == 'X')
-			{
-				data->entity[k].x = j + 0.5;
-				data->entity[k].y = i + 0.5;
-				data->entity[k].is_alive = 1;
-				data->entity[k].targeted = 0;
-				k++;
-				if (k == data->nb_entity)
-					return ;
-			}
-		}
 	}
 }

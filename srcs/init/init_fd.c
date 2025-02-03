@@ -6,33 +6,33 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 17:46:12 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:32:52 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_texture(t_map *map)
-{
-	ft_printf("NO : %s\n", map->no);
-	ft_printf("SO : %s\n", map->so);
-	ft_printf("WE : %s\n", map->we);
-	ft_printf("EA : %s\n", map->ea);
-	ft_printf("D : %s\n", map->door);
-	ft_printf("\n\n");
-	ft_printf("F  : %s\n", map->floor);
-	ft_printf("C  : %s", map->cell);
-	ft_printf("\n\n");
-	ft_printf("Height : %d\n", map->height);
-	ft_printf("Width : %d\n", map->width);
-	ft_printf("\n\n");
-	// int i = 0;
-	// while (map->map[i])
-	// {
-	// 	ft_printf("%s\n", map->map[i]);
-	// 	i++;
-	// }
-}
+// void	print_texture(t_map *map)
+// {
+// 	ft_printf("NO : %s\n", map->no);
+// 	ft_printf("SO : %s\n", map->so);
+// 	ft_printf("WE : %s\n", map->we);
+// 	ft_printf("EA : %s\n", map->ea);
+// 	ft_printf("D : %s\n", map->door);
+// 	ft_printf("\n\n");
+// 	ft_printf("F  : %s\n", map->floor);
+// 	ft_printf("C  : %s", map->cell);
+// 	ft_printf("\n\n");
+// 	ft_printf("Height : %d\n", map->height);
+// 	ft_printf("Width : %d\n", map->width);
+// 	ft_printf("\n\n");
+// 	// int i = 0;
+// 	// while (map->map[i])
+// 	// {
+// 	// 	ft_printf("%s\n", map->map[i]);
+// 	// 	i++;
+// 	// }
+// }
 
 char	*skip_line(int fd)
 {

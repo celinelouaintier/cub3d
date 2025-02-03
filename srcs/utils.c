@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/02 22:15:10 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/03 21:58:54 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ void	swap(t_entity *a, t_entity *b)
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
+}
+
+void	find_angle(t_data *data, int i, int j)
+{
+	if (data->map.map[i][j] == 'N')
+		data->angle = M_PI / 2;
+	else if (data->map.map[i][j] == 'S')
+		data->angle = 3 * M_PI / 2;
+	else if (data->map.map[i][j] == 'E')
+		data->angle = 0;
+	else if (data->map.map[i][j] == 'W')
+		data->angle = M_PI;
 }

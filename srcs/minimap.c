@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 16:18:18 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:49:24 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_head(t_data *data, int px, int py, int dir_x, int dir_y)
 	int		i;
 	float	x;
 	float	y;
-	
+
 	i = 0;
 	if (abs(dir_x - px) > abs(dir_y - py))
 		steps = abs(dir_x - px);
@@ -46,7 +46,8 @@ void	draw_head(t_data *data, int px, int py, int dir_x, int dir_y)
 	y = py;
 	while (i <= steps)
 	{
-		put_pixel(&data->minimap, (int)x, (int) y, get_color(data, "52,126,89"));
+		put_pixel(&data->minimap, (int)x, (int) y,
+			get_color(data, "52,126,89"));
 		x += (dir_x - px) / (float) steps;
 		y += (dir_y - py) / (float) steps;
 		i++;
@@ -60,7 +61,6 @@ void	draw_player(t_data *data, int cell_w, int cell_h)
 	int	p_size;
 	// int	dir_x;
 	// int	dir_y;
-
 	px = data->player_x * cell_w;
 	py = data->player_y * cell_h;
 	p_size = cell_w / 2;
@@ -80,13 +80,13 @@ void	render_minimap(t_data *data)
 	int	cell_w;
 	int	cell_h;
 
-	i = 0;
+	i = -1;
 	cell_w = data->minimap.width / data->map.width;
 	cell_h = data->minimap.height / data->map.height;
-	while (i < data->map.height)
+	while (++i < data->map.height)
 	{
-		j = 0;
-		while (j < data->map.width)
+		j = -1;
+		while (++j < data->map.width)
 		{
 			if (data->map.map[i][j] == '1')
 				data->minimap.color = get_color(data, "99,57,116" );
@@ -95,9 +95,7 @@ void	render_minimap(t_data *data)
 			else
 				data->minimap.color = get_color(data, data->map.cell);
 			draw_square(data, j * cell_w, i * cell_h, cell_w + 4);
-			j++;
 		}
-		i++;
 	}
 	draw_player(data, cell_w, cell_h);
 }

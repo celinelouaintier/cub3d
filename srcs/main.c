@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 18:13:42 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:31:29 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,7 @@ int	main(int ac, char **av)
 	if (!data->mlx)
 		return (1);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
-	load_textures(data, data->map.no);
-	load_textures(data, data->map.so);
-	load_textures(data, data->map.ea);
-	load_textures(data, data->map.we);
-	if (BONUS)
-	{
-		load_textures(data, data->map.door);
-		load_enemy(data);
-		load_textures(data, "assets/weapon/DEAG1.xpm");
-	}
+	load_textures(data);
 	mlx_mouse_hide(data->mlx, data->window);
 	mlx_hook(data->window, 17, 0, finish_game, data);
 	mlx_hook(data->window, 2, 1L << 0, key_press, data);

@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 18:07:38 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:59:26 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	sort_sprites(t_data *data)
 
 	i = -1;
 	while (++i < data->nb_entity)
-    	data->entity[i].distance = ((data->player_x - data->entity[i].x) * (data->player_x - data->entity[i].x) + (data->player_y - data->entity[i].y) * (data->player_y - data->entity[i].y));
+		data->entity[i].distance = ((data->player_x - data->entity[i].x)
+				* (data->player_x - data->entity[i].x) + (data->player_y
+					- data->entity[i].y)
+				* (data->player_y - data->entity[i].y));
 	i = -1;
 	while (++i < data->nb_entity)
 	{
@@ -35,7 +38,7 @@ void	raycast(t_data *data)
 	int			x;
 	int			draw_end = 0;
 	int			draw_start = 0;
-	int 		i;
+	int			i;
 	t_raycast	*raycast;
 
 	x = -1;
@@ -82,7 +85,8 @@ void	move_enemies(t_data *data)
 			new_y = data->entity[i].y - 0.01;
 		if (data->entity[i].y < data->player_y)
 			new_y = data->entity[i].y + 0.01;
-		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
+		if (data->map.map[(int)new_y][(int)new_x] != '1'
+			&& data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
 			data->entity[i].x = new_x;
 			data->entity[i].y = new_y;
@@ -92,8 +96,8 @@ void	move_enemies(t_data *data)
 
 void	draw_cursor(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < 21)
@@ -101,7 +105,8 @@ void	draw_cursor(t_data *data)
 		j = -1;
 		while (++j < 21)
 			if ((i > 9 && i < 12) || (j > 9 && j < 12))
-				put_pixel(&data->img, WIDTH / 2 + j, HEIGHT / 2 + i, 0x00FF0000);
+				put_pixel(&data->img, WIDTH / 2 + j,
+					HEIGHT / 2 + i, 0x00FF0000);
 	}
 }
 

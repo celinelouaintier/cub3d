@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 18:07:04 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:00:29 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+# define ENEMY1 "assets/ennemies/waechter1.xpm"
+# define ENEMY2 "assets/ennemies/waechter2.xpm"
+# define ENEMY3 "assets/ennemies/waechter3.xpm"
+# define ENEMY4 "assets/ennemies/waechter4.xpm"
+# define ENEMY5 "assets/ennemies/waechter5.xpm"
+# define ENEMY6 "assets/ennemies/waechter6.xpm"
 
 typedef struct s_sprite
 {
@@ -154,7 +161,7 @@ void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
 void	apply_tex(t_data *data, int draw_start, int draw_end, int x);
-void	load_textures(t_data *data, char *path);
+void	get_textures(t_data *data, char *path);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
@@ -162,10 +169,12 @@ int		set_tex_i(t_raycast *raycast);
 void	render_minimap(t_data *data);
 void	init_ennemy(t_data *data);
 void	swap(t_entity *a, t_entity *b);
-void	calculate_sprite_projection(t_data *data, t_raycast *raycast, int  i);
+void	calculate_sprite_projection(t_data *data, t_raycast *raycast, int i);
 void	set_draw_range(t_data *data);
 void	draw_sprite(t_data *data, int i);
 void	load_enemy(t_data *data);
 void	animate_player(t_data *data);
+void	load_textures(t_data *data);
+void	interact(t_data *data);
 
 #endif
