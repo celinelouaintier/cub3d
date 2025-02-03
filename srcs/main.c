@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 16:12:55 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:13:42 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ int	finish_game(t_data *game)
 	// free_map(game->map, game->height);
 	// free(game->images);
 	exit(0);
+}
+
+void	animate_player(t_data *data)
+{
+	data->frame_count++;
+	if (data->frame_count >= 7)
+	{
+		data->current_sprite = (data->current_sprite + 1) % 6;
+		data->frame_count = 0;
+	}
 }
 
 int	main(int ac, char **av)
@@ -51,7 +61,8 @@ int	main(int ac, char **av)
 	if (BONUS)
 	{
 		load_textures(data, data->map.door);
-		load_textures(data, "assets/ennemies/scientist.xpm");
+		load_enemy(data);
+		load_textures(data, "assets/weapon/DEAG1.xpm");
 	}
 	mlx_mouse_hide(data->mlx, data->window);
 	mlx_hook(data->window, 17, 0, finish_game, data);

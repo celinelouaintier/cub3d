@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 22:25:40 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/03 01:28:40 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/03 18:09:40 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	draw_sprite_line(t_data *data, int i, int tex_x, int stripe)
 	while (y++ < data->sprite.draw_end_y)
 	{
 		d = y * 256 - HEIGHT * 128 + data->sprite.sprite_height * 128;
-		tex_y = ((d * data->tex[5].height) / data->sprite.sprite_height) / 256;
-		data->img.color = data->tex[5].addr[data->tex[5].width * tex_y + tex_x];
+		tex_y = ((d * data->enemy[data->current_sprite].height) / data->sprite.sprite_height) / 256;
+		data->img.color = data->enemy[data->current_sprite].addr[data->enemy[data->current_sprite].width * tex_y + tex_x];
 		if (data->img.color)
 		{
 			put_pixel(&data->img, stripe, y, data->img.color);
@@ -79,7 +79,7 @@ void	draw_sprite(t_data *data, int i)
 	while (stripe++ < s->draw_end_x)
 	{
 		tex_x = (int)(256 * (stripe - (-s->sprite_width
-						/ 2 + s->screen_x)) * data->tex[5].width
+						/ 2 + s->screen_x)) * data->enemy[data->current_sprite].width
 				/ s->sprite_width) / 256;
 		if (s->transform_y > 0 && stripe > 0 && stripe < WIDTH
 			&& s->transform_y < s->wall_dist_buffer[stripe])

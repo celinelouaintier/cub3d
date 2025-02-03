@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 16:32:54 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:17:43 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	shot(int keycode, int x, int y, t_data *data)
 	if (keycode == 1)
 	{
 		i = data->nb_entity;
-		while (--i)
+		while (i--)
 		{
 			if (data->entity[i].targeted == 1)
 			{

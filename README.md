@@ -18,11 +18,12 @@ GIT
 TODO
 
 - parsing
-- Animation
+- Animations (ennemis, arme, portes)
 
 - Finir Ennemies 
 - Arme
 - Mort
+- Map : retirer les bords noirs + ajouter le sens sur le joueur (OU render que ce qu'il y a autour du joueur)
 
 On verra :
 - Menu

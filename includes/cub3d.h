@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 01:44:07 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/03 18:07:04 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ typedef struct s_data
 	void		*window;
 	t_entity	*entity;
 	t_sprite	sprite;
-	t_img		tex[6];
+	t_img		tex[7];
+	t_img		enemy[6];
 	t_map		map;
 	t_img		img;
 	t_img		minimap;
@@ -128,6 +129,8 @@ typedef struct s_data
 	float		angle;
 	int			last_x;
 	int			nb_entity;
+	int			current_sprite;
+	int			frame_count;
 }				t_data;
 
 void	fill_map(int fd, t_map *map);
@@ -162,5 +165,7 @@ void	swap(t_entity *a, t_entity *b);
 void	calculate_sprite_projection(t_data *data, t_raycast *raycast, int  i);
 void	set_draw_range(t_data *data);
 void	draw_sprite(t_data *data, int i);
+void	load_enemy(t_data *data);
+void	animate_player(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 15:21:31 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:07:38 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,13 @@ int	game_loop(t_data *data)
 {
 	set_img(data);
 	draw_bg(data);
+	animate_player(data);
 	camera_move(data);
 	raycast(data);
 	draw_cursor(data);
+	// for (int i = 0; i < data->tex[6].width * data->tex[6].height; i++)
+	// 	if (data->tex[6].addr[i])
+	// 		put_pixel(&data->img, 0, 0, data->tex[6].addr[i]);
 	move_enemies(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	render_minimap(data);
