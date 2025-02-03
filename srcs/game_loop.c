@@ -3,20 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 14:02:15 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:29:24 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	sort_sprites(t_data *data)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < data->nb_entity)
+    	data->entity[i].distance = ((data->player_x - data->entity[i].x) * (data->player_x - data->entity[i].x) + (data->player_y - data->entity[i].y) * (data->player_y - data->entity[i].y));
+	i = -1;
+	while (++i < data->nb_entity)
+	{
+		j = -1;
+		while (++j < data->nb_entity)
+			if (data->entity[j].distance < data->entity[j + 1].distance)
+				swap(&data->entity[j], &data->entity[j + 1]);
+	}
+}
 
 void	raycast(t_data *data)
 {
 	int			x;
 	int			draw_end = 0;
 	int			draw_start = 0;
+	int 		i;
 	t_raycast	*raycast;
 
 	x = -1;
@@ -29,6 +48,60 @@ void	raycast(t_data *data)
 		raycast->side = check_ray_hit(raycast, data);
 		draw_limits(raycast, &draw_start, &draw_end);
 		apply_tex(data, x, draw_start, draw_end);
+		data->sprite.wall_dist_buffer[x] = raycast->wall_dist;
+	}
+	sort_sprites(data);
+	i = -1;
+	while (++i < data->nb_entity)
+	{
+		if (!data->entity[i].is_alive)
+			continue ;
+		calculate_sprite_projection(data, raycast, i);
+		set_draw_range(data);
+		data->entity[i].targeted = 0;
+		draw_sprite(data, i);
+	}
+}
+
+void	move_enemies(t_data *data)
+{
+	int		i;
+	float	new_x;
+	float	new_y;
+
+	i = -1;
+	while (++i < data->nb_entity)
+	{
+		new_x = data->entity[i].x;
+		new_y = data->entity[i].y;
+		if (data->entity[i].x > data->player_x)
+			new_x = data->entity[i].x - 0.01;
+		if (data->entity[i].x < data->player_x)
+			new_x = data->entity[i].x + 0.01;
+		if (data->entity[i].y > data->player_y)
+			new_y = data->entity[i].y - 0.01;
+		if (data->entity[i].y < data->player_y)
+			new_y = data->entity[i].y + 0.01;
+		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
+		{
+			data->entity[i].x = new_x;
+			data->entity[i].y = new_y;
+		}
+	}
+}
+
+void	draw_cursor(t_data *data)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < 21)
+	{
+		j = -1;
+		while (++j < 21)
+			if ((i > 9 && i < 12) || (j > 9 && j < 12))
+				put_pixel(&data->img, WIDTH / 2 + j, HEIGHT / 2 + i, 0x00FF0000);
 	}
 }
 
@@ -38,6 +111,8 @@ int	game_loop(t_data *data)
 	draw_bg(data);
 	camera_move(data);
 	raycast(data);
+	draw_cursor(data);
+	// move_enemies(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	render_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);

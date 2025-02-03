@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 13:34:49 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:49:15 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	mouse_move(int x, int y, t_data *data)
-{
-	int			delta_x;
-
-	(void)y;
-	if (x != WIDTH / 2)
-	{
-		delta_x = x - WIDTH / 2;
-		data->angle -= delta_x * 0.001;
-		if (data->angle < 0)
-			data->angle += 2 * M_PI;
-		if (data->angle > 2 * M_PI)
-			data->angle -= 2 * M_PI;
-		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
-	}
-	return (0);
-}
-
-// ------ PAS TOUCHE ------ //
 // int	mouse_move(int x, int y, t_data *data)
 // {
 // 	int			delta_x;
 
 // 	(void)y;
-// 	if (data->last_x == -1)
+// 	if (x != WIDTH / 2)
 // 	{
-// 		data->last_x = x;
-// 		return (0);
+// 		delta_x = x - WIDTH / 2;
+// 		data->angle -= delta_x * 0.001;
+// 		if (data->angle < 0)
+// 			data->angle += 2 * M_PI;
+// 		if (data->angle > 2 * M_PI)
+// 			data->angle -= 2 * M_PI;
+// 		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 // 	}
-// 	delta_x = x - data->last_x;
-// 	data->angle -= delta_x * 0.003;
-// 	if (data->angle < 0)
-// 		data->angle += 2 * M_PI;
-// 	if (data->angle > 2 * M_PI)
-// 		data->angle -= 2 * M_PI;
-// 	data->last_x = x;
 // 	return (0);
 // }
+
+// ------ PAS TOUCHE ------ //
+int	mouse_move(int x, int y, t_data *data)
+{
+	int			delta_x;
+
+	(void)y;
+	if (data->last_x == -1)
+	{
+		data->last_x = x;
+		return (0);
+	}
+	delta_x = x - data->last_x;
+	data->angle -= delta_x * 0.003;
+	if (data->angle < 0)
+		data->angle += 2 * M_PI;
+	if (data->angle > 2 * M_PI)
+		data->angle -= 2 * M_PI;
+	data->last_x = x;
+	return (0);
+}
 
 void	interact(t_data *data)
 {
@@ -109,6 +109,28 @@ int	key_release(int keycode, t_data *data)
 	return (0);
 }
 
+int	shot(int keycode, int x, int y, t_data *data)
+{
+	int i;
+	(void)x;
+	(void)y;
+
+	if (keycode == 1)
+	{
+		i = data->nb_entity;
+		while (--i)
+		{
+			if (data->entity[i].targeted == 1)
+			{
+				data->entity[i].is_alive = 0;
+				data->entity[i].targeted = 0;
+				return (0);
+			}
+		}
+	}
+	return (0);
+}
+
 void	camera_move(t_data *data)
 {
 	if (data->key.left)
@@ -128,7 +150,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.dir_x * 0.1;
 		new_y = data->player_y + data->raycast.dir_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -138,7 +160,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.dir_x * 0.1;
 		new_y = data->player_y - data->raycast.dir_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -148,7 +170,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x + data->raycast.plane_x * 0.1;
 		new_y = data->player_y + data->raycast.plane_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;
@@ -158,7 +180,7 @@ int	player_move(t_data *data)
 	{
 		new_x = data->player_x - data->raycast.plane_x * 0.1;
 		new_y = data->player_y - data->raycast.plane_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] == '0' || data->map.map[(int)new_y][(int)new_x] == 'O')
+		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
 			data->player_x = new_x;
 			data->player_y = new_y;

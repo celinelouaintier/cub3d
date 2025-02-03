@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 17:44:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:44:07 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,32 @@
 # ifndef BONUS
 #  define BONUS 0
 # endif
+
+typedef struct s_sprite
+{
+	float	sprite_x;
+	float	sprite_y;
+	float	inv_det;
+	float	transform_x;
+	float	transform_y;
+	int		screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_x;
+	int		draw_start_y;
+	int		draw_end_x;
+	int		draw_end_y;
+	float	wall_dist_buffer[WIDTH];
+}	t_sprite;
+
+typedef struct s_entity
+{
+	float		x;
+	float		y;
+	float		distance;
+	int			is_alive;
+	int			targeted;
+}	t_entity;
 
 typedef struct s_img
 {
@@ -89,20 +115,19 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*window;
-	t_img		tex[5];
+	t_entity	*entity;
+	t_sprite	sprite;
+	t_img		tex[6];
 	t_map		map;
 	t_img		img;
 	t_img		minimap;
 	t_raycast	raycast;
 	t_key		key;
-	void		*wall;
-	int			zoom;
-	int			startx;
-	int			starty;
 	float		player_x;
 	float		player_y;
 	float		angle;
 	int			last_x;
+	int			nb_entity;
 }				t_data;
 
 void	fill_map(int fd, t_map *map);
@@ -120,6 +145,7 @@ int		check_ray_hit(t_raycast *r, t_data *data);
 int		player_move(t_data *data);
 int		key_release(int keycode, t_data *data);
 int		key_press(int keycode, t_data *data);
+int		shot(int keycode, int x, int y, t_data *data);
 int		finish_game(t_data *game);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
@@ -131,5 +157,10 @@ void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
 int		set_tex_i(t_raycast *raycast);
 void	render_minimap(t_data *data);
+void	init_ennemy(t_data *data);
+void	swap(t_entity *a, t_entity *b);
+void	calculate_sprite_projection(t_data *data, t_raycast *raycast, int  i);
+void	set_draw_range(t_data *data);
+void	draw_sprite(t_data *data, int i);
 
 #endif
