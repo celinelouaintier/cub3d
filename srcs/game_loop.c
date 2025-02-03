@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 01:29:24 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/03 15:21:31 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	game_loop(t_data *data)
 	camera_move(data);
 	raycast(data);
 	draw_cursor(data);
-	// move_enemies(data);
+	move_enemies(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	render_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);

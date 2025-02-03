@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/01/29 18:23:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:18:18 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	render_minimap(t_data *data)
 				data->minimap.color = get_color(data, "253,254,254");
 			else
 				data->minimap.color = get_color(data, data->map.cell);
-			draw_square(data, j * cell_w, i * cell_h, cell_w);
+			draw_square(data, j * cell_w, i * cell_h, cell_w + 4);
 			j++;
 		}
 		i++;

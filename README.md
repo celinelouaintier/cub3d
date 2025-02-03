@@ -1,10 +1,5 @@
 # cub3d
 
-IDEES :
-- Voiture retro futuriste premiere personne. (raycasting retroviseur ?)
-- Ennemies
-- Menu
-- Boss
 
 GIT
 - Rajoute l'extension Gitlens ça te met les commit et qui a changé quoi directement sur ton IDE et plein d'autres trucs supers
@@ -20,15 +15,14 @@ GIT
 - AVANT DE FUSIONNER, SYNCHRONISER AVEC LA BRANCHE MAIN POUR MINIMISER CONFLITS :
         'git pull origin main'
 
-TODO Celine :
+TODO
+
 - parsing
+- Animation
 
+- Finir Ennemies 
+- Arme
+- Mort
 
-Nouveaute :
-
-X sur la map pour un ennemie
-Clique gauche pour tirer
-j'ai laissé move_ennemy mais elle pue smr en gros juste il te suis
-Le curseur c'etait surtout pour debug si tu veux l'enlever ou le modifier fais toi plaisir
-Le path de la texture des ennemies pour l'instant est en dur dans le load_texture si tu veux la changer
-Calcul pas trop les 50 fonctions par fichier ^^
+On verra :
+- Menu
