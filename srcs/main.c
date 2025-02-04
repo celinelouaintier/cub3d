@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:31:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/04 02:48:26 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	finish_game(t_data *game)
 
 void	animate_player(t_data *data)
 {
-	data->frame_count++;
-	if (data->frame_count >= 7)
+	data->p_frame_count++;
+	if (data->p_frame_count >= 7)
 	{
 		data->current_sprite = (data->current_sprite + 1) % 6;
-		data->frame_count = 0;
+		data->p_frame_count = 0;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:59:26 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/04 02:54:10 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,26 @@ int	game_loop(t_data *data)
 	set_img(data);
 	draw_bg(data);
 	animate_player(data);
+	if (data->shot)
+		data->w_frame_count++;
+	if (data->w_frame_count >= 5)
+	{
+		data->shot = 0;
+		data->w_frame_count = 0;
+	}
 	camera_move(data);
 	raycast(data);
-	draw_cursor(data);
-	// for (int i = 0; i < data->tex[6].width * data->tex[6].height; i++)
-	// 	if (data->tex[6].addr[i])
-	// 		put_pixel(&data->img, 0, 0, data->tex[6].addr[i]);
+	int i = 0;
+	for (int x = 0; x < data->weapon[data->shot].height; x++)
+	{
+		for (int y = 0; y < data->weapon[data->shot].width; y++)
+		{
+			put_pixel(&data->img, (WIDTH / 2) + y + 100 , (HEIGHT / 2) + x , data->weapon[data->shot].addr[i]);
+			i++;
+		}
+	}
 	move_enemies(data);
+	draw_cursor(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	render_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);

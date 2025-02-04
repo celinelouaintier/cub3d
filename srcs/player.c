@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:56:15 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/04 02:44:02 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	shot(int keycode, int x, int y, t_data *data)
 	if (keycode == 1)
 	{
 		i = data->nb_entity;
+		data->shot = 1;
 		while (i--)
 		{
 			if (data->entity[i].targeted == 1)

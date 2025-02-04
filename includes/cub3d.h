@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 22:00:29 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/04 02:49:01 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ typedef struct s_data
 	void		*window;
 	t_entity	*entity;
 	t_sprite	sprite;
-	t_img		tex[7];
+	t_img		tex[5];
 	t_img		enemy[6];
+	t_img		weapon[2];
 	t_map		map;
 	t_img		img;
 	t_img		minimap;
@@ -137,7 +138,9 @@ typedef struct s_data
 	int			last_x;
 	int			nb_entity;
 	int			current_sprite;
-	int			frame_count;
+	int			shot;
+	int			p_frame_count;
+	int			w_frame_count;
 }				t_data;
 
 void	fill_map(int fd, t_map *map);
