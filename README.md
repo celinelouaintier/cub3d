@@ -1,6 +1,5 @@
 # cub3d
 
-
 GIT
 - Rajoute l'extension Gitlens ça te met les commit et qui a changé quoi directement sur ton IDE et plein d'autres trucs supers
 - Pour créer et basculer directement sur une branche :
@@ -17,17 +16,10 @@ GIT
 
 TODO
 
-- parsing : normalement c'est bon mais j'ai peut-etre oublie des trucs...
-- Animations (ennemis, arme, portes)
-
 - Finir Ennemies 
-- Arme
 - Mort
 - Map : retirer les bords noirs + ajouter le sens sur le joueur (OU render que ce qu'il y a autour du joueur)
 
 On verra :
 - Menu
-
-ERREURS
-
-- Segfault quand tu es contre un mur et que l'ennemie t'arrive dessus
+- Animation portes
