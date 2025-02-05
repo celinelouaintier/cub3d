@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 18:21:48 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:14:43 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 	t_data	*data;
 	int		fd;
 
-	// check_file_format(av[1]);
+	check_file_format(av[1]);
 	data = malloc(sizeof(t_data));
 	if (ac != 2)
 		return (1);

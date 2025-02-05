@@ -17,7 +17,7 @@ GIT
 
 TODO
 
-- parsing
+- parsing : normalement c'est bon mais j'ai peut-etre oublie des trucs...
 - Animations (ennemis, arme, portes)
 
 - Finir Ennemies 
@@ -28,4 +28,6 @@ TODO
 On verra :
 - Menu
 
-- Segfault quand tu es contre un mur et que l'ennemie t'arrive dessus -
+ERREURS
+
+- Segfault quand tu es contre un mur et que l'ennemie t'arrive dessus

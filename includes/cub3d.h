@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 16:22:59 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:00:04 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_map
 	char	**map;
 	int		height;
 	int		width;
+	int		player;
 }				t_map;
 
 typedef struct s_raycast

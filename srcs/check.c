@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 22:52:10 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:17:54 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,42 @@ int is_map_closed(t_map *map)
     return (1);
 }
 
+int check_map_char(t_map *map)
+{
+    int i;
+    int j;
+
+    i = -1;
+    while (++i < map->height - 1)
+    {
+        j = -1;
+        while (++j < (int)ft_strlen(map->map[i]) - 1)
+        {
+            if (map->map[i][j] != '0' && map->map[i][j] != ' '
+                && map->map[i][j] != '1' && map->map[i][j] != 'N'
+                && map->map[i][j] != 'S' && map->map[i][j] != 'E'
+                && map->map[i][j] != 'W'
+                && (!BONUS || (map->map[i][j] != 'D' && map->map[i][j] != 'X')))
+            {
+                ft_printf("Wrong character in your map : %c\n", map->map[i][j]);
+                return (0);
+            }
+            else if (map->map[i][j] == 'N' || map->map[i][j] == 'E'
+                || map->map[i][j] == 'W' || map->map[i][j] == 'S')
+                map->player++;
+        }
+    }
+    return (1);
+}
+
 void	check_errors(t_data *data)
 {
-	check_file_format(data->map.path);
-	if (!is_map_closed(&data->map))
-	{
-		ft_printf("Error : Map is not closed\n");
-		finish_game(data);
-	}
+    data->map.player = 0;
+	if (!is_map_closed(&data->map) || !check_map_char(&data->map))
+		exit(0);
+    if (data->map.player != 1)
+    {
+        ft_printf("Warning, %d player(s) in your map\n", data->map.player);
+        exit(0);
+    }
 }
