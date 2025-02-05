@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 18:17:54 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:05:11 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,50 +32,46 @@ void	check_file_format(char *filename)
 
 int is_map_closed(t_map *map)
 {
-	int	i;
-	int	j;
-    
-	i = -1;
-    while (++i < map->height)
-    {
-        j = 0;
-        while (map->map[i][j] == ' ')
-            j++;
-        if (map->map[i][j] != '1')
-        {
-            ft_printf("Line %d does not start with '1'\n", i);
-            return (0);
-        }
-        j = ft_strlen(map->map[i]) - 1;
-        while (j >= 0 && map->map[i][j] == ' ')
-            j--;
-        if (j >= 0 && map->map[i][j] != '1')
-        {
-            ft_printf("Line %d does not end with '1'\n", i);
-            return (0);
-        }
-    }
-	j = -1;
-    while (++j < map->width)
-    {
-        i = 0;
-        while (i < map->height && (j >= (int)ft_strlen(map->map[i]) || map->map[i][j] == ' '))
-            i++;
-        if (i < map->height && map->map[i][j] != '1')
-        {
-            ft_printf("Column %d does not start with '1'\n", j);
-            return (0);
-        }
-        i = map->height - 1;
-        while (i >= 0 && (j >= (int)ft_strlen(map->map[i]) || map->map[i][j] == ' '))
-            i--;
-        if (i >= 0 && map->map[i][j] != '1')
-        {
-            ft_printf("Column %d does not end with '1'\n", j);
-            return (0);
-        }
-    }
-    return (1);
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < map->height)
+	{
+		x = -1;
+		while (map->map[y][++x])
+		{
+			if (map->map[y][x] != '1' && map->map[y][x] != ' ')
+			{
+				if (y == 0 || y == map->height - 1)
+				{
+					ft_printf("Map is not closed\n");
+					return (0);
+				}
+				if (!map->map[y][x + 1] || map->map[y][x + 1] == ' ')
+				{
+					ft_printf("Map is not closed\n");
+					return (0);
+				}
+				else if (!map->map[y][x - 1] || map->map[y][x - 1] == ' ')
+				{
+					ft_printf("Map is not closed\n");
+					return (0);
+				}
+				else if (!map->map[y + 1][x] || map->map[y + 1][x] == ' ')
+				{
+					ft_printf("Map is not closed\n");
+					return (0);
+				}
+				else if (!map->map[y - 1][x] || map->map[y - 1][x] == ' ')
+				{
+					ft_printf("Map is not closed\n");
+					return (0);
+				}
+			}
+		}
+	}
+	return (1);
 }
 
 int check_map_char(t_map *map)
