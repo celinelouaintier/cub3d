@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:49:24 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:23:25 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	draw_square(t_data *data, int x, int y, int cell)
 	int	j;
 
 	i = 0;
+	(void)cell;
 	while (i < cell)
 	{
 		j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 02:44:02 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:01:54 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,52 +55,51 @@ int	shot(int keycode, int x, int y, t_data *data)
 	return (0);
 }
 
-int	player_move(t_data *data)
+int	is_1_or_D(t_data *data, float x, float y)
 {
-	float	new_x;
-	float	new_y;
+	char cell;
+	
+	cell = data->map.map[(int)y][(int)x];
+	if (cell == '1' || cell == 'D') 
+		return (1);
+	return (0);
+}
 
-	new_x = data->player_x;
-	new_y = data->player_y;
+void move_player(t_data *data, float dir_x, float dir_y)
+{
+	float new_x;
+	float new_y;
+
+	new_x = data->player_x + dir_x * 0.1;
+	new_y = data->player_y + dir_y * 0.1;
+	if (!is_1_or_D(data, new_x + 0.2, new_y + 0.2) &&
+		!is_1_or_D(data, new_x - 0.2, new_y - 0.2) &&
+		!is_1_or_D(data, new_x + 0.2, new_y - 0.2) &&
+		!is_1_or_D(data, new_x - 0.2, new_y + 0.2))
+	{
+		data->player_x = new_x;
+		data->player_y = new_y;
+	}
+	else
+	{
+		if (!is_1_or_D(data, new_x + 0.2, data->player_y) &&
+			!is_1_or_D(data, new_x - 0.2, data->player_y))
+			data->player_x = new_x;
+		if (!is_1_or_D(data, data->player_x, new_y + 0.2) &&
+			!is_1_or_D(data, data->player_x, new_y - 0.2))
+			data->player_y = new_y;
+	}
+}
+
+int player_move(t_data *data)
+{
 	if (data->key.w)
-	{
-		new_x = data->player_x + data->raycast.dir_x * 0.1;
-		new_y = data->player_y + data->raycast.dir_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
-		{
-			data->player_x = new_x;
-			data->player_y = new_y;
-		}
-	}
+		move_player(data, data->raycast.dir_x, data->raycast.dir_y);
 	if (data->key.s)
-	{
-		new_x = data->player_x - data->raycast.dir_x * 0.1;
-		new_y = data->player_y - data->raycast.dir_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
-		{
-			data->player_x = new_x;
-			data->player_y = new_y;
-		}
-	}
+		move_player(data, -data->raycast.dir_x, -data->raycast.dir_y);
 	if (data->key.d)
-	{
-		new_x = data->player_x + data->raycast.plane_x * 0.1;
-		new_y = data->player_y + data->raycast.plane_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
-		{
-			data->player_x = new_x;
-			data->player_y = new_y;
-		}
-	}
+		move_player(data, data->raycast.plane_x, data->raycast.plane_y);
 	if (data->key.a)
-	{
-		new_x = data->player_x - data->raycast.plane_x * 0.1;
-		new_y = data->player_y - data->raycast.plane_y * 0.1;
-		if (data->map.map[(int)new_y][(int)new_x] != '1' && data->map.map[(int)new_y][(int)new_x] != 'D')
-		{
-			data->player_x = new_x;
-			data->player_y = new_y;
-		}
-	}
+		move_player(data, -data->raycast.plane_x, -data->raycast.plane_y);
 	return (0);
 }
