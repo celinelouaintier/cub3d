@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:52:43 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:56:45 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:58:09 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	mouse_move(int x, int y, t_data *data)
-{
-	int			delta_x;
-
-	(void)y;
-	if (x != WIDTH / 2)
-	{
-		delta_x = x - WIDTH / 2;
-		data->angle -= delta_x * 0.001;
-		if (data->angle < 0)
-			data->angle += 2 * M_PI;
-		if (data->angle > 2 * M_PI)
-			data->angle -= 2 * M_PI;
-		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
-	}
-	return (0);
-}
-
-// ------ PAS TOUCHE ------ //
 // int	mouse_move(int x, int y, t_data *data)
 // {
 // 	int			delta_x;
 
 // 	(void)y;
-// 	if (data->last_x == -1)
+// 	if (x != WIDTH / 2)
 // 	{
-// 		data->last_x = x;
-// 		return (0);
+// 		delta_x = x - WIDTH / 2;
+// 		data->angle -= delta_x * 0.001;
+// 		if (data->angle < 0)
+// 			data->angle += 2 * M_PI;
+// 		if (data->angle > 2 * M_PI)
+// 			data->angle -= 2 * M_PI;
+// 		mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 // 	}
-// 	delta_x = x - data->last_x;
-// 	data->angle -= delta_x * 0.003;
-// 	if (data->angle < 0)
-// 		data->angle += 2 * M_PI;
-// 	if (data->angle > 2 * M_PI)
-// 		data->angle -= 2 * M_PI;
-// 	data->last_x = x;
 // 	return (0);
 // }
+
+// ------ PAS TOUCHE ------ //
+int	mouse_move(int x, int y, t_data *data)
+{
+	int			delta_x;
+
+	(void)y;
+	if (data->last_x == -1)
+	{
+		data->last_x = x;
+		return (0);
+	}
+	delta_x = x - data->last_x;
+	data->angle -= delta_x * 0.003;
+	if (data->angle < 0)
+		data->angle += 2 * M_PI;
+	if (data->angle > 2 * M_PI)
+		data->angle -= 2 * M_PI;
+	data->last_x = x;
+	return (0);
+}
 
 int	key_press(int keycode, t_data *data)
 {
