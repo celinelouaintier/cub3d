@@ -16,10 +16,11 @@ GIT
 
 TODO
 
-- Finir Ennemies 
+- Finir ennemis (pourquoi ils traversent les murs ?)
 - Mort
 - Map : retirer les bords noirs + ajouter le sens sur le joueur (OU render que ce qu'il y a autour du joueur)
 
 On verra :
 - Menu
 - Animation portes
+- Apparition de sortie lorsque tous les ennemis morts

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 02:54:10 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/05 20:12:20 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	move_enemies(t_data *data)
 		new_x = data->entity[i].x;
 		new_y = data->entity[i].y;
 		if (data->entity[i].x > data->player_x)
-			new_x = data->entity[i].x - 0.01;
+			new_x = data->entity[i].x - 0.05;
 		if (data->entity[i].x < data->player_x)
-			new_x = data->entity[i].x + 0.01;
+			new_x = data->entity[i].x + 0.05;
 		if (data->entity[i].y > data->player_y)
-			new_y = data->entity[i].y - 0.01;
+			new_y = data->entity[i].y - 0.05;
 		if (data->entity[i].y < data->player_y)
-			new_y = data->entity[i].y + 0.01;
+			new_y = data->entity[i].y + 0.05;
 		if (data->map.map[(int)new_y][(int)new_x] != '1'
 			&& data->map.map[(int)new_y][(int)new_x] != 'D')
 		{
