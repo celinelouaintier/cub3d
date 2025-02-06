@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 22:05:11 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/06 16:24:22 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_file_format(char *filename)
 	exit(-1);
 }
 
-int is_map_closed(t_map *map)
+int	is_map_closed(t_map *map)
 {
 	int	x;
 	int	y;
@@ -74,42 +74,42 @@ int is_map_closed(t_map *map)
 	return (1);
 }
 
-int check_map_char(t_map *map)
+int	check_map_char(t_map *map)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = -1;
-    while (++i < map->height - 1)
-    {
-        j = -1;
-        while (++j < (int)ft_strlen(map->map[i]) - 1)
-        {
-            if (map->map[i][j] != '0' && map->map[i][j] != ' '
-                && map->map[i][j] != '1' && map->map[i][j] != 'N'
-                && map->map[i][j] != 'S' && map->map[i][j] != 'E'
-                && map->map[i][j] != 'W'
-                && (!BONUS || (map->map[i][j] != 'D' && map->map[i][j] != 'X')))
-            {
-                ft_printf("Wrong character in your map : %c\n", map->map[i][j]);
-                return (0);
-            }
-            else if (map->map[i][j] == 'N' || map->map[i][j] == 'E'
-                || map->map[i][j] == 'W' || map->map[i][j] == 'S')
-                map->player++;
-        }
-    }
-    return (1);
+	i = -1;
+	while (++i < map->height - 1)
+	{
+		j = -1;
+		while (++j < (int)ft_strlen(map->map[i]) - 1)
+		{
+			if (map->map[i][j] != '0' && map->map[i][j] != ' '
+				&& map->map[i][j] != '1' && map->map[i][j] != 'N'
+				&& map->map[i][j] != 'S' && map->map[i][j] != 'E'
+				&& map->map[i][j] != 'W'
+				&& (!BONUS || (map->map[i][j] != 'D' && map->map[i][j] != 'X')))
+			{
+				ft_printf("Wrong character in your map : %c\n", map->map[i][j]);
+				return (0);
+			}
+			else if (map->map[i][j] == 'N' || map->map[i][j] == 'E'
+				|| map->map[i][j] == 'W' || map->map[i][j] == 'S')
+				map->player++;
+		}
+	}
+	return (1);
 }
 
 void	check_errors(t_data *data)
 {
-    data->map.player = 0;
+	data->map.player = 0;
 	if (!is_map_closed(&data->map) || !check_map_char(&data->map))
 		exit(0);
-    if (data->map.player != 1)
-    {
-        ft_printf("Warning, %d player(s) in your map\n", data->map.player);
-        exit(0);
-    }
+	if (data->map.player != 1)
+	{
+		ft_printf("Warning, %d player(s) in your map\n", data->map.player);
+		exit(0);
+	}
 }

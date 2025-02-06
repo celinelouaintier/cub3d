@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 15:46:27 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:18:46 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,38 +63,6 @@ void	raycast(t_data *data)
 		set_draw_range(data);
 		data->entity[i].targeted = 0;
 		draw_sprite(data, i);
-	}
-}
-
-void	move_enemies(t_data *data)
-{
-	int		i;
-	float	new_x;
-	float	new_y;
-
-	i = -1;
-	while (++i < data->nb_entity)
-	{
-		new_x = data->entity[i].x;
-		new_y = data->entity[i].y;
-		if (data->entity[i].x > data->player_x)
-			new_x = data->entity[i].x - 0.05;
-		if (data->entity[i].x < data->player_x)
-			new_x = data->entity[i].x + 0.05;
-		if (data->entity[i].y > data->player_y)
-			new_y = data->entity[i].y - 0.05;
-		if (data->entity[i].y < data->player_y)
-			new_y = data->entity[i].y + 0.05;
-		if (data->map.map[(int)new_y][(int)new_x] != '1'
-			&& data->map.map[(int)new_y][(int)new_x] != 'D'
-			&& data->map.map[(int)(new_y + 0.3)][(int)new_x] != '1'
-			&& data->map.map[(int)(new_y - 0.3)][(int)new_x] != '1'
-			&& data->map.map[(int)new_y][(int)(new_x + 0.3)] != '1'
-			&& data->map.map[(int)new_y][(int)(new_x - 0.3)] != '1')
-		{
-			data->entity[i].x = new_x;
-			data->entity[i].y = new_y;
-		}
 	}
 }
 

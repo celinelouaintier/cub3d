@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 02:55:18 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/06 16:26:53 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,18 @@ void	load_textures(t_data *data)
 	{
 		get_textures(data, data->map.door);
 		data->shot = 0;
-		data->weapon[0].img = mlx_xpm_file_to_image(data->mlx, "assets/weapon/DEAG1.xpm",
-				&data->weapon[0].width, &data->weapon[0].height);
-		data->weapon[1].img = mlx_xpm_file_to_image(data->mlx, "assets/weapon/DEAG2.xpm",
-				&data->weapon[1].width, &data->weapon[1].height);
+		data->weapon[0].img = mlx_xpm_file_to_image(data->mlx,
+				"assets/weapon/DEAG1.xpm", &data->weapon[0].width,
+				&data->weapon[0].height);
+		data->weapon[1].img = mlx_xpm_file_to_image(data->mlx,
+				"assets/weapon/DEAG2.xpm", &data->weapon[1].width,
+				&data->weapon[1].height);
 		data->weapon[0].addr = (int *)mlx_get_data_addr(data->weapon[0].img,
-			&data->weapon[0].pixel_bits, &data->weapon[0].size_line, &data->weapon[0].endian);
+				&data->weapon[0].pixel_bits, &data->weapon[0].size_line,
+				&data->weapon[0].endian);
 		data->weapon[1].addr = (int *)mlx_get_data_addr(data->weapon[1].img,
-			&data->weapon[1].pixel_bits, &data->weapon[1].size_line, &data->weapon[1].endian);
+				&data->weapon[1].pixel_bits, &data->weapon[1].size_line,
+				&data->weapon[1].endian);
 		load_enemy(data);
 	}
 }
