@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 18:00:04 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:09:37 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_raycast
 	double	wall_dist;
 	int		line_height;
 	int		is_door;
+	int		hit;
 }				t_raycast;
 
 typedef struct s_key
@@ -142,6 +143,8 @@ typedef struct s_data
 	int			shot;
 	int			p_frame_count;
 	int			w_frame_count;
+	int			draw_start;
+	int			draw_end;
 }				t_data;
 
 void	fill_map(int fd, t_map *map);
@@ -164,7 +167,7 @@ int		finish_game(t_data *game);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
-void	apply_tex(t_data *data, int draw_start, int draw_end, int x);
+void	apply_tex(t_data *data, int x);
 void	get_textures(t_data *data, char *path);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
@@ -181,5 +184,6 @@ void	animate_player(t_data *data);
 void	load_textures(t_data *data);
 void	interact(t_data *data);
 void	check_errors(t_data *data);
+void	init_raycast(t_raycast *r, t_data *data, int x);
 
 #endif

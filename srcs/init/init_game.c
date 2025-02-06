@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:42:01 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:57:57 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,21 @@ void	set_img(t_data *data)
 	if (data->minimap.img)
 		mlx_destroy_image(data->mlx, data->minimap.img);
 	init_minimap(data);
+}
+
+void	init_raycast(t_raycast *r, t_data *data, int x)
+{
+	r->camera_x = 2 * x / (double)WIDTH - 1;
+	r->ray_dir_x = r->dir_x + r->plane_x
+		*r->camera_x;
+	r->ray_dir_y = r->dir_y + r->plane_y
+		*r->camera_x;
+	r->map_x = data->player_x;
+	r->map_y = data->player_y;
+	r->is_door = 0;
+	r->hit = 0;
+	r->delta_dist_x = fabs(1 / r->ray_dir_x);
+	r->delta_dist_y = fabs(1 / r->ray_dir_y);
 }
 
 void	draw_bg(t_data *data)

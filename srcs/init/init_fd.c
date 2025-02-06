@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/04 12:59:19 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:52:42 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,15 +141,3 @@ void	init_texture(int fd, t_map *map)
 			map->door = set_texture(line, &i);
 	}
 }
-
-// map->map[i] = malloc(sizeof(char) * map->width);
-// while (line[j] && line[j] != '\n')
-// {
-// 	map->map[i][j] = line[j];
-// 	j++;
-// }
-// while (j < map->width)
-// {
-// 	map->map[i][j] = ' ';
-// 	j++;
-// }

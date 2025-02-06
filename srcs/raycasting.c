@@ -6,58 +6,45 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:01:46 by nferrad           #+#    #+#             */
-/*   Updated: 2025/01/28 12:51:28 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:09:01 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	init_wall_dist(t_raycast *r, int side)
+{
+	r->wall_dist = r->side_dist_y - r->delta_dist_y;
+	if (!side)
+		r->wall_dist = r->side_dist_x - r->delta_dist_x;
+}
+
 int	check_ray_hit(t_raycast *r, t_data *data)
 {
-	int	side;
-	int	hit;
-
-	hit = 0;
-	r->is_door = 0;
-	while (!hit)
+	while (!r->hit)
 	{
 		if (r->side_dist_x < r->side_dist_y)
 		{
 			r->side_dist_x += r->delta_dist_x;
 			r->map_x += r->step_x;
-			side = 0;
+			r->side = 0;
 		}
 		else
 		{
 			r->side_dist_y += r->delta_dist_y;
 			r->map_y += r->step_y;
-			side = 1;
+			r->side = 1;
 		}
 		if (data->map.map[r->map_y][r->map_x] == '1')
-			hit = 1;
+			r->hit = 1;
 		else if (data->map.map[r->map_y][r->map_x] == 'D')
 		{
-			hit = 1;
+			r->hit = 1;
 			r->is_door = 1;
 		}
 	}
-	r->wall_dist = r->side_dist_y - r->delta_dist_y;
-	if (!side)
-		r->wall_dist = r->side_dist_x - r->delta_dist_x;
-	return (side);
-}
-
-void	init_raycast(t_raycast *r, t_data *data, int x)
-{
-	r->camera_x = 2 * x / (double)WIDTH - 1;
-	r->ray_dir_x = r->dir_x + r->plane_x
-		*r->camera_x;
-	r->ray_dir_y = r->dir_y + r->plane_y
-		*r->camera_x;
-	r->map_x = data->player_x;
-	r->map_y = data->player_y;
-	r->delta_dist_x = fabs(1 / r->ray_dir_x);
-	r->delta_dist_y = fabs(1 / r->ray_dir_y);
+	init_wall_dist(r, r->side);
+	return (r->side);
 }
 
 void	init_ray_dir(t_data *data)
