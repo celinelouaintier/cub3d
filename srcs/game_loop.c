@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 16:18:46 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:28:43 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	sort_sprites(t_data *data)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < data->nb_entity)
-		data->entity[i].distance = ((data->player_x - data->entity[i].x)
-				* (data->player_x - data->entity[i].x) + (data->player_y
-					- data->entity[i].y)
-				* (data->player_y - data->entity[i].y));
-	i = -1;
-	while (++i < data->nb_entity)
-	{
-		j = -1;
-		while (++j < data->nb_entity)
-			if (data->entity[j].distance < data->entity[j + 1].distance)
-				swap(&data->entity[j], &data->entity[j + 1]);
-	}
-}
 
 void	raycast(t_data *data)
 {
@@ -82,11 +61,14 @@ void	draw_cursor(t_data *data)
 	}
 }
 
-int	game_loop(t_data *data)
+void	draw_weapon(t_data *data)
 {
-	set_img(data);
-	draw_bg(data);
-	animate_player(data);
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	x = 0;
 	if (data->shot)
 		data->w_frame_count++;
 	if (data->w_frame_count >= 5)
@@ -94,22 +76,94 @@ int	game_loop(t_data *data)
 		data->shot = 0;
 		data->w_frame_count = 0;
 	}
+	while (x++ < data->weapon[data->shot].height)
+	{
+		y = 0;
+		while (y++ < data->weapon[data->shot].width)
+			put_pixel(&data->img, (WIDTH / 2) + y + 100,
+				(HEIGHT / 2) + x, data->weapon[data->shot].addr[i++]);
+	}
+}
+
+void	draw_health(t_data *data)
+{
+	int	i;
+	int	x;
+	int	y;
+	int	width;
+
+	i = 0;
+	x = 0;
+	while (x++ < data->health[0].height)
+	{
+		y = 0;
+		while (y++ < data->health[0].width)
+			put_pixel(&data->img, y + 50, x + (HEIGHT - 100),
+				data->health[0].addr[i++]);
+	}
+	i = 0;
+	x = 0;
+	width = (data->hp * data->health[1].width) / data->hp_max;
+	while (x++ < data->health[1].height)
+	{
+		y = 0;
+		while (y++ < width)
+			put_pixel(&data->img, y + 88, x + (HEIGHT - 88),
+				data->health[1].addr[i++]);
+		i += data->health[1].width - width;
+	}
+}
+
+int	game_loop(t_data *data)
+{
+	set_img(data);
+	draw_bg(data);
+	animate_player(data);
 	camera_move(data);
 	raycast(data);
-	int i = 0;
-	for (int x = 0; x < data->weapon[data->shot].height; x++)
-	{
-		for (int y = 0; y < data->weapon[data->shot].width; y++)
-		{
-			put_pixel(&data->img, (WIDTH / 2) + y + 100 , (HEIGHT / 2) + x , data->weapon[data->shot].addr[i]);
-			i++;
-		}
-	}
-	move_enemies(data);
+	enemies(data);
+	draw_weapon(data);
 	draw_cursor(data);
+	draw_health(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
 	render_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
 	player_move(data);
 	return (0);
 }
+
+// int tmp;
+// while (x != (int)data->entity[0].x || y != (int)data->entity[0].y)
+// {
+	// 	if (data->node[y][x].prev_x == -1 && data->node[y][x].prev_y == -1)
+	// 	{
+	// 		tmp = data->entity[0].x;
+	// 		y = data->entity[0].y;
+	// 		x = tmp;
+	// 	}
+	// 	if (data->node[y][x].prev_x < x)
+	// 		endX = drawX - 50;
+	// 	if (data->node[y][x].prev_x > x)
+	// 		endX = drawX + 50;
+	// 	if (data->node[y][x].prev_y < y)
+	// 		endY = drawY - 50;
+	// 	if (data->node[y][x].prev_y > y)
+	// 		endY = drawY + 50;
+	// 	while (drawX != endX || drawY != endY)
+	// 	{
+		// 		put_pixel(&data->img, drawX, drawY, 0x00FF0000);
+		// 		if (drawX < endX)
+		// 			drawX++;
+	// 		else if (drawX > endX)
+	// 			drawX--;
+	// 		if (drawY < endY)
+	// 			drawY++;
+	// 		else if (drawY > endY)
+	// 			drawY--;
+	// 	}
+	// 	tmp = data->node[y][x].prev_x;
+	// 	y = data->node[y][x].prev_y;
+	// 	x = tmp;
+	// 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
+	// 	usleep(500000);
+	// }

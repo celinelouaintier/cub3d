@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 16:18:05 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:51:51 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@
 # define ENEMY5 "assets/ennemies/waechter5.xpm"
 # define ENEMY6 "assets/ennemies/waechter6.xpm"
 
+typedef struct s_node
+{
+	float	f;
+	float	g;
+	float	h;
+	int		prev_x;
+	int		prev_y;
+}				t_node;
+
 typedef struct s_sprite
 {
 	float	sprite_x;
@@ -53,9 +62,13 @@ typedef struct s_entity
 {
 	float		x;
 	float		y;
+	int			nx;
+	int			ny;
 	float		distance;
 	int			is_alive;
 	int			targeted;
+	char		**closed_list;
+	t_node		**node;
 }	t_entity;
 
 typedef struct s_img
@@ -129,6 +142,7 @@ typedef struct s_data
 	t_img		tex[5];
 	t_img		enemy[6];
 	t_img		weapon[2];
+	t_img		health[2];
 	t_map		map;
 	t_img		img;
 	t_img		minimap;
@@ -141,8 +155,12 @@ typedef struct s_data
 	int			nb_entity;
 	int			current_sprite;
 	int			shot;
+	float		speed;
+	int			hp;
+	int			hp_max;
 	int			p_frame_count;
 	int			w_frame_count;
+	int			step_max;
 	int			draw_start;
 	int			draw_end;
 }				t_data;
@@ -168,14 +186,15 @@ void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
 void	apply_tex(t_data *data, int x);
-void	get_textures(t_data *data, char *path);
+void	get_textures(t_data *data, char *path, t_img *tex);
 void	draw_bg(t_data *data);
 void	find_angle(t_data *data, int i, int j);
 void	camera_move(t_data *data);
 int		set_tex_i(t_raycast *raycast);
 void	render_minimap(t_data *data);
 void	init_ennemy(t_data *data);
-void	swap(t_entity *a, t_entity *b);
+void	iswap(int *a, int *b);
+void	fswap(float *a, float *b);
 void	calculate_sprite_projection(t_data *data, t_raycast *raycast, int i);
 void	set_draw_range(t_data *data);
 void	draw_sprite(t_data *data, int i);
@@ -185,6 +204,12 @@ void	load_textures(t_data *data);
 void	interact(t_data *data);
 void	check_errors(t_data *data);
 void	init_raycast(t_raycast *r, t_data *data, int x);
-void	move_enemies(t_data *data);
+void	sort_sprites(t_data *data);
+void	enemies(t_data *data);
+void	fill_node(t_data *data, t_entity *e, int x, int y);
+void	find_min_node(t_data *data, t_entity *entity, int *x, int *y);
+void	init_lists(t_data *data, t_entity *entity);
+void	free_lists(t_data *data, t_entity *entity);
+int		check_list(t_data *data, t_entity *entity);
 
 #endif

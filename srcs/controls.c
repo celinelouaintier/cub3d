@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:52:43 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 20:58:09 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/07 19:49:17 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	key_press(int keycode, t_data *data)
 		data->key.left = 1;
 	if (keycode == XK_Right)
 		data->key.right = 1;
+	if (keycode == XK_Shift_L)
+		data->speed = 0.2;
 	if (keycode == 'w')
 		data->key.w = 1;
 	if (keycode == 'a')
@@ -74,6 +76,12 @@ int	key_press(int keycode, t_data *data)
 
 int	key_release(int keycode, t_data *data)
 {
+	if (keycode == XK_Left)
+		data->key.left = 0;
+	if (keycode == XK_Right)
+		data->key.right = 0;
+	if (keycode == XK_Shift_L)
+		data->speed = 0.1;
 	if (keycode == 'w')
 		data->key.w = 0;
 	if (keycode == 'a')
@@ -82,10 +90,6 @@ int	key_release(int keycode, t_data *data)
 		data->key.s = 0;
 	if (keycode == 'd')
 		data->key.d = 0;
-	if (keycode == XK_Left)
-		data->key.left = 0;
-	if (keycode == XK_Right)
-		data->key.right = 0;
 	return (0);
 }
 

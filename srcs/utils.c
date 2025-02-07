@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/03 21:58:54 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:25:55 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,18 @@ void	draw_line(t_data *data, int start, int end, int x)
 		put_pixel(&data->img, x, start, data->img.color);
 }
 
-void	swap(t_entity *a, t_entity *b)
+void	iswap(int *a, int *b)
 {
-	t_entity	tmp;
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void	fswap(float *a, float *b)
+{
+	float	tmp;
 
 	tmp = *a;
 	*a = *b;

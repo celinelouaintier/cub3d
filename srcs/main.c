@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 18:14:43 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:53:13 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	main(int ac, char **av)
 	init_ennemy(data);
 	data->mlx = mlx_init();
 	data->last_x = -1;
+	data->speed = 0.1;
+	data->hp_max = 100;
+	data->hp = data->hp_max;
 	if (!data->mlx)
 		return (1);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
@@ -69,3 +72,55 @@ int	main(int ac, char **av)
 	mlx_loop(data->mlx);
 	return (0);
 }
+
+
+
+// set_img(data);
+
+// int starty = 100;
+// int color;
+// int step = 50;
+// int EDrawx;
+// int EDrawy;
+// for(int i = 0; i < data->map.height; i++)
+// {
+// 	int startx = 100;
+// 	for (int j = 0; data->map.map[i][j]; j++)
+// 	{
+// 		if (data->map.map[i][j] == '1')
+// 			color = 0x00FF0000;
+// 		else
+// 			color = 0xFFFFFFF;
+// 		if (data->map.map[i][j] == 'X')
+// 		{
+// 			Ex = j;
+// 			Ey = i;
+// 			put_pixel(&data->img, startx + step / 2, starty + step / 2, 0x000FF00);
+// 		}
+// 		if (data->map.map[i][j] == 'N')
+// 		{
+// 			EDrawx = startx + step / 2;
+// 			EDrawy = starty + step / 2;
+// 			put_pixel(&data->img, startx + step / 2, starty + step / 2, 0x000FFFF);
+// 		}
+// 		for (int k = 0; k < step; k++)
+// 		{
+// 			if (data->map.map[i][j] == '1' || data->map.map[i][j] == '0' || data->map.map[i][j] == 'X' || data->map.map[i][j] == 'N')
+// 				put_pixel(&data->img, startx + k, starty, color);
+// 			if (!data->map.map[i][j + 1])
+// 				put_pixel(&data->img, startx + step, starty + k, color);
+// 		}
+// 		for (int k = 0; k < step; k++)
+// 		{
+// 			if (data->map.map[i][j] == '1' || data->map.map[i][j] == '0' || data->map.map[i][j] == 'X' || data->map.map[i][j] == 'N')
+// 				put_pixel(&data->img, startx, starty + k, color);
+// 			if (i + 1 == data->map.height)
+// 				put_pixel(&data->img, startx + k, starty + step, color);
+// 		}
+// 		startx += step;
+// 	}
+// 	starty += step;
+// }
+// data->step_max = 50;
+// mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
+// move_enemies(data, EDrawx, EDrawy);

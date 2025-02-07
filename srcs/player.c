@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/05 20:05:43 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:39:51 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	move_player(t_data *data, float dir_x, float dir_y)
 	float	new_x;
 	float	new_y;
 
-	new_x = data->player_x + dir_x * 0.1;
-	new_y = data->player_y + dir_y * 0.1;
+	new_x = data->player_x + dir_x * data->speed;
+	new_y = data->player_y + dir_y * data->speed;
 	if (!is_wall_or_door(data, new_x + 0.2, new_y + 0.2)
 		&& !is_wall_or_door(data, new_x - 0.2, new_y - 0.2)
 		&& !is_wall_or_door(data, new_x + 0.2, new_y - 0.2)
