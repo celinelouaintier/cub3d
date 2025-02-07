@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:51:51 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/07 20:24:51 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,6 @@ void	find_min_node(t_data *data, t_entity *entity, int *x, int *y);
 void	init_lists(t_data *data, t_entity *entity);
 void	free_lists(t_data *data, t_entity *entity);
 int		check_list(t_data *data, t_entity *entity);
+int		exit_game(t_data *data);
 
 #endif

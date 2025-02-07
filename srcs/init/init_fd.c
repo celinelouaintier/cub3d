@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 15:52:42 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 20:22:24 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*skip_line(int fd)
 			i++;
 		if (line[i] == '1')
 			break ;
+		free(line);
 		line = get_next_line(fd);
 	}
 	return (line);
@@ -54,10 +55,13 @@ char	*skip_line(int fd)
 
 void	get_map_size(int fd, t_map **map, char *line)
 {
+	char	*memory;
+
 	(*map)->width = 0;
 	(*map)->height = 0;
 	while (line)
 	{
+		memory = line;
 		if ((size_t)(*map)->width < ft_strlen(line))
 		{
 			(*map)->width = ft_strlen(line);
@@ -68,6 +72,7 @@ void	get_map_size(int fd, t_map **map, char *line)
 			line++;
 		if (*line == '1')
 			(*map)->height++;
+		free(memory);
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -79,7 +84,7 @@ void	fill_map(int fd, t_map *map)
 	char	*line;
 
 	i = -1;
-	line = get_next_line(fd);
+	// line = get_next_line(fd);
 	line = skip_line(fd);
 	get_map_size(fd, &map, line);
 	close(fd);
@@ -93,7 +98,7 @@ void	fill_map(int fd, t_map *map)
 			break ;
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;
-		map->map[i] = ft_strdup(line);
+		map->map[i] = line;
 		line = get_next_line(fd);
 	}
 }
@@ -105,13 +110,14 @@ char	*set_texture(char *line, int *nb_value)
 		line++;
 	*nb_value += 1;
 	line[ft_strlen(line) - 1] = 0;
-	return (line);
+	return (ft_strdup(line));
 }
 
 void	init_texture(int fd, t_map *map)
 {
 	char	*line;
 	int		nb_value;
+	char	*memory;
 	int		i;
 
 	nb_value = 6;
@@ -121,6 +127,7 @@ void	init_texture(int fd, t_map *map)
 	while (i < nb_value)
 	{
 		line = get_next_line(fd);
+		memory = line;
 		if (!line)
 			break ;
 		while (*line == ' ')
@@ -139,5 +146,6 @@ void	init_texture(int fd, t_map *map)
 			map->cell = set_texture(line, &i);
 		else if (BONUS && *line == 'D')
 			map->door = set_texture(line, &i);
+		free(memory);
 	}
 }

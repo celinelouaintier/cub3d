@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:53:13 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/07 20:25:55 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	finish_game(t_data *game)
-{
-	mlx_destroy_window(game->mlx, game->window);
-	// destroy_images(game);
-	mlx_destroy_display(game->mlx);
-	// free(game->mlx);
-	// free_map(game->map, game->height);
-	// free(game->images);
-	exit(0);
-}
 
 void	animate_player(t_data *data)
 {

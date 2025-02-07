@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 16:24:22 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/07 20:25:38 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ void	check_errors(t_data *data)
 {
 	data->map.player = 0;
 	if (!is_map_closed(&data->map) || !check_map_char(&data->map))
-		exit(0);
+		exit_game(data);
 	if (data->map.player != 1)
 	{
 		ft_printf("Warning, %d player(s) in your map\n", data->map.player);
-		exit(0);
+		exit_game(data);
 	}
 }
