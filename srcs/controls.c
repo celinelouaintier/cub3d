@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:52:43 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:49:17 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:01:56 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	mouse_move(int x, int y, t_data *data)
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		finish_game(data);
+		mlx_loop_end(data->mlx);
 	if (keycode == XK_Left)
 		data->key.left = 1;
 	if (keycode == XK_Right)

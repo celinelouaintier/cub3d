@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:29:25 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:58:46 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_key(t_data *data)
+{
+	data->key.a = 0;
+	data->key.w = 0;
+	data->key.s = 0;
+	data->key.d = 0;
+	data->key.left = 0;
+	data->key.right = 0;
+}
 
 void	get_textures(t_data *data, char *path, t_img *tex)
 {

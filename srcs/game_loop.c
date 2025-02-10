@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:28:43 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:03:50 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	draw_weapon(t_data *data)
 
 	i = 0;
 	x = 0;
+	data->w_frame_count = 0;
 	if (data->shot)
 		data->w_frame_count++;
 	if (data->w_frame_count >= 5)

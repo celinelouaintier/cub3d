@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 16:16:07 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:06:27 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_minimap(t_data *data)
 	while (++i < data->map.height)
 	{
 		j = -1;
-		while (++j < data->map.width)
+		while (++j < (int)ft_strlen(data->map.map[i]))
 		{
 			if (data->map.map[i][j] == '1')
 				data->minimap.color = get_color(data, "99,57,116" );

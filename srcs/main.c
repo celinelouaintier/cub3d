@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 20:25:55 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:05:39 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	animate_player(t_data *data)
 {
+	data->p_frame_count = 0;
 	data->p_frame_count++;
 	if (data->p_frame_count >= 7)
 	{
@@ -44,12 +45,13 @@ int	main(int ac, char **av)
 	data->speed = 0.1;
 	data->hp_max = 100;
 	data->hp = data->hp_max;
+	init_key(data);
 	if (!data->mlx)
 		return (1);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	load_textures(data);
 	mlx_mouse_hide(data->mlx, data->window);
-	mlx_hook(data->window, 17, 0, finish_game, data);
+	mlx_hook(data->window, 17, 0, mlx_loop_end, data->mlx);
 	mlx_hook(data->window, 2, 1L << 0, key_press, data);
 	mlx_hook(data->window, 3, 1L << 1, key_release, data);
 	if (BONUS)
@@ -59,10 +61,9 @@ int	main(int ac, char **av)
 	}
 	mlx_loop_hook(data->mlx, game_loop, data);
 	mlx_loop(data->mlx);
+	finish_game(data);
 	return (0);
 }
-
-
 
 // set_img(data);
 

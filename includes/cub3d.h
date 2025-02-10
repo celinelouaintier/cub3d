@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 20:24:51 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:00:37 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ int		player_move(t_data *data);
 int		key_release(int keycode, t_data *data);
 int		key_press(int keycode, t_data *data);
 int		shot(int keycode, int x, int y, t_data *data);
-int		finish_game(t_data *game);
+int		finish_game(t_data *data);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);
@@ -212,5 +212,6 @@ void	init_lists(t_data *data, t_entity *entity);
 void	free_lists(t_data *data, t_entity *entity);
 int		check_list(t_data *data, t_entity *entity);
 int		exit_game(t_data *data);
+void	init_key(t_data *data);
 
 #endif

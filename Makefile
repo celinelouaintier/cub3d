@@ -1,7 +1,7 @@
 .SILENT:
 
 CC 		= cc
-CFLAGS 	= -Wall -Wextra -Werror -I./includes -I./minilibx -D BONUS=${BONUS}
+CFLAGS 	= -Wall -Wextra -Werror -g3 -I./includes -I./minilibx -D BONUS=${BONUS}
 
 LIBFT = libft.a
 LIBPATH = lib
