@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 16:03:50 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:38:20 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	draw_weapon(t_data *data)
 
 	i = 0;
 	x = 0;
-	data->w_frame_count = 0;
 	if (data->shot)
 		data->w_frame_count++;
 	if (data->w_frame_count >= 5)
@@ -122,13 +121,19 @@ int	game_loop(t_data *data)
 	animate_player(data);
 	camera_move(data);
 	raycast(data);
-	enemies(data);
-	draw_weapon(data);
+	if (BONUS)
+	{
+		enemies(data);
+		draw_weapon(data);		
+		draw_health(data);
+	}
 	draw_cursor(data);
-	draw_health(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
-	render_minimap(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
+	if (BONUS)
+	{
+		render_minimap(data);
+		mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
+	}
 	player_move(data);
 	return (0);
 }

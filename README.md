@@ -16,9 +16,8 @@ GIT
 
 TODO
 
-- Finir ennemis
-- Mort
-- Map : retirer les bords noirs + ajouter le sens sur le joueur (OU render que ce qu'il y a autour du joueur)
+- Map : calculer la longueur de la plus longue ligne pour boucler dessus dans
+- fermer le fd
 
 On verra :
 - Menu

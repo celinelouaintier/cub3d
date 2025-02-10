@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 17:51:38 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:14:35 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_key(t_data *data)
 	data->key.right = 0;
 	data->img.img = NULL;
 	data->minimap.img = NULL;
+	data->p_frame_count = 0;
+	data->w_frame_count = 0;
 }
 
 void	get_textures(t_data *data, char *path, t_img *tex)

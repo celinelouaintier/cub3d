@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 20:22:24 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:32:30 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	fill_map(int fd, t_map *map)
 	char	*line;
 
 	i = -1;
-	// line = get_next_line(fd);
 	line = skip_line(fd);
 	get_map_size(fd, &map, line);
 	close(fd);
