@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:41:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 15:51:47 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:33:50 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	init_ennemy(t_data *data)
 	}
 	count_ennemy(data);
 	data->entity = malloc(sizeof(t_entity) * data->nb_entity);
+	if (!data->entity)
+		exit_game(data);
 	k = 0;
 	i = -1;
 	while (++i < data->map.height)

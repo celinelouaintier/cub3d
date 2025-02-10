@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 15:35:43 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:55:51 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,29 @@ void	destroy_images(t_data *data)
 			mlx_destroy_image(data->mlx, data->tex[i].img);
 		i++;
 	}
-	i = 0;
-	while (i < 6)
+	if (BONUS)
 	{
-		if (data->enemy[i].img)
-			mlx_destroy_image(data->mlx, data->enemy[i].img);
-		i++;
-	}
-	i = 0;
-	while (i < 2)
-	{
-		if (data->weapon[i].img)
-			mlx_destroy_image(data->mlx, data->weapon[i].img);
-		i++;
-	}
-	while (i < 2)
-	{
-		if (data->health[i].img)
-			mlx_destroy_image(data->mlx, data->health[i].img);
-		i++;
+		i = 0;
+		while (i < 6)
+		{
+			if (data->enemy[i].img)
+				mlx_destroy_image(data->mlx, data->enemy[i].img);
+			i++;
+		}
+		i = 0;
+		while (i < 2)
+		{
+			if (data->weapon[i].img)
+				mlx_destroy_image(data->mlx, data->weapon[i].img);
+			i++;
+		}
+		i = 0;
+		while (i < 2)
+		{
+			if (data->health[i].img)
+				mlx_destroy_image(data->mlx, data->health[i].img);
+			i++;
+		}
 	}
 	if (data->img.img)
 		mlx_destroy_image(data->mlx, data->img.img);
@@ -91,10 +95,11 @@ int	exit_game(t_data *data)
 int	finish_game(t_data *data)
 {
 	destroy_images(data);
+	if (BONUS)
+		free(data->entity);
 	mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	free_map(data->map.map, data->map.height);
-	free(data);
+	exit_game(data);
 	exit(EXIT_SUCCESS);
 }

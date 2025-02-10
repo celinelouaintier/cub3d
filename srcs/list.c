@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:09:41 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/07 19:14:06 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/10 17:41:16 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	free_lists(t_data *data, t_entity *entity)
 	}
 	free(entity->node);
 	free(entity->closed_list);
+	// free(entity);
 }
 
 void	init_lists(t_data *data, t_entity *entity)

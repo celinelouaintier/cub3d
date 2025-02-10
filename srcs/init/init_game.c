@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 16:05:03 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:52:36 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_minimap(t_data *data)
 
 void	set_img(t_data *data)
 {
+	if (data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
 	data->img.img = NULL;
 	data->img.addr = NULL;
 	data->img.pixel_bits = 0;
@@ -51,6 +53,8 @@ void	set_img(t_data *data)
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.addr = (int *)mlx_get_data_addr(data->img.img,
 			&data->img.pixel_bits, &data->img.size_line, &data->img.endian);
+	if (data->minimap.img)
+		mlx_destroy_image(data->mlx, data->minimap.img);
 	init_minimap(data);
 }
 
