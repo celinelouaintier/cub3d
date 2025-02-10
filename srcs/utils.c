@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 18:25:55 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/10 19:37:57 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void	put_pixel(t_img *image, int x, int y, int color)
 		return ;
 	pixel = y * (image->size_line / 4) + x;
 	image->addr[pixel] = color;
-}
-
-void	draw_line(t_data *data, int start, int end, int x)
-{
-	while (start++ < end)
-		put_pixel(&data->img, x, start, data->img.color);
 }
 
 void	iswap(int *a, int *b)

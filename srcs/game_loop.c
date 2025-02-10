@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:38:20 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:10:08 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	raycast(t_data *data)
 {
 	int			x;
-	int			i;
 	t_raycast	*raycast;
 
 	x = -1;
@@ -32,17 +31,7 @@ void	raycast(t_data *data)
 		apply_tex(data, x);
 		data->sprite.wall_dist_buffer[x] = raycast->wall_dist;
 	}
-	sort_sprites(data);
-	i = -1;
-	while (++i < data->nb_entity)
-	{
-		if (!data->entity[i].is_alive)
-			continue ;
-		calculate_sprite_projection(data, raycast, i);
-		set_draw_range(data);
-		data->entity[i].targeted = 0;
-		draw_sprite(data, i);
-	}
+	init_entity(data);
 }
 
 void	draw_cursor(t_data *data)
@@ -124,7 +113,7 @@ int	game_loop(t_data *data)
 	if (BONUS)
 	{
 		enemies(data);
-		draw_weapon(data);		
+		draw_weapon(data);
 		draw_health(data);
 	}
 	draw_cursor(data);
@@ -132,44 +121,9 @@ int	game_loop(t_data *data)
 	if (BONUS)
 	{
 		render_minimap(data);
-		mlx_put_image_to_window(data->mlx, data->window, data->minimap.img, 20, 20);
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->minimap.img, 20, 20);
 	}
 	player_move(data);
 	return (0);
 }
-
-// int tmp;
-// while (x != (int)data->entity[0].x || y != (int)data->entity[0].y)
-// {
-	// 	if (data->node[y][x].prev_x == -1 && data->node[y][x].prev_y == -1)
-	// 	{
-	// 		tmp = data->entity[0].x;
-	// 		y = data->entity[0].y;
-	// 		x = tmp;
-	// 	}
-	// 	if (data->node[y][x].prev_x < x)
-	// 		endX = drawX - 50;
-	// 	if (data->node[y][x].prev_x > x)
-	// 		endX = drawX + 50;
-	// 	if (data->node[y][x].prev_y < y)
-	// 		endY = drawY - 50;
-	// 	if (data->node[y][x].prev_y > y)
-	// 		endY = drawY + 50;
-	// 	while (drawX != endX || drawY != endY)
-	// 	{
-		// 		put_pixel(&data->img, drawX, drawY, 0x00FF0000);
-		// 		if (drawX < endX)
-		// 			drawX++;
-	// 		else if (drawX > endX)
-	// 			drawX--;
-	// 		if (drawY < endY)
-	// 			drawY++;
-	// 		else if (drawY > endY)
-	// 			drawY--;
-	// 	}
-	// 	tmp = data->node[y][x].prev_x;
-	// 	y = data->node[y][x].prev_y;
-	// 	x = tmp;
-	// 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);
-	// 	usleep(500000);
-	// }

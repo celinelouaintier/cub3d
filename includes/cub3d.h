@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:47:03 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:46:00 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,10 @@ void	init_lists(t_data *data, t_entity *entity);
 void	free_lists(t_data *data, t_entity *entity);
 int		check_list(t_data *data, t_entity *entity);
 int		exit_game(t_data *data);
-void	init_key(t_data *data);
+void	init_value(t_data *data);
 void	free_map(char **map, int height);
+void	check_letter(char *line, int *i, t_map *map);
+char	*set_texture(char *line, int *nb_value);
+void	init_entity(t_data *data);
 
 #endif

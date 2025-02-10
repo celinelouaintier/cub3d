@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 20:25:38 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:56:02 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	check_file_format(char *filename)
 	i = 0;
 	if (!filename)
 	{
-		ft_printf("Error : No file\n");
+		ft_printf("Error\nNo file\n");
 		exit(-1);
 	}
 	while (filename[i] && filename[i - 1] != '.')
 		i++;
 	if (!ft_strncmp((filename + i), "cub", 3))
 		return ;
-	ft_printf("Error : File not .cub\n");
+	ft_printf("Error\nFile not .cub\n");
 	exit(-1);
 }
 
@@ -44,30 +44,15 @@ int	is_map_closed(t_map *map)
 			if (map->map[y][x] != '1' && map->map[y][x] != ' ')
 			{
 				if (y == 0 || y == map->height - 1)
-				{
-					ft_printf("Map is not closed\n");
-					return (0);
-				}
+					return (ft_printf("Error\nMap is not closed\n") - 24);
 				if (!map->map[y][x + 1] || map->map[y][x + 1] == ' ')
-				{
-					ft_printf("Map is not closed\n");
-					return (0);
-				}
+					return (ft_printf("Error\nMap is not closed\n") - 24);
 				else if (!map->map[y][x - 1] || map->map[y][x - 1] == ' ')
-				{
-					ft_printf("Map is not closed\n");
-					return (0);
-				}
+					return (ft_printf("Error\nMap is not closed\n") - 24);
 				else if (!map->map[y + 1][x] || map->map[y + 1][x] == ' ')
-				{
-					ft_printf("Map is not closed\n");
-					return (0);
-				}
+					return (ft_printf("Error\nMap is not closed\n") - 24);
 				else if (!map->map[y - 1][x] || map->map[y - 1][x] == ' ')
-				{
-					ft_printf("Map is not closed\n");
-					return (0);
-				}
+					return (ft_printf("Error\nMap is not closed\n") - 24);
 			}
 		}
 	}
@@ -91,7 +76,8 @@ int	check_map_char(t_map *map)
 				&& map->map[i][j] != 'W'
 				&& (!BONUS || (map->map[i][j] != 'D' && map->map[i][j] != 'X')))
 			{
-				ft_printf("Wrong character in your map : %c\n", map->map[i][j]);
+				ft_printf("Error\nWrong character in your map : %c\n",
+					map->map[i][j]);
 				return (0);
 			}
 			else if (map->map[i][j] == 'N' || map->map[i][j] == 'E'
@@ -109,7 +95,26 @@ void	check_errors(t_data *data)
 		exit_game(data);
 	if (data->map.player != 1)
 	{
-		ft_printf("Warning, %d player(s) in your map\n", data->map.player);
+		ft_printf("Error\nWarning, %d player(s) in your map\n",
+			data->map.player);
 		exit_game(data);
 	}
+}
+
+void	check_letter(char *line, int *i, t_map *map)
+{
+	if (line[0] == 'N' && line[1] == 'O')
+		map->no = set_texture(line, i);
+	else if (line[0] == 'S' && line[1] == 'O')
+		map->so = set_texture(line, i);
+	else if (line[0] == 'W' && line[1] == 'E')
+		map->we = set_texture(line, i);
+	else if (line[0] == 'E' && line[1] == 'A')
+		map->ea = set_texture(line, i);
+	else if (line[0] == 'F' && line[1] == ' ')
+		map->floor = set_texture(line, i);
+	else if (line[0] == 'C' && line[1] == ' ')
+		map->cell = set_texture(line, i);
+	else if (BONUS && line[0] == 'D' && line[1] == ' ')
+		map->door = set_texture(line, i);
 }

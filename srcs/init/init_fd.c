@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:47:44 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:18:11 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,20 +133,8 @@ void	init_texture(int fd, t_map *map)
 			break ;
 		while (*line == ' ')
 			line++;
-		if (*line == 'N')
-			map->no = set_texture(line, &i);
-		else if (*line == 'S')
-			map->so = set_texture(line, &i);
-		else if (*line == 'W')
-			map->we = set_texture(line, &i);
-		else if (*line == 'E')
-			map->ea = set_texture(line, &i);
-		else if (*line == 'F')
-			map->floor = set_texture(line, &i);
-		else if (*line == 'C')
-			map->cell = set_texture(line, &i);
-		else if (BONUS && *line == 'D')
-			map->door = set_texture(line, &i);
+		check_letter(line, &i, map);
 		free(memory);
 	}
+	fill_map(fd, map);
 }

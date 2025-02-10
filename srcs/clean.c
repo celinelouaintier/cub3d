@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:36:33 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:40:44 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_map(char **map, int height)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < height)
 	{
@@ -25,11 +25,9 @@ void	free_map(char **map, int height)
 	free(map);
 }
 
-#include "mlx.h"
-
 void	destroy_images(t_data *data)
 {
-	int i;
+	int	i;
 
 	if (!data || !data->mlx)
 		return ;
@@ -53,7 +51,6 @@ void	destroy_images(t_data *data)
 				mlx_destroy_image(data->mlx, data->health[i].img);
 	}
 }
-
 
 int	exit_game(t_data *data)
 {

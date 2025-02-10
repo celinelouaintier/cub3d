@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:14:35 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:46:34 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_key(t_data *data)
+void	init_value(t_data *data)
 {
 	data->key.a = 0;
 	data->key.w = 0;
@@ -24,6 +24,10 @@ void	init_key(t_data *data)
 	data->minimap.img = NULL;
 	data->p_frame_count = 0;
 	data->w_frame_count = 0;
+	data->last_x = -1;
+	data->speed = 0.1;
+	data->hp_max = 100;
+	data->hp = data->hp_max;
 }
 
 void	get_textures(t_data *data, char *path, t_img *tex)
@@ -37,7 +41,7 @@ void	get_textures(t_data *data, char *path, t_img *tex)
 			&tex->height);
 	if (!tex->img)
 	{
-		printf("failed to load texture\n");
+		perror("failed to load texture\n");
 		finish_game(data);
 	}
 	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->pixel_bits,
@@ -62,8 +66,10 @@ void	load_textures(t_data *data)
 		get_textures(data, data->map.door, &data->tex[4]);
 		get_textures(data, "assets/weapon/DEAG1.xpm", &data->weapon[0]);
 		get_textures(data, "assets/weapon/DEAG2.xpm", &data->weapon[1]);
-		get_textures(data, "assets/healthBar/hp_bar_outer.xpm", &data->health[0]);
-		get_textures(data, "assets/healthBar/hp_bar_inner.xpm", &data->health[1]);
+		get_textures(data, "assets/healthBar/hp_bar_outer.xpm",
+			&data->health[0]);
+		get_textures(data, "assets/healthBar/hp_bar_inner.xpm",
+			&data->health[1]);
 		get_textures(data, ENEMY1, &data->enemy[0]);
 		get_textures(data, ENEMY2, &data->enemy[1]);
 		get_textures(data, ENEMY3, &data->enemy[2]);

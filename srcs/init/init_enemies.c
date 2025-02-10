@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:41:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 17:33:50 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:45:00 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	init_ennemy(t_data *data)
 	int	j;
 	int	k;
 
-	if (!BONUS)
-	{
-		data->nb_entity = 0;
-		return ;
-	}
 	count_ennemy(data);
 	data->entity = malloc(sizeof(t_entity) * data->nb_entity);
 	if (!data->entity)
@@ -57,10 +52,24 @@ void	init_ennemy(t_data *data)
 				data->entity[k].is_alive = 1;
 				data->entity[k].targeted = 0;
 				k++;
-				if (k == data->nb_entity)
-					return ;
 			}
 		}
 	}
 }
 
+void	init_entity(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	sort_sprites(data);
+	while (++i < data->nb_entity)
+	{
+		if (!data->entity[i].is_alive)
+			continue ;
+		calculate_sprite_projection(data, &data->raycast, i);
+		set_draw_range(data);
+		data->entity[i].targeted = 0;
+		draw_sprite(data, i);
+	}
+}
