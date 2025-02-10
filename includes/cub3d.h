@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 16:00:37 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:47:03 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,6 @@ void	free_lists(t_data *data, t_entity *entity);
 int		check_list(t_data *data, t_entity *entity);
 int		exit_game(t_data *data);
 void	init_key(t_data *data);
+void	free_map(char **map, int height);
 
 #endif

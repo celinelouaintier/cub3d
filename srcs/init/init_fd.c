@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:32:30 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:47:44 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	fill_map(int fd, t_map *map)
 	line = skip_line(fd);
 	i = -1;
 	map->map = malloc(sizeof(char *) * map->height);
+	if (!map->map)
+		free_map(map->map, map->height);
 	while (++i < map->height)
 	{
 		if (!line)
