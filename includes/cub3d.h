@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 15:51:33 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:12:26 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_data
 	float		angle;
 	int			last_x;
 	int			nb_entity;
+	int			killed;
 	int			current_sprite;
 	int			shot;
 	float		speed;
@@ -181,7 +182,7 @@ int		player_move(t_data *data);
 int		key_release(int keycode, t_data *data);
 int		key_press(int keycode, t_data *data);
 int		shot(int keycode, int x, int y, t_data *data);
-int		finish_game(t_data *data);
+void	finish_game(t_data *data);
 void	set_step(t_data *data);
 void	init_ray_dir(t_data *data);
 void	draw_limits(t_raycast *raycast, int *draw_start, int *draw_end);

@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 15:51:03 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:59:10 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,9 @@ void	init_texture(int fd, t_map *map, t_data *data)
 	char	*memory;
 	int		i;
 
+	if (fd < 0)
+		exit(EXIT_FAILURE);
 	nb_value = 6;
-	(void)data;
 	if (BONUS)
 		nb_value += 1;
 	i = 0;

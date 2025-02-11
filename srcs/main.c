@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 15:41:05 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:16:40 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	hook(t_data *data)
 		mlx_hook(data->window, 4, 1L << 2, shot, data);
 	}
 	mlx_loop_hook(data->mlx, game_loop, data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int ac, char **av)
@@ -48,8 +49,6 @@ int	main(int ac, char **av)
 		return (1);
 	data->map.path = av[1];
 	fd = open(data->map.path, O_RDONLY);
-	if (fd < 0)
-		return (1);
 	init_value(data);
 	init_texture(fd, &data->map, data);
 	check_errors(data);
@@ -62,7 +61,6 @@ int	main(int ac, char **av)
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	load_textures(data);
 	hook(data);
-	mlx_loop(data->mlx);
 	finish_game(data);
 	return (0);
 }

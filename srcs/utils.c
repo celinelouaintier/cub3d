@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:46:41 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:37:57 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:49:42 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,26 @@
 
 int	get_color(t_data *data, char *str)
 {
-	int	r;
-	int	g;
-	int	b;
-	int	color;
+	int		r;
+	int		g;
+	int		b;
+	int		color;
+	char	*comma;
 
+	if (!str)
+		return (0);
 	r = ft_atoi(str);
-	str = ft_strchr(str, ',') + 1;
+	comma = ft_strchr(str, ',');
+	if (!comma)
+		return (0);
+	str = comma + 1;
 	g = ft_atoi(str);
-	str = ft_strchr(str, ',') + 1;
+	comma = ft_strchr(str, ',');
+	if (!comma)
+		return (0);
+	str = comma + 1;
 	b = ft_atoi(str);
-	color = (0 << 24 | r << 16 | g << 8 | b);
+	color = (r << 16 | g << 8 | b);
 	return (mlx_get_color_value(data->mlx, color));
 }
 

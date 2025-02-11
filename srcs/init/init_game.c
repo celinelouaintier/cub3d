@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:44:59 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 17:52:36 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:45:37 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,18 @@ void	draw_bg(t_data *data)
 	int	color;
 
 	color = get_color(data, data->map.cell);
+	if (!color)
+		finish_game(data);
 	y = 0;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		if (y > HEIGHT / 2)
+		{
 			color = get_color(data, data->map.floor);
+			if (!color)
+				finish_game(data);
+		}
 		while (x < WIDTH)
 		{
 			put_pixel(&data->img, x, y, color);

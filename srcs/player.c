@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/07 19:39:51 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:41:59 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ int	shot(int keycode, int x, int y, t_data *data)
 			{
 				data->entity[i].is_alive = 0;
 				data->entity[i].targeted = 0;
+				data->killed++;
+				if (data->killed == data->nb_entity)
+				{
+					ft_printf("You won !\n");
+					finish_game(data);
+				}
 				return (0);
 			}
 		}

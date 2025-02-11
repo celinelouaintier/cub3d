@@ -6,14 +6,26 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:48 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:50:51 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	init_tex_struct(t_data *data)
+{
+	ft_memset(data->tex, 0, sizeof(data->tex));
+	if (BONUS)
+	{
+		memset(data->enemy, 0, sizeof(data->enemy));
+		memset(data->weapon, 0, sizeof(data->weapon));
+		memset(data->health, 0, sizeof(data->health));
+	}
+}
+
 void	init_value(t_data *data)
 {
+	init_tex_struct(data);
 	data->key.a = 0;
 	data->key.w = 0;
 	data->key.s = 0;
@@ -24,8 +36,8 @@ void	init_value(t_data *data)
 	data->minimap.img = NULL;
 	data->p_frame_count = 0;
 	data->w_frame_count = 0;
-	data->last_x = -1;
 	data->speed = 0.1;
+	data->killed = 0;
 	data->hp_max = 100;
 	data->hp = data->hp_max;
 	data->map.ea = NULL;
@@ -42,21 +54,21 @@ void	get_textures(t_data *data, char *path, t_img *tex)
 {
 	if (path == NULL)
 	{
-		perror("Texture path is NULL");
+		ft_printf("Error\nTexture path is NULL\n");
 		finish_game(data);
 	}
 	tex->img = mlx_xpm_file_to_image(data->mlx, path, &tex->width,
 			&tex->height);
 	if (!tex->img)
 	{
-		perror("failed to load texture\n");
+		ft_printf("Error\nFailed to load texture\n");
 		finish_game(data);
 	}
 	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->pixel_bits,
 			&tex->size_line, &tex->endian);
 	if (!tex->addr)
 	{
-		perror("Failed to get image address\n");
+		ft_printf("Error\nFailed to get image address\n");
 		finish_game(data);
 	}
 }

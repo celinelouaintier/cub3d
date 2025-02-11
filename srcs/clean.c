@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 15:50:52 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:49:21 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	exit_game(t_data *data)
 	exit(EXIT_FAILURE);
 }
 
-int	finish_game(t_data *data)
+void	finish_game(t_data *data)
 {
 	destroy_images(data);
 	if (BONUS)
@@ -90,7 +90,6 @@ int	finish_game(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit_game(data);
-	exit(EXIT_SUCCESS);
 }
 
 void	check_nb_value(t_data *data, int fd, int i, int nb_value)
