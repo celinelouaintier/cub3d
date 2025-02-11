@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 13:12:19 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:52:49 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	render_minimap(t_data *data)
 		{
 			if (data->map.map[i][j] == '1')
 				data->minimap.color = get_color(data, "99,57,116" );
-			else if (data->map.map[i][j] == '0')
+			else if (data->map.map[i][j] == '0' || data->map.map[i][j] == 'X')
 				data->minimap.color = get_color(data, "253,254,254");
-			else if (data->map.map[i][j] == 'D')
+			else if (data->map.map[i][j] == 'D' )
 				data->minimap.color = get_color(data, "65,189,126");
-			else if (data->map.map[i][j] == ' ')
+			else if (data->map.map[i][j] == ' ' || data->map.map[i][j] == 'O')
 				data->minimap.color = get_color(data, data->map.cell);
 			draw_square(data, j * cell_w, i * cell_h, cell_w + 4);
 		}

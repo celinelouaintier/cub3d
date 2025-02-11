@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 16:48:59 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:15:57 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_file_format(char *filename)
+void	check_file_format(char *filename, int fd)
 {
 	int		i;
 
 	i = 0;
-	if (!filename)
+	if (!filename || fd < 0)
 	{
 		ft_printf("Error\nNo file\n");
 		exit(-1);

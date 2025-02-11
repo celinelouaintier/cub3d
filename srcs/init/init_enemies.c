@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:41:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 16:36:16 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:59:12 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	count_ennemy(t_data *data)
 		while (++j < (int)ft_strlen(data->map.map[i]))
 			if (data->map.map[i][j] == 'X')
 				data->nb_entity++;
+	}
+	if (data->nb_entity > 10)
+	{
+		ft_printf("Error\nToo many ennemies\n");
+		exit_game(data);
 	}
 }
 

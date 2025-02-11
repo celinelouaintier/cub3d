@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 19:13:45 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:16:19 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int		game_loop(t_data *data);
 void	set_img(t_data *data);
 void	find_initial_position(t_data *data);
 int		mouse_move(int x, int y, t_data *data);
-void	check_file_format(char *filename);
+void	check_file_format(char *filename, int fd);
 void	draw_line(t_data *data, int start, int end, int x);
 void	init_raycast(t_raycast *r, t_data *data, int x);
 int		check_ray_hit(t_raycast *r, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 19:13:26 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:16:58 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	main(int ac, char **av)
 	t_data	*data;
 	int		fd;
 
-	check_file_format(av[1]);
 	data = malloc(sizeof(t_data));
+	data->map.path = av[1];
+	fd = open(data->map.path, O_RDONLY);
+	check_file_format(data->map.path, fd);
 	if (!data)
 		return (-1);
 	if (ac != 2)
 		return (1);
-	data->map.path = av[1];
-	fd = open(data->map.path, O_RDONLY);
 	init_value(data);
 	init_texture(fd, &data->map, data);
 	check_errors(data);

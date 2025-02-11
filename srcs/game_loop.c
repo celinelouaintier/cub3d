@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 16:40:32 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:54:43 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_health(t_data *data)
 	{
 		y = 0;
 		while (y++ < data->health[0].width)
-			put_pixel(&data->img, y + 50, x + (HEIGHT - 100),
+			put_pixel(&data->img, y + 50, x + (HEIGHT - 150),
 				data->health[0].addr[i++]);
 	}
 	i = 0;
@@ -98,7 +98,7 @@ void	draw_health(t_data *data)
 	{
 		y = 0;
 		while (y++ < width)
-			put_pixel(&data->img, y + 88, x + (HEIGHT - 88),
+			put_pixel(&data->img, y + 88, x + (HEIGHT - 138),
 				data->health[1].addr[i++]);
 		i += data->health[1].width - width;
 	}
