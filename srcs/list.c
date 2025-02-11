@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:09:41 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/10 19:38:09 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:17:14 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,16 @@ void	init_lists(t_data *data, t_entity *entity)
 	i = -1;
 	entity->closed_list = malloc(sizeof(int *) * data->map.height);
 	entity->node = malloc(sizeof(t_node *) * data->map.height);
+	if (!entity->closed_list || !entity->node)
+		free_lists(data, entity);
 	while (++i < data->map.height)
 	{
 		j = -1;
 		entity->node[i] = malloc(sizeof(t_node) * ft_strlen(data->map.map[i]));
 		entity->closed_list[i] = malloc(sizeof(int)
 				* ft_strlen(data->map.map[i]));
+		if (!entity->node[i] || !entity->closed_list[i])
+			free_lists(data, entity);
 		while (data->map.map[i][++j])
 		{
 			entity->closed_list[i][j] = 0;

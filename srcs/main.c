@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:49:30 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:41:05 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,21 @@ int	main(int ac, char **av)
 
 	check_file_format(av[1]);
 	data = malloc(sizeof(t_data));
+	if (!data)
+		return (-1);
 	if (ac != 2)
 		return (1);
 	data->map.path = av[1];
 	fd = open(data->map.path, O_RDONLY);
 	if (fd < 0)
 		return (1);
-	init_texture(fd, &data->map);
+	init_value(data);
+	init_texture(fd, &data->map, data);
 	check_errors(data);
 	find_initial_position(data);
-	init_ennemy(data);
+	if (BONUS)
+		init_ennemy(data);
 	data->mlx = mlx_init();
-	init_value(data);
 	if (!data->mlx)
 		return (1);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:18:11 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:51:03 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ char	*skip_line(int fd)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] == '1')
-			break ;
+			return (line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (line);
+	return (NULL);
 }
 
 void	get_map_size(int fd, t_map **map, char *line)
@@ -102,6 +102,8 @@ void	fill_map(int fd, t_map *map)
 		map->map[i] = line;
 		line = get_next_line(fd);
 	}
+	free(line);
+	close(fd);
 }
 
 char	*set_texture(char *line, int *nb_value)
@@ -114,7 +116,7 @@ char	*set_texture(char *line, int *nb_value)
 	return (ft_strdup(line));
 }
 
-void	init_texture(int fd, t_map *map)
+void	init_texture(int fd, t_map *map, t_data *data)
 {
 	char	*line;
 	int		nb_value;
@@ -122,19 +124,21 @@ void	init_texture(int fd, t_map *map)
 	int		i;
 
 	nb_value = 6;
+	(void)data;
 	if (BONUS)
 		nb_value += 1;
 	i = 0;
 	while (i < nb_value)
 	{
 		line = get_next_line(fd);
-		memory = line;
 		if (!line)
 			break ;
+		memory = line;
 		while (*line == ' ')
 			line++;
 		check_letter(line, &i, map);
 		free(memory);
 	}
+	check_nb_value(data, fd, i, nb_value);
 	fill_map(fd, map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:46:00 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:51:33 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ typedef struct s_data
 }				t_data;
 
 void	fill_map(int fd, t_map *map);
-void	init_texture(int fd, t_map *map);
+void	init_texture(int fd, t_map *map, t_data *data);
 int		get_color(t_data *data, char *str);
 void	put_pixel(t_img *image, int x, int y, int color);
 int		game_loop(t_data *data);
@@ -217,5 +217,6 @@ void	free_map(char **map, int height);
 void	check_letter(char *line, int *i, t_map *map);
 char	*set_texture(char *line, int *nb_value);
 void	init_entity(t_data *data);
+void	check_nb_value(t_data *data, int fd, int i, int nb_value);
 
 #endif

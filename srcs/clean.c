@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:40:44 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:50:52 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,22 @@ int	exit_game(t_data *data)
 {
 	if (data)
 	{
-		free_map(data->map.map, data->map.height);
-		if (BONUS)
+		if (data->map.map)
+			free_map(data->map.map, data->map.height);
+		if (BONUS && data->map.door)
 			free(data->map.door);
-		free(data->map.no);
-		free(data->map.so);
-		free(data->map.ea);
-		free(data->map.floor);
-		free(data->map.cell);
-		free(data->map.we);
+		if (data->map.no)
+			free(data->map.no);
+		if (data->map.so)
+			free(data->map.so);
+		if (data->map.ea)
+			free(data->map.ea);
+		if (data->map.floor)
+			free(data->map.floor);
+		if (data->map.cell)
+			free(data->map.cell);
+		if (data->map.we)
+			free(data->map.we);
 		free(data);
 	}
 	exit(EXIT_FAILURE);
@@ -84,4 +91,14 @@ int	finish_game(t_data *data)
 	free(data->mlx);
 	exit_game(data);
 	exit(EXIT_SUCCESS);
+}
+
+void	check_nb_value(t_data *data, int fd, int i, int nb_value)
+{
+	if (i != nb_value)
+	{
+		ft_printf("Error\nMissing texture\n");
+		close(fd);
+		exit_game(data);
+	}
 }

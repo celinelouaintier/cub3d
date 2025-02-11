@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_enemies.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:41:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:45:00 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:34:59 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_ennemy(t_data *data)
 	while (++i < data->map.height)
 	{
 		j = -1;
-		while (++j < data->map.width)
+		while (++j < (int)ft_strlen(data->map.map[i]))
 		{
 			if (data->map.map[i][j] == 'X')
 			{

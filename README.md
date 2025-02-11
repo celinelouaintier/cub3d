@@ -14,14 +14,7 @@ GIT
 - AVANT DE FUSIONNER, SYNCHRONISER AVEC LA BRANCHE MAIN POUR MINIMISER CONFLITS :
         'git pull origin main'
 
-TODO
-
-- Map : calculer la longueur de la plus longue ligne pour boucler dessus dans
-- fermer le fd
-- Reste un leak quand on met un 0 avant les 1
-- Verifier tous les mallocs pas proteges
-
 On verra :
+- Apparition de sortie lorsque tous les ennemis morts 
 - Menu
 - Animation portes
-- Apparition de sortie lorsque tous les ennemis morts

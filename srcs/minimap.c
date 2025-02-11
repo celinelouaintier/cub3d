@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:08:00 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 18:30:12 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:12:19 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	draw_square(t_data *data, int x, int y, int cell)
 	int	j;
 
 	i = 0;
-	(void)cell;
 	while (i < cell)
 	{
 		j = 0;
@@ -65,7 +64,9 @@ void	render_minimap(t_data *data)
 				data->minimap.color = get_color(data, "99,57,116" );
 			else if (data->map.map[i][j] == '0')
 				data->minimap.color = get_color(data, "253,254,254");
-			else
+			else if (data->map.map[i][j] == 'D')
+				data->minimap.color = get_color(data, "65,189,126");
+			else if (data->map.map[i][j] == ' ')
 				data->minimap.color = get_color(data, data->map.cell);
 			draw_square(data, j * cell_w, i * cell_h, cell_w + 4);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 20:10:08 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 13:24:46 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	raycast(t_data *data)
 		apply_tex(data, x);
 		data->sprite.wall_dist_buffer[x] = raycast->wall_dist;
 	}
-	init_entity(data);
+	if (BONUS)
+		init_entity(data);
 }
 
 void	draw_cursor(t_data *data)

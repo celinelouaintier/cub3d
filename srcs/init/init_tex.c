@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 19:46:34 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:44:48 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	init_value(t_data *data)
 	data->speed = 0.1;
 	data->hp_max = 100;
 	data->hp = data->hp_max;
+	data->map.ea = NULL;
+	data->map.no = NULL;
+	data->map.so = NULL;
+	data->map.we = NULL;
+	data->map.door = NULL;
+	data->map.cell = NULL;
+	data->map.floor = NULL;
+	data->map.map = NULL;
 }
 
 void	get_textures(t_data *data, char *path, t_img *tex)
