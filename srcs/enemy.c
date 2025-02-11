@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:11:59 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/11 13:22:02 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:16:10 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,10 @@ void	enemies(t_data *data)
 		{
 			data->hp -= 1;
 			if (data->hp <= 0)
+			{
+				ft_printf("Game Over\n");
 				finish_game(data);
+			}
 		}
 		if (data->entity[i].distance < 0.3 || data->entity[i].distance > 120
 			|| !data->entity[i].is_alive)

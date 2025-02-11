@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 17:50:51 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:14:43 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_value(t_data *data)
 	data->minimap.img = NULL;
 	data->p_frame_count = 0;
 	data->w_frame_count = 0;
-	data->speed = 0.1;
+	data->speed = 0.05;
 	data->killed = 0;
 	data->hp_max = 100;
 	data->hp = data->hp_max;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 17:12:26 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:13:45 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,5 +219,6 @@ void	check_letter(char *line, int *i, t_map *map);
 char	*set_texture(char *line, int *nb_value);
 void	init_entity(t_data *data);
 void	check_nb_value(t_data *data, int fd, int i, int nb_value);
+void	set_node(t_entity *entity, int i, int j);
 
 #endif

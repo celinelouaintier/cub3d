@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:09:41 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/11 12:17:14 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:13:31 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,7 @@ void	init_lists(t_data *data, t_entity *entity)
 			entity->closed_list[i][j] = 0;
 			if (data->map.map[i][j] == '1' || data->map.map[i][j] == 'D')
 				entity->closed_list[i][j] = 1;
-			entity->node[i][j].f = 99999;
-			entity->node[i][j].g = 99999;
-			entity->node[i][j].h = 99999;
-			entity->node[i][j].prev_x = -1;
-			entity->node[i][j].prev_y = -1;
+			set_node(entity, i, j);
 		}
 	}
 }

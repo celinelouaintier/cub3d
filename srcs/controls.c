@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:52:43 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/10 17:20:12 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:16:26 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == XK_Right)
 		data->key.right = 1;
 	if (keycode == XK_Shift_L)
-		data->speed = 0.2;
+		data->speed = 0.1;
 	if (keycode == 'w')
 		data->key.w = 1;
 	if (keycode == 'a')
@@ -81,7 +81,7 @@ int	key_release(int keycode, t_data *data)
 	if (keycode == XK_Right)
 		data->key.right = 0;
 	if (keycode == XK_Shift_L)
-		data->speed = 0.1;
+		data->speed = 0.05;
 	if (keycode == 'w')
 		data->key.w = 0;
 	if (keycode == 'a')

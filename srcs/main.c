@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 17:16:40 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:13:26 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	set_node(t_entity *entity, int i, int j)
+{
+	entity->node[i][j].f = 99999;
+	entity->node[i][j].g = 99999;
+	entity->node[i][j].h = 99999;
+	entity->node[i][j].prev_x = -1;
+	entity->node[i][j].prev_y = -1;
+}
 
 void	animate_player(t_data *data)
 {
