@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 20:41:48 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:46:01 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	shot(int keycode, int x, int y, t_data *data)
 				data->killed++;
 				if (data->killed == data->nb_entity)
 				{
-					ft_printf("You won !\n");
+					ft_printf("👑 You won ! 👑\n");
 					finish_game(data);
 				}
 				return (0);

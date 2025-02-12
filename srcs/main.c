@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 20:16:58 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:23:53 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	main(int ac, char **av)
 	int		fd;
 
 	data = malloc(sizeof(t_data));
-	data->map.path = av[1];
-	fd = open(data->map.path, O_RDONLY);
-	check_file_format(data->map.path, fd);
 	if (!data)
 		return (-1);
+	data->map.path = av[1];
+	fd = open(data->map.path, O_RDONLY);
+	check_file_format(data->map.path, fd, data);
 	if (ac != 2)
 		return (1);
 	init_value(data);

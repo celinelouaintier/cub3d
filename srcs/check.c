@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 20:15:57 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:24:36 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_file_format(char *filename, int fd)
+void	check_file_format(char *filename, int fd, t_data *data)
 {
 	int		i;
 
@@ -20,6 +20,7 @@ void	check_file_format(char *filename, int fd)
 	if (!filename || fd < 0)
 	{
 		ft_printf("Error\nNo file\n");
+		free(data);
 		exit(-1);
 	}
 	while (filename[i] && filename[i - 1] != '.')

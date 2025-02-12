@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:11:59 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/11 19:16:10 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:46:46 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,19 @@ void	goto_coords(t_data *data, t_entity *entity, float x, float y)
 {
 	float	new_x;
 	float	new_y;
+	float	speed;
 
 	new_x = entity->x;
 	new_y = entity->y;
+	speed = 0.05;
 	if (entity->x > x)
-		new_x = entity->x - 0.05;
+		new_x = entity->x - speed;
 	if (entity->x < x)
-		new_x = entity->x + 0.05;
+		new_x = entity->x + speed;
 	if (entity->y > y)
-		new_y = entity->y - 0.05;
+		new_y = entity->y - speed;
 	if (entity->y < y)
-		new_y = entity->y + 0.05;
+		new_y = entity->y + speed;
 	if (data->map.map[(int)new_y][(int)new_x] != '1'
 		&& data->map.map[(int)new_y][(int)new_x] != 'D')
 	{
@@ -117,7 +119,7 @@ void	enemies(t_data *data)
 			data->hp -= 1;
 			if (data->hp <= 0)
 			{
-				ft_printf("Game Over\n");
+				ft_printf("💀 Game Over ! 💀\n");
 				finish_game(data);
 			}
 		}
