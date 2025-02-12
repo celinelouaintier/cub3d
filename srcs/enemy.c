@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:11:59 by nferrad           #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:46 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/12 22:48:28 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	move_enemies(t_data *data, t_entity *entity)
 		find_min_node(data, entity, &x, &y);
 	}
 	if (!check_list(data, entity))
-		free_lists(data, entity);
+		return (free_lists(data, entity));
 	get_coord(entity, &x, &y);
 	goto_coords(data, entity, x + 0.5, y + 0.5);
 	free_lists(data, entity);

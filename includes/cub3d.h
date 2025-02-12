@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/12 15:24:19 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:37:27 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@
 # define ENEMY4 "assets/ennemies/waechter4.xpm"
 # define ENEMY5 "assets/ennemies/waechter5.xpm"
 # define ENEMY6 "assets/ennemies/waechter6.xpm"
+
+# define WEAPON1 "assets/weapon/DEAG1.xpm"
+# define WEAPON2 "assets/weapon/DEAG2.xpm"
+# define WEAPON3 "assets/weapon/DEAG3.xpm"
+# define WEAPON4 "assets/weapon/DEAG4.xpm"
+# define WEAPON5 "assets/weapon/DEAG5.xpm"
+
+# define HEALTH1 "assets/healthBar/hp_bar_outer.xpm"
+# define HEALTH2 "assets/healthBar/hp_bar_inner.xpm"
 
 typedef struct s_node
 {
@@ -141,7 +150,7 @@ typedef struct s_data
 	t_sprite	sprite;
 	t_img		tex[5];
 	t_img		enemy[6];
-	t_img		weapon[2];
+	t_img		weapon[5];
 	t_img		health[2];
 	t_map		map;
 	t_img		img;
@@ -166,7 +175,6 @@ typedef struct s_data
 	int			draw_end;
 }				t_data;
 
-void	fill_map(int fd, t_map *map);
 void	init_texture(int fd, t_map *map, t_data *data);
 int		get_color(t_data *data, char *str);
 void	put_pixel(t_img *image, int x, int y, int color);
@@ -215,10 +223,12 @@ int		check_list(t_data *data, t_entity *entity);
 int		exit_game(t_data *data);
 void	init_value(t_data *data);
 void	free_map(char **map, int height);
-void	check_letter(char *line, int *i, t_map *map);
-char	*set_texture(char *line, int *nb_value);
+void	check_letter(char *line, t_map *map, t_data *data, int fd);
+void	set_texture(char *line, char **tex, int fd, t_data *data);
 void	init_entity(t_data *data);
 void	check_nb_value(t_data *data, int fd, int i, int nb_value);
 void	set_node(t_entity *entity, int i, int j);
+int		have_door(t_data *data);
+void	check_textures_size(t_data *data);
 
 #endif

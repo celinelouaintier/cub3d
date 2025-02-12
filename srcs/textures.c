@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:14:49 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/06 15:47:40 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:18:51 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,22 @@ void	apply_tex(t_data *data, int x)
 	wallx -= floor(wallx);
 	tex_x = get_tex_x(data, wallx);
 	wall_line(data, x, tex_x);
+}
+
+int	have_door(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < data->map.height)
+	{
+		j = -1;
+		while (++j < (int)ft_strlen(data->map.map[i]))
+		{
+			if (data->map.map[i][j] == 'D')
+				return (1);
+		}
+	}
+	return (0);
 }

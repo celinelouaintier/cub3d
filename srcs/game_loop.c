@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:21:53 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 20:54:43 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 00:03:48 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,29 @@ void	draw_cursor(t_data *data)
 
 void	draw_weapon(t_data *data)
 {
-	int	i;
-	int	x;
-	int	y;
+	int			i;
+	int			x;
+	int			y;
+	static int	j = 0;
 
 	i = 0;
 	x = 0;
 	if (data->shot)
 		data->w_frame_count++;
-	if (data->w_frame_count >= 5)
+	if (!(data->w_frame_count % 3) && data->shot)
+		j++;
+	else if (data->w_frame_count > 12)
 	{
+		j = 0;
 		data->shot = 0;
 		data->w_frame_count = 0;
 	}
-	while (x++ < data->weapon[data->shot].height)
+	while (x++ < data->weapon[j].height)
 	{
 		y = 0;
-		while (y++ < data->weapon[data->shot].width)
+		while (y++ < data->weapon[j].width)
 			put_pixel(&data->img, (WIDTH / 2) + y + 100,
-				(HEIGHT / 2) + x, data->weapon[data->shot].addr[i++]);
+				(HEIGHT / 2) + x, data->weapon[j].addr[i++]);
 	}
 }
 

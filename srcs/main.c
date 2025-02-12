@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:48 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/12 15:23:53 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:36:31 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_textures_size(t_data *data)
+{
+	if (data->tex[0].width != data->tex[0].height
+		|| data->tex[1].width != data->tex[1].height
+		|| data->tex[2].width != data->tex[2].height
+		|| data->tex[3].width != data->tex[3].height
+		|| (BONUS && data->tex[4].width != data->tex[4].height))
+	{
+		ft_printf("Error\nTextures must be square\n");
+		finish_game(data);
+	}
+}
 
 void	set_node(t_entity *entity, int i, int j)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/12 15:24:36 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:03:02 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,20 +102,25 @@ void	check_errors(t_data *data)
 	}
 }
 
-void	check_letter(char *line, int *i, t_map *map)
+void	check_letter(char *line, t_map *map, t_data *data, int fd)
 {
-	if (line[0] == 'N' && line[1] == 'O')
-		map->no = set_texture(line, i);
-	else if (line[0] == 'S' && line[1] == 'O')
-		map->so = set_texture(line, i);
-	else if (line[0] == 'W' && line[1] == 'E')
-		map->we = set_texture(line, i);
-	else if (line[0] == 'E' && line[1] == 'A')
-		map->ea = set_texture(line, i);
+	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+		set_texture(line, &map->no, fd, data);
+	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+		set_texture(line, &map->so, fd, data);
+	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+		set_texture(line, &map->we, fd, data);
+	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+		set_texture(line, &map->ea, fd, data);
 	else if (line[0] == 'F' && line[1] == ' ')
-		map->floor = set_texture(line, i);
+		set_texture(line, &map->floor, fd, data);
 	else if (line[0] == 'C' && line[1] == ' ')
-		map->cell = set_texture(line, i);
+		set_texture(line, &map->cell, fd, data);
 	else if (BONUS && line[0] == 'D' && line[1] == ' ')
-		map->door = set_texture(line, i);
+		set_texture(line, &map->door, fd, data);
+	else if (line[0] && line[0] != '\n')
+	{
+		ft_printf("Error\nWrong texture format\n");
+		exit_game(data);
+	}
 }

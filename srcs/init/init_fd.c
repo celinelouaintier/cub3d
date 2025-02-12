@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:48:36 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 20:15:32 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 00:03:23 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 // 	// }
 // }
 
-char	*skip_line(int fd)
+char	*skip_line(int fd, t_data *data, t_map *map, int check)
 {
 	char	*line;
 	int		i;
@@ -45,6 +45,14 @@ char	*skip_line(int fd)
 	{
 		while (line[i] == ' ')
 			i++;
+		if (check && BONUS && line[0] == 'D' && line[1] == ' ')
+			set_texture(line, &map->door, fd, data);
+		else if (check && line[i] != '1' && line[i] != '\n' && line[i])
+		{
+			ft_printf("Error\nWrong texture format\n");
+			free(line);
+			exit_game(data);
+		}
 		if (line[i] == '1')
 			return (line);
 		free(line);
@@ -78,17 +86,17 @@ void	get_map_size(int fd, t_map **map, char *line)
 	close(fd);
 }
 
-void	fill_map(int fd, t_map *map)
+void	fill_map(int fd, t_map *map, t_data *data)
 {
 	int		i;
 	char	*line;
 
 	i = -1;
-	line = skip_line(fd);
+	line = skip_line(fd, data, map, 1);
 	get_map_size(fd, &map, line);
 	close(fd);
 	fd = open(map->path, O_RDONLY);
-	line = skip_line(fd);
+	line = skip_line(fd, data, map, 0);
 	i = -1;
 	map->map = malloc(sizeof(char *) * map->height);
 	if (!map->map)
@@ -106,28 +114,28 @@ void	fill_map(int fd, t_map *map)
 	close(fd);
 }
 
-char	*set_texture(char *line, int *nb_value)
+void	set_texture(char *line, char **tex, int fd, t_data *data)
 {
+	if (*tex)
+	{
+		ft_printf("Error\nTexture already set\n");
+		close(fd);
+		exit_game(data);
+	}
 	line += 2;
 	while (*line == ' ')
 		line++;
-	*nb_value += 1;
 	line[ft_strlen(line) - 1] = 0;
-	return (ft_strdup(line));
+	*tex = ft_strdup(line);
 }
 
 void	init_texture(int fd, t_map *map, t_data *data)
 {
 	char	*line;
-	int		nb_value;
 	char	*memory;
-	int		i;
 
-	nb_value = 6;
-	if (BONUS)
-		nb_value += 1;
-	i = 0;
-	while (i < nb_value)
+	while (!map->we || !map->ea || !map->so || !map->no || !map->floor
+		|| !map->cell)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -135,9 +143,8 @@ void	init_texture(int fd, t_map *map, t_data *data)
 		memory = line;
 		while (*line == ' ')
 			line++;
-		check_letter(line, &i, map);
+		check_letter(line, map, data, fd);
 		free(memory);
 	}
-	check_nb_value(data, fd, i, nb_value);
-	fill_map(fd, map);
+	fill_map(fd, map, data);
 }

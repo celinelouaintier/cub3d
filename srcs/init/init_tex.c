@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:46:17 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 19:14:43 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 00:36:55 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,21 @@ void	load_textures(t_data *data)
 {
 	get_textures(data, data->map.no, &data->tex[0]);
 	get_textures(data, data->map.so, &data->tex[1]);
-	get_textures(data, data->map.we, &data->tex[2]);
-	get_textures(data, data->map.ea, &data->tex[3]);
+	get_textures(data, data->map.ea, &data->tex[2]);
+	get_textures(data, data->map.we, &data->tex[3]);
 	if (BONUS)
 	{
 		data->shot = 0;
 		data->current_sprite = 0;
-		get_textures(data, data->map.door, &data->tex[4]);
-		get_textures(data, "assets/weapon/DEAG1.xpm", &data->weapon[0]);
-		get_textures(data, "assets/weapon/DEAG2.xpm", &data->weapon[1]);
-		get_textures(data, "assets/healthBar/hp_bar_outer.xpm",
-			&data->health[0]);
-		get_textures(data, "assets/healthBar/hp_bar_inner.xpm",
-			&data->health[1]);
+		if (have_door(data))
+			get_textures(data, data->map.door, &data->tex[4]);
+		get_textures(data, WEAPON1, &data->weapon[0]);
+		get_textures(data, WEAPON2, &data->weapon[1]);
+		get_textures(data, WEAPON3, &data->weapon[2]);
+		get_textures(data, WEAPON4, &data->weapon[3]);
+		get_textures(data, WEAPON5, &data->weapon[4]);
+		get_textures(data, HEALTH1, &data->health[0]);
+		get_textures(data, HEALTH2, &data->health[1]);
 		get_textures(data, ENEMY1, &data->enemy[0]);
 		get_textures(data, ENEMY2, &data->enemy[1]);
 		get_textures(data, ENEMY3, &data->enemy[2]);
@@ -97,6 +99,7 @@ void	load_textures(t_data *data)
 		get_textures(data, ENEMY5, &data->enemy[4]);
 		get_textures(data, ENEMY6, &data->enemy[5]);
 	}
+	check_textures_size(data);
 }
 
 int	set_tex_i(t_raycast *raycast)
