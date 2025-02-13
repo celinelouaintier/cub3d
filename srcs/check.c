@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:50:14 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 00:03:02 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:16:30 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,22 @@ void	check_errors(t_data *data)
 	}
 }
 
-void	check_letter(char *line, t_map *map, t_data *data, int fd)
+void	check_letter(char *line, int i, t_data *data, int fd)
 {
-	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-		set_texture(line, &map->no, fd, data);
-	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-		set_texture(line, &map->so, fd, data);
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-		set_texture(line, &map->we, fd, data);
-	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-		set_texture(line, &map->ea, fd, data);
-	else if (line[0] == 'F' && line[1] == ' ')
-		set_texture(line, &map->floor, fd, data);
-	else if (line[0] == 'C' && line[1] == ' ')
-		set_texture(line, &map->cell, fd, data);
-	else if (BONUS && line[0] == 'D' && line[1] == ' ')
-		set_texture(line, &map->door, fd, data);
-	else if (line[0] && line[0] != '\n')
-	{
-		ft_printf("Error\nWrong texture format\n");
-		exit_game(data);
-	}
+	if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
+		set_texture(line, &data->map.no, fd, data);
+	else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
+		set_texture(line, &data->map.so, fd, data);
+	else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
+		set_texture(line, &data->map.we, fd, data);
+	else if (line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
+		set_texture(line, &data->map.ea, fd, data);
+	else if (line[i] == 'F' && line[i + 1] == ' ')
+		set_texture(line, &data->map.floor, fd, data);
+	else if (line[i] == 'C' && line[i + 1] == ' ')
+		set_texture(line, &data->map.cell, fd, data);
+	else if (BONUS && line[i] == 'D' && line[i + 1] == ' ')
+		set_texture(line, &data->map.door, fd, data);
+	else if (line[i] && line[i] != '\n')
+		clean_gnl(line, fd, data, "Error\nWrong texture format\n");
 }

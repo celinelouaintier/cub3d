@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 19:04:04 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:15:33 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,18 @@ void	finish_game(t_data *data)
 	exit_game(data);
 }
 
-void	check_nb_value(t_data *data, int fd, int i, int nb_value)
+void	clean_gnl(char *line, int fd, t_data *data, char *error)
 {
-	if (i != nb_value)
+	while (line)
 	{
-		ft_printf("Error\nMissing texture\n");
-		close(fd);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	if (error)
+	{
+		ft_printf("%s", error);
 		exit_game(data);
 	}
 }

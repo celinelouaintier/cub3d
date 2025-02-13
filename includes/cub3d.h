@@ -6,7 +6,7 @@
 /*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 00:37:27 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:15:51 by nferrad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,10 +223,10 @@ int		check_list(t_data *data, t_entity *entity);
 int		exit_game(t_data *data);
 void	init_value(t_data *data);
 void	free_map(char **map, int height);
-void	check_letter(char *line, t_map *map, t_data *data, int fd);
+void	check_letter(char *line, int i, t_data *data, int fd);
 void	set_texture(char *line, char **tex, int fd, t_data *data);
 void	init_entity(t_data *data);
-void	check_nb_value(t_data *data, int fd, int i, int nb_value);
+void	clean_gnl(char *line, int fd, t_data *data, char *error);
 void	set_node(t_entity *entity, int i, int j);
 int		have_door(t_data *data);
 void	check_textures_size(t_data *data);
