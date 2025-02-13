@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:40:03 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/11 17:49:21 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:16:58 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	destroy_images(t_data *data)
 			if (data->enemy[i].img)
 				mlx_destroy_image(data->mlx, data->enemy[i].img);
 		i = -1;
-		while (++i < 2)
+		while (++i < 5)
 			if (data->weapon[i].img)
 				mlx_destroy_image(data->mlx, data->weapon[i].img);
 		i = -1;

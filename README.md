@@ -18,3 +18,8 @@ On verra :
 - Apparition de sortie lorsque tous les ennemis morts 
 - Menu
 - Animation portes
+
+LEAKS :
+- Still reachable quand double texture (Error
+Texture already set)
+
