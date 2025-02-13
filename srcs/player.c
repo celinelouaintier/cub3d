@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:01 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:57:57 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,21 @@ void	move_player(t_data *data, float dir_x, float dir_y)
 
 	new_x = data->player_x + dir_x * data->speed;
 	new_y = data->player_y + dir_y * data->speed;
-	if (!is_wall_or_door(data, new_x + 0.2, new_y + 0.2)
-		&& !is_wall_or_door(data, new_x - 0.2, new_y - 0.2)
-		&& !is_wall_or_door(data, new_x + 0.2, new_y - 0.2)
-		&& !is_wall_or_door(data, new_x - 0.2, new_y + 0.2))
+	if (!is_wall_or_door(data, new_x + 0.05, new_y + 0.05)
+		&& !is_wall_or_door(data, new_x - 0.05, new_y - 0.05)
+		&& !is_wall_or_door(data, new_x + 0.05, new_y - 0.05)
+		&& !is_wall_or_door(data, new_x - 0.05, new_y + 0.05))
 	{
 		data->player_x = new_x;
 		data->player_y = new_y;
 	}
 	else
 	{
-		if (!is_wall_or_door(data, new_x + 0.2, data->player_y)
-			&& !is_wall_or_door(data, new_x - 0.2, data->player_y))
+		if (!is_wall_or_door(data, new_x + 0.05, data->player_y)
+			&& !is_wall_or_door(data, new_x - 0.05, data->player_y))
 			data->player_x = new_x;
-		if (!is_wall_or_door(data, data->player_x, new_y + 0.2)
-			&& !is_wall_or_door(data, data->player_x, new_y - 0.2))
+		if (!is_wall_or_door(data, data->player_x, new_y + 0.05)
+			&& !is_wall_or_door(data, data->player_x, new_y - 0.05))
 			data->player_y = new_y;
 	}
 }

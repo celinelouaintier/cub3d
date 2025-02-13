@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:14:49 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 00:18:51 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:17:16 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	put_pixel(t_img *image, int x, int y, int color)
+{
+	int	pixel;
+
+	if (x >= WIDTH || y >= HEIGHT || x <= 0 || y <= 0 || color < 0)
+		return ;
+	pixel = y * (image->size_line / 4) + x;
+	image->addr[pixel] = color;
+}
 
 int	get_tex_x(t_data *data, double wallx)
 {

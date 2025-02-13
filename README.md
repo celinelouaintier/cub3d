@@ -21,5 +21,8 @@ On verra :
 
 LEAKS :
 - Still reachable quand double texture (Error
-Texture already set)
+Texture already set / Error Wrong texture format)
+
+TODO (Celine)
+- Verifier les coins des murs pour pas rentrer dans la texture --> on peut toujours mais faut vraiment forcer.
 
