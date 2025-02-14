@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 17:57:57 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/14 01:01:14 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,26 +75,25 @@ void	move_player(t_data *data, float dir_x, float dir_y)
 {
 	float	new_x;
 	float	new_y;
+	float	hitbox;
+	int		blocked_x;
+	int		blocked_y;
 
+	hitbox = 0.1;
 	new_x = data->player_x + dir_x * data->speed;
 	new_y = data->player_y + dir_y * data->speed;
-	if (!is_wall_or_door(data, new_x + 0.05, new_y + 0.05)
-		&& !is_wall_or_door(data, new_x - 0.05, new_y - 0.05)
-		&& !is_wall_or_door(data, new_x + 0.05, new_y - 0.05)
-		&& !is_wall_or_door(data, new_x - 0.05, new_y + 0.05))
-	{
+	blocked_x = is_wall_or_door(data, new_x + hitbox, data->player_y + hitbox)
+		|| is_wall_or_door(data, new_x - hitbox, data->player_y + hitbox)
+		|| is_wall_or_door(data, new_x + hitbox, data->player_y - hitbox)
+		|| is_wall_or_door(data, new_x - hitbox, data->player_y - hitbox);
+	blocked_y = is_wall_or_door(data, data->player_x + hitbox, new_y + hitbox)
+		|| is_wall_or_door(data, data->player_x - hitbox, new_y + hitbox)
+		|| is_wall_or_door(data, data->player_x + hitbox, new_y - hitbox)
+		|| is_wall_or_door(data, data->player_x - hitbox, new_y - hitbox);
+	if (!blocked_x)
 		data->player_x = new_x;
+	if (!blocked_y)
 		data->player_y = new_y;
-	}
-	else
-	{
-		if (!is_wall_or_door(data, new_x + 0.05, data->player_y)
-			&& !is_wall_or_door(data, new_x - 0.05, data->player_y))
-			data->player_x = new_x;
-		if (!is_wall_or_door(data, data->player_x, new_y + 0.05)
-			&& !is_wall_or_door(data, data->player_x, new_y - 0.05))
-			data->player_y = new_y;
-	}
 }
 
 int	player_move(t_data *data)
