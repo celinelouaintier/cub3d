@@ -6,7 +6,7 @@
 /*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:22:38 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/14 01:01:14 by clouaint         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:06:13 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	shot(int keycode, int x, int y, t_data *data)
 	return (0);
 }
 
-int	is_wall_or_door(t_data *data, float x, float y)
+int	is_w_or_d(t_data *data, float x, float y)
 {
 	char	cell;
 
@@ -76,23 +76,21 @@ void	move_player(t_data *data, float dir_x, float dir_y)
 	float	new_x;
 	float	new_y;
 	float	hitbox;
-	int		blocked_x;
-	int		blocked_y;
 
 	hitbox = 0.1;
 	new_x = data->player_x + dir_x * data->speed;
 	new_y = data->player_y + dir_y * data->speed;
-	blocked_x = is_wall_or_door(data, new_x + hitbox, data->player_y + hitbox)
-		|| is_wall_or_door(data, new_x - hitbox, data->player_y + hitbox)
-		|| is_wall_or_door(data, new_x + hitbox, data->player_y - hitbox)
-		|| is_wall_or_door(data, new_x - hitbox, data->player_y - hitbox);
-	blocked_y = is_wall_or_door(data, data->player_x + hitbox, new_y + hitbox)
-		|| is_wall_or_door(data, data->player_x - hitbox, new_y + hitbox)
-		|| is_wall_or_door(data, data->player_x + hitbox, new_y - hitbox)
-		|| is_wall_or_door(data, data->player_x - hitbox, new_y - hitbox);
-	if (!blocked_x)
+	data->move.x1 = is_w_or_d(data, new_x + hitbox, data->player_y + hitbox);
+	data->move.x2 = is_w_or_d(data, new_x - hitbox, data->player_y + hitbox);
+	data->move.x3 = is_w_or_d(data, new_x + hitbox, data->player_y - hitbox);
+	data->move.x4 = is_w_or_d(data, new_x - hitbox, data->player_y - hitbox);
+	data->move.y1 = is_w_or_d(data, data->player_x + hitbox, new_y + hitbox);
+	data->move.y2 = is_w_or_d(data, data->player_x - hitbox, new_y + hitbox);
+	data->move.y3 = is_w_or_d(data, data->player_x + hitbox, new_y - hitbox);
+	data->move.y4 = is_w_or_d(data, data->player_x - hitbox, new_y - hitbox);
+	if (!data->move.x1 && !data->move.x2 && !data->move.x3 && !data->move.x4)
 		data->player_x = new_x;
-	if (!blocked_y)
+	if (!data->move.y1 && !data->move.y2 && !data->move.y3 && !data->move.y4)
 		data->player_y = new_y;
 }
 

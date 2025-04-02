@@ -54,10 +54,7 @@ re:			fclean all
 
 minilibx:
 					@echo "\033[34mDownloading minilibx...\033[0m"
-					wget -q https://cdn.intra.42.fr/document/document/26097/minilibx-linux.tgz
-					tar -xf minilibx-linux.tgz
-					rm -rf minilibx-linux.tgz
-					mv minilibx-linux minilibx
+					@git clone https://github.com/42paris/minilibx-linux.git minilibx
 					@echo "\033[32mDownload complete!\033[0m"
 
 party:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nferrad <nferrad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clouaint <clouaint@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:57:39 by clouaint          #+#    #+#             */
-/*   Updated: 2025/02/13 23:15:51 by nferrad          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:07:59 by clouaint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ typedef struct s_sprite
 	int		draw_end_y;
 	float	wall_dist_buffer[WIDTH];
 }	t_sprite;
+
+typedef struct s_move
+{
+	int	x1;
+	int	x2;
+	int	x3;
+	int	x4;
+	int	y1;
+	int	y2;
+	int	y3;
+	int	y4;
+}	t_move;
 
 typedef struct s_entity
 {
@@ -146,6 +158,7 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*window;
+	t_move		move;
 	t_entity	*entity;
 	t_sprite	sprite;
 	t_img		tex[5];
