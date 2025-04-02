@@ -20,7 +20,6 @@
 ### ⚡ Autres actions  
 - **Shift** → Sprint  
 
----
 
 ### 🎯 Partie Bonus  
 
