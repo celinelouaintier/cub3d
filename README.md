@@ -22,7 +22,7 @@
 
 ---
 
-## 🎯 Partie Bonus  
+### 🎯 Partie Bonus  
 
 Cette partie nécessite d’avoir lancé la compilation avec :  
 ```sh
@@ -37,13 +37,13 @@ Clic gauche → Tirer
 
 Mouvement de la souris → Bouger la vision
 
-### 🗺️ Map
+## 🗺️ Map
 Symbole	Signification  
 1	Mur  
 0	Vide  
 N/E/S/W	Position et orientation de départ
 
-## 🎯 Partie Bonus  
+### 🎯 Partie Bonus  
 Cette partie nécessite d’avoir lancé la compilation avec :
 
 ```sh
