@@ -1,7 +1,7 @@
 # Cub3D
 
 **Cub3D** est notre premier jeu 3D, développé en C à l’école 42. Il repose sur le raycasting pour générer un environnement en vue subjective et utilise la MinilibX pour afficher les graphismes.  
-*Réalisé par Céline Louaintier et Naïm Ferrad.*
+*Réalisé par [Céline Louaintier](https://github.com/celinelouaintier) et [Naïm Ferrad](https://github.com/Nyn9)*
 
 ---
 
